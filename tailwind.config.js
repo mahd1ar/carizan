@@ -9,6 +9,7 @@ module.exports = {
   ],
   theme: {
     container: {
+      center: true,
       padding: {
         DEFAULT: '1rem',
         sm: '2rem',
@@ -21,10 +22,13 @@ module.exports = {
       colors: {
         tm: {
           black: '#232E3B',
-          gray: '#626F7F',
-          yellow: { DEFAULT: '#f7ca18', dark: '#67540a' },
+          gray: { 'ligth': '#AFAFAE', 'dark': '#3F3F3F' },
+          yellow: { DEFAULT: '#FFC800', dark: '#67540a' },
         },
       },
+      fontFamily: {
+        yekan: 'Yekan Bakh'
+      }
     },
   },
   plugins: [],
