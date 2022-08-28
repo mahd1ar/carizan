@@ -1,9 +1,9 @@
 <template>
   <aside
-    class="overflow-hidden bg-center bg-no-repeat bg-cover bg-gradient-to-tr bg-black relative"
+    class="overflow-hidden bg-center bg-no-repeat bg-cover bg-gradient-to-tr from-black to-gray-700 relative"
   >
     <!-- from-black to-gray-700 -->
-    <div
+    <!-- <div
       class="w-full absolute bg-gray-900 h-full top-0 left-0"
       aria-hidden="true"
       style="clip-path: polygon(43% 0, 100% 0, 100% 100%, 34% 100%)"
@@ -12,7 +12,7 @@
       class="w-full absolute bg-gray-800 h-full top-0 left-0"
       aria-hidden="true"
       style="clip-path: polygon(53% 0, 100% 0, 100% 100%, 44% 100%)"
-    ></div>
+    ></div> -->
     <div
       class="w-6/12 absolute bottom-0 left-0 text-white container transform translate-y-10"
     >

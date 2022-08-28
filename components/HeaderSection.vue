@@ -39,7 +39,6 @@
           <button
             type="button"
             class="hs-collapse-toggle p-2 inline-flex justify-center items-center gap-2 rounded-md border font-medium bg-white text-gray-700 shadow-sm align-middle hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-blue-600 transition-all dark:bg-gray-800 dark:hover:bg-slate-800 dark:border-gray-700 dark:text-gray-400 dark:hover:text-white dark:focus:ring-offset-gray-800"
-            aria-controls="navbar-image-and-text-1"
             aria-label="Toggle navigation"
           >
             <svg
@@ -69,27 +68,62 @@
         </div>
       </div>
       <div
-        class="hs-collapse hidden overflow-hidden transition-all duration-300 basis-full grow sm:block"
+        class="hs-collapse hidden overflow-hidden transition-all duration-300 basis-full grow sm:block h-full"
       >
         <div
-          class="flex flex-col gap-5 mt-5 sm:flex-row sm:items-center sm:justify-end sm:mt-0 sm:pl-5"
+          class="flex flex-col mt-5 h-full sm:flex-row-reverse sm:items-center sm:justify-start sm:mt-0 sm:pl-5"
         >
-          <a class="font-bold text-gray-900 hover:text-gray-500" href="#">
+          <div class="text-gray-900 mx-4 cursor-pointer">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="1em"
+              height="1em"
+              preserveAspectRatio="xMidYMid meet"
+              viewBox="0 0 24 24"
+            >
+              <path
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-width="2"
+                d="m21 21l-4.486-4.494M19 10.5a8.5 8.5 0 1 1-17 0a8.5 8.5 0 0 1 17 0Z"
+              />
+            </svg>
+          </div>
+          <a
+            class="font-bold h-full flex-center px-3 text-gray-900 hover:text-gray-500 bg-tm-yellow rounded-sm"
+            href="#"
+          >
             خانه
           </a>
-          <a class="font-bold text-gray-900 hover:text-gray-500" href="#">
+          <a
+            class="font-bold h-full flex-center px-3 text-gray-900 hover:text-gray-500"
+            href="#"
+          >
             محصولات
           </a>
-          <a class="font-bold text-gray-900 hover:text-gray-500" href="#">
+          <a
+            class="font-bold h-full flex-center px-3 text-gray-900 hover:text-gray-500"
+            href="#"
+          >
             خدمات
           </a>
-          <a class="font-bold text-gray-900 hover:text-gray-500" href="#">
+          <a
+            class="font-bold h-full flex-center px-3 text-gray-900 hover:text-gray-500"
+            href="#"
+          >
             آزمایشگاه کنترل کیفیت
           </a>
-          <a class="font-bold text-gray-900 hover:text-gray-500" href="#">
+          <a
+            class="font-bold h-full flex-center px-3 text-gray-900 hover:text-gray-500"
+            href="#"
+          >
             استاندارد
           </a>
-          <a class="font-bold text-gray-900 hover:text-gray-500" href="#">
+          <a
+            class="font-bold h-full flex-center px-2 text-gray-900 hover:text-gray-500"
+            href="#"
+          >
             تماس با ما
           </a>
         </div>

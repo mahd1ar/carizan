@@ -1,5 +1,5 @@
 <template>
-  <footer class="text-white bg-gray-900 lg:grid lg:grid-cols-5">
+  <footer class="text-white bg-black lg:grid lg:grid-cols-5">
     <aside class="hidden lg:relative lg:col-span-2 lg:block">
       <img
         class="absolute inset-0 object-cover w-full h-full"
@@ -12,7 +12,9 @@
       <div class="grid grid-cols-1 gap-8 sm:grid-cols-2">
         <div>
           <p class="font-medium">
-            <span class="text-xs tracking-widest uppercase"> Call </span>
+            <span class="text-xs tracking-widest uppercase text-tm-yellow">
+              Call
+            </span>
 
             <a class="block text-2xl sm:text-3xl hover:opacity-75" href="">
               0123456789
@@ -137,7 +139,7 @@
 
         <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div>
-            <p class="font-medium">Support</p>
+            <p class="font-medium text-tm-yellow">Support</p>
 
             <nav class="flex flex-col mt-4 space-y-2 text-sm text-gray-300">
               <a class="hover:opacity-75" href=""> Contact </a>
@@ -148,7 +150,7 @@
           </div>
 
           <div>
-            <p class="font-medium">Products</p>
+            <p class="font-medium text-tm-yellow">Products</p>
 
             <nav class="flex flex-col mt-4 space-y-2 text-sm text-gray-300">
               <a class="hover:opacity-75" href=""> 1to1 Coaching </a>
