@@ -1,0 +1,98 @@
+<template>
+  <div
+    class="w-full flex gap-2"
+    :class="{ container: !full, 'flex-row-reverse': left }"
+  >
+    <div class="w-1/2 flex justify-center">
+      <div
+        class="flex flex-col items-start justify-center gap-4"
+        :class="left ? 'pr-10' : 'pl-10'"
+      >
+        <h2 class="text-5xl font-bold text-tm-gray-dark">پیچ</h2>
+        <p class="text-zinc-500 pl-10">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident
+          earum aliquam blanditiis qui, ad omnis ullam ducimus nobis deserunt,
+          nisi minus. Laboriosam obcaecati, consequatur atque nisi ullam ducimus
+          deserunt neque.
+        </p>
+        <div
+          class="bg-gray-700 px-4 overflow-hidden inline-flex py-2 text-bold text-tm-yellow items-center gap-2 rounded"
+        >
+          <svg
+            class="w-5 h-5 flex-shrink-0"
+            xmlns="http://www.w3.org/2000/svg"
+            preserveAspectRatio="xMidYMid meet"
+            viewBox="0 0 24 24"
+          >
+            <path
+              fill="currentColor"
+              d="M5 21h14c1.103 0 2-.897 2-2V5c0-1.103-.897-2-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2zM5 5h14l.001 14H5V5z"
+            />
+            <path
+              fill="currentColor"
+              d="M13.293 6.293L7.586 12l5.707 5.707l1.414-1.414L10.414 12l4.293-4.293z"
+            />
+          </svg>
+          <span class="px-2 hover:px-4 transition-all"> مشاهده </span>
+        </div>
+      </div>
+    </div>
+    <div
+      class="w-1/2 h-[400px] rounded overflow-hidden shadow-xl shadow-gray-400"
+    >
+      <img
+        ref="container"
+        class="hover:scale-105 transition-all ease-out duration-700"
+        src="/sample/sample2.jpg"
+        alt=""
+      />
+    </div>
+    <!-- <pre>
+        {{ tilt }}
+      {{ roll }},
+      {{ source }},
+      
+      </pre
+    > -->
+  </div>
+</template>
+
+<script lang="ts">
+import { defineComponent, PropType, ref } from '@nuxtjs/composition-api'
+import { useParallax } from '@vueuse/core'
+
+export default defineComponent({
+  props: {
+    full: {
+      type: Boolean,
+      default: false,
+    },
+    left: { type: Boolean, default: false },
+    title: { type: String, default: '' },
+    body: { type: String, default: '' },
+    src: { type: String, default: '' },
+  },
+  setup() {
+    const container = ref(null)
+    const { tilt, roll, source } = useParallax(container)
+
+    return {
+      container,
+      tilt,
+      roll,
+      source,
+    }
+  },
+})
+</script>
+<!-- <script lang="ts" setup>
+const { contained = true } = defineProps<{
+  rigth: boolean
+  contained?: {
+    type: Boolean
+    required: true
+  }
+}>()
+
+console.log(contained)
+</script> -->

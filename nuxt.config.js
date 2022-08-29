@@ -20,7 +20,9 @@ export default {
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
+  plugins: [
+    '~/plugins/apollo-client.js'
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -30,13 +32,15 @@ export default {
     // https://go.nuxtjs.dev/typescript
     '@nuxt/typescript-build',
     '@nuxt/postcss8',
-    '@nuxtjs/composition-api/module'
+    '@nuxtjs/composition-api/module',
+    '@vueuse/nuxt',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    '@nuxtjs/apollo',
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -45,8 +49,17 @@ export default {
     baseURL: '/',
   },
 
+  apollo: {
+    clientConfigs: {
+      default: '~/graphql'
+    }
+  },
+
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    transpile: [
+      '@vue/apollo-composable'
+    ],
     postcss: {
       plugins: {
         tailwindcss: {},

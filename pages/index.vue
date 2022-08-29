@@ -176,12 +176,21 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import { defineComponent } from '@nuxtjs/composition-api'
 import HeroSectionVue from '~/components/homepage/HeroSection.vue'
-export default Vue.extend({
+// import Vue from 'vue'
+// import { useQuery } from '@vue/apollo-composable/dist'
+// import TEST from '../text.gql'
+
+export default defineComponent({
   components: {
     HeroSection: HeroSectionVue,
   },
+
   name: 'IndexPage',
+  setup() {
+    // const { result, loading, error } = useQuery(TEST)
+    // return { result }
+  },
 })
 </script>

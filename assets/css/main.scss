@@ -6,6 +6,9 @@
     html {
       @apply font-yekan;
     }
+    img {
+       @apply w-full h-full object-cover;
+      }
   }
 
   @layer components {
@@ -13,6 +16,7 @@
       @apply flex items-center justify-center;
     }
   }
+
 
 @font-face {
     font-family: 'Yekan Bakh Fat';
