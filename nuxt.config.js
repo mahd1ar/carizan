@@ -15,13 +15,13 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [
-    '@/assets/css/main.scss',
-  ],
+  css: ['@/assets/css/main.scss'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [
-    '~/plugins/apollo-client.js'
+  plugins: ['~/plugins/apollo-client.js'],
+
+  serverMiddleware: [
+    { path: '/api', handler: '~/server-middleware/backend.ts' },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -51,15 +51,13 @@ export default {
 
   apollo: {
     clientConfigs: {
-      default: '~/graphql'
-    }
+      default: '~/graphql',
+    },
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-    transpile: [
-      '@vue/apollo-composable'
-    ],
+    transpile: ['@vue/apollo-composable'],
     postcss: {
       plugins: {
         tailwindcss: {},

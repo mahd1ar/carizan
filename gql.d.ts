@@ -1,6 +1,6 @@
 declare module '*.gql' {
-    import { DocumentNode } from 'graphql'
+  import { DocumentNode } from 'graphql'
 
-    const content: DocumentNode
-    export default content
+  const content: DocumentNode
+  export default content
 }

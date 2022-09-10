@@ -9,14 +9,12 @@
     >
       <div class="flex items-center justify-between">
         <a
-          class="inline-flex items-center gap-x-2 text-xl font-semibold text-black"
+          class="inline-flex gap-x-2 text-xl font-semibold text-black items-end"
           href="#"
         >
-          <div
-            class="bg-tm-yellow w-12 rounded aspect-square flex-center flex-shrink-0"
-          >
+          <div class="w-12 rounded aspect-square flex-center flex-shrink-0">
             <svg
-              class="object-contain text-white w-10"
+              class="object-contain text-black w-10"
               viewBox="0 0 692.74 667.87"
             >
               <g>
@@ -33,7 +31,7 @@
               </g>
             </svg>
           </div>
-          <div class="">Carizan Pich Gostar</div>
+          <div class="leading-5">Carizan Pich Gostar</div>
         </a>
         <div class="sm:hidden">
           <button

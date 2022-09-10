@@ -4,6 +4,7 @@
     class="relative flex items-start justify-center min-h-screen bg-gray-100 sm:pt-0"
   >
     <div
+      v-if="showDevBox"
       :style="`
         position: fixed;
         top: 200px;
@@ -34,12 +35,31 @@
         <li class="hover:bg-slate-800 hover:text-white">
           <nuxt-link class="inline-block w-full" to="/f2-v3">f2 ver3</nuxt-link>
         </li>
+        <li class="hover:bg-slate-800 hover:text-white">
+          <nuxt-link class="inline-block w-full" to="/f4">f4</nuxt-link>
+        </li>
       </ul>
     </div>
     <div class="w-full">
       <HeaderSection />
 
-      <Nuxt />
+      <Nuxt ref="nuxt" />
     </div>
   </main>
 </template>
+
+<script lang="ts" setup>
+import { ref, watchEffect, onMounted } from '@nuxtjs/composition-api'
+import { onKeyStroke } from '@vueuse/core'
+
+const showDevBox = ref(false)
+
+onKeyStroke('m', (e) => {
+  e.preventDefault()
+  showDevBox.value = !showDevBox.value
+})
+
+// watchEffect(() => {
+//   if (shift.value && a.value)
+// })
+</script>

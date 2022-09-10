@@ -3,11 +3,9 @@
   <div
     class="relative flex items-top justify-center min-h-screen bg-gray-100 sm:items-center sm:pt-0"
   >
-  <div>
-    <h1 class="text-xl bg-slate-500 rtl:bg-red-400 portrait:hidden">
-hi
-    </h1>
-  </div>
+    <div>
+      <h1 class="text-xl bg-slate-500 rtl:bg-red-400 portrait:hidden">hi</h1>
+    </div>
     <link
       href="https://cdn.jsdelivr.net/npm/tailwindcss@2.1.2/dist/tailwind.min.css"
       rel="stylesheet"

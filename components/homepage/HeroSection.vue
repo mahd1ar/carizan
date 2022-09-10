@@ -1,7 +1,5 @@
 <template>
-  <aside
-    class="overflow-hidden bg-center bg-no-repeat bg-cover bg-gradient-to-tr from-black to-gray-700 relative"
-  >
+  <aside class="overflow-hidden bg-center bg-no-repeat bg-cover relative">
     <!-- from-black to-gray-700 -->
     <!-- <div
       class="w-full absolute bg-gray-900 h-full top-0 left-0"

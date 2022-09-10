@@ -1,0 +1,14 @@
+query product {
+  post(id: "31", idType: DATABASE_ID) {
+    id
+    uri
+    title(format: RENDERED)
+    slug
+    table {
+      table {
+        id
+        mediaItemUrl
+      }
+    }
+  }
+}

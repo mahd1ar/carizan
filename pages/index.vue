@@ -26,12 +26,16 @@
       </div>
     </section>
 
-    <div class="flex relative bg-tm-yellow">
+    <div class="flex relative bg-tm-yellow h-[50vh]">
       <div
         class="w-6/12 relative"
         style="clip-path: polygon(20% 0%, 100% 0, 100% 100%, 0% 100%)"
       >
-        <img class="w-full object-cover" src="/sample/sample1.jpg" alt="" />
+        <img
+          class="w-full object-cover h-full"
+          src="/sample/sample1.jpg"
+          alt=""
+        />
       </div>
       <div
         class="w-6/12 relative flex items-center bg-tm-yellow overflow-hidden"
@@ -73,7 +77,7 @@
       </div>
     </div>
 
-    <div class="flex relative flex-row-reverse bg-tm-gray-dark">
+    <div class="flex relative flex-row-reverse bg-tm-gray-dark h-[50vh]">
       <div class="w-7/12 relative">
         <img
           class="w-full object-cover"

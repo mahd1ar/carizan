@@ -1,11 +1,11 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    "./components/**/*.{js,vue,ts}",
-    "./layouts/**/*.vue",
-    "./pages/**/*.vue",
-    "./plugins/**/*.{js,ts}",
-    "./nuxt.config.{js,ts}",
+    './components/**/*.{js,vue,ts}',
+    './layouts/**/*.vue',
+    './pages/**/*.vue',
+    './plugins/**/*.{js,ts}',
+    './nuxt.config.{js,ts}',
   ],
   theme: {
     container: {
@@ -22,13 +22,13 @@ module.exports = {
       colors: {
         tm: {
           black: '#232E3B',
-          gray: { 'ligth': '#AFAFAE', 'dark': '#3F3F3F' },
+          gray: { ligth: '#AFAFAE', dark: '#3F3F3F' },
           yellow: { DEFAULT: '#FFC800', dark: '#67540a' },
         },
       },
       fontFamily: {
-        yekan: 'Yekan Bakh'
-      }
+        yekan: 'Yekan Bakh',
+      },
     },
   },
   plugins: [],
