@@ -41,7 +41,7 @@
       class="w-1/2 h-[400px] rounded overflow-hidden shadow-xl shadow-gray-400"
     >
       <img
-        ref="container"
+        ref="target"
         class="hover:scale-105 transition-all ease-out duration-700"
         src="/sample/sample2.jpg"
         alt=""
@@ -58,8 +58,14 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, ref } from '@nuxtjs/composition-api'
-import { useParallax } from '@vueuse/core'
+import {
+  computed,
+  defineComponent,
+  PropType,
+  ref,
+  watch,
+} from '@nuxtjs/composition-api'
+import { useIntersectionObserver, useParallax } from '@vueuse/core'
 
 export default defineComponent({
   props: {
@@ -73,14 +79,19 @@ export default defineComponent({
     src: { type: String, default: '' },
   },
   setup() {
-    const container = ref(null)
-    const { tilt, roll, source } = useParallax(container)
+    const target = ref(null)
+    const targetIsVisible = ref(false)
 
+    const { stop } = useIntersectionObserver(
+      target,
+      ([{ isIntersecting }], observerElement) => {
+        targetIsVisible.value = isIntersecting
+      }
+    )
+
+    watch(targetIsVisible, () => {})
     return {
-      container,
-      tilt,
-      roll,
-      source,
+      target,
     }
   },
 })

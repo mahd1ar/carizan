@@ -4,28 +4,6 @@
   <div class="w-full">
     <HeroSection />
 
-    <section class="container">
-      <div class="w-full flex py-20">
-        <div class="w-4/12 rounded shadow-md overflow-hidden">
-          <img src="/sample/sample3.jpg" class="object-cover h-full" alt="" />
-        </div>
-        <div class="w-8/12 px-8">
-          <div class="gap-4 flex flex-col">
-            <h2 class="text-3xl font-semibold text-gray-700">توضیح فعالیت</h2>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Provident qui suscipit illo quod repudiandae omnis placeat
-              consequatur soluta, tempore eum, veritatis vel cumque voluptatibus
-              nam deleniti modi officia debitis nihil? voluptatibus nam deleniti
-              modi officia debitis nihil? voluptatibus nam deleniti modi officia
-              debitis nihil? voluptatibus nam deleniti modi officia debitis
-              nihil?
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <div class="flex relative bg-tm-yellow h-[50vh]">
       <div
         class="w-6/12 relative"
@@ -120,6 +98,28 @@
         </div>
       </div>
     </div>
+
+    <section class="container">
+      <div class="w-full flex py-20">
+        <div class="w-4/12 rounded shadow-md overflow-hidden">
+          <img src="/sample/sample3.jpg" class="object-cover h-full" alt="" />
+        </div>
+        <div class="w-8/12 px-8">
+          <div class="gap-4 flex flex-col">
+            <h2 class="text-3xl font-semibold text-gray-700">توضیح فعالیت</h2>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              Provident qui suscipit illo quod repudiandae omnis placeat
+              consequatur soluta, tempore eum, veritatis vel cumque voluptatibus
+              nam deleniti modi officia debitis nihil? voluptatibus nam deleniti
+              modi officia debitis nihil? voluptatibus nam deleniti modi officia
+              debitis nihil? voluptatibus nam deleniti modi officia debitis
+              nihil?
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <section class="text-gray-800 body-font py-24">
       <div

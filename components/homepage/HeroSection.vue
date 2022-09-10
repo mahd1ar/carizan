@@ -1,5 +1,8 @@
 <template>
-  <aside class="overflow-hidden bg-center bg-no-repeat bg-cover relative">
+  <aside
+    class="overflow-hidden bg-center bg-no-repeat bg-cover relative"
+    style="background-color: #ededed"
+  >
     <!-- from-black to-gray-700 -->
     <!-- <div
       class="w-full absolute bg-gray-900 h-full top-0 left-0"
@@ -12,10 +15,11 @@
       style="clip-path: polygon(53% 0, 100% 0, 100% 100%, 44% 100%)"
     ></div> -->
     <div
-      class="w-6/12 absolute bottom-0 left-0 text-white container transform translate-y-10"
+      class="w-6/12 absolute bottom-0 left-0 text-white container transform translate-y-10 z-10"
     >
       <svg
-        class="object-contain text-gray-300 opacity-50 w-full"
+        style="color: #dbdbdb"
+        class="object-contain mw-full"
         viewBox="0 0 692.74 667.87"
       >
         <g>
@@ -33,13 +37,20 @@
       </svg>
     </div>
     <!-- style="background-image: url(/sample/sample3.jpg)" -->
-    <div class="p-8 md:p-12 lg:px-16 lg:py-24 relative">
+    <div class="w-6/12 h-96 flex-center">
       <div class="max-w-lg text-center sm:text-left">
-        <h2 class="text-2xl font-bold text-white sm:text-3xl md:text-5xl">
+        <h2
+          class="text-2xl font-bold text-gray-500 sm:text-3xl md:text-5xl z-10 relative"
+        >
           کاریزان پیچ گستر
         </h2>
 
-        <p
+        <img src="/hero/pich-s.svg" class="pattern pich-1" alt="" />
+        <img src="/hero/pich-g.svg" class="pattern pich-2" alt="" />
+        <div class="pattern line-1"></div>
+        <div class="pattern line-2"></div>
+        <div class="pattern line-3"></div>
+        <!-- <p
           class="hidden max-w-md text-gray-200 md:mt-6 md:text-lg md:leading-relaxed md:block mr-auto"
         >
           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Inventore
@@ -69,7 +80,7 @@
               />
             </svg>
           </a>
-        </div>
+        </div> -->
       </div>
     </div>
   </aside>
@@ -84,4 +95,28 @@ export default Vue.extend({
 })
 </script>
 
-<style scoped></style>
+<style scoped lang="scss">
+.pattern {
+  @apply absolute object-contain;
+}
+
+.pich-1 {
+  @apply w-20 top-0;
+}
+
+.pich-2 {
+  @apply w-10 top-3 transform -translate-x-full -rotate-12 z-[1];
+}
+
+.line-1 {
+  @apply bg-tm-yellow w-8 h-56 rotate-[45deg] translate-y-20;
+}
+
+.line-2 {
+  @apply bg-tm-yellow w-6 h-56 rotate-[50deg] left-96 -top-12;
+}
+
+.line-3 {
+  @apply bg-tm-yellow w-10 h-72 rotate-[45deg] left-0  bottom-0;
+}
+</style>
