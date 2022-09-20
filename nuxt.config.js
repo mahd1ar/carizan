@@ -34,6 +34,7 @@ export default {
     '@nuxt/postcss8',
     '@nuxtjs/composition-api/module',
     '@vueuse/nuxt',
+    '@nuxtjs/device',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -41,8 +42,23 @@ export default {
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     '@nuxtjs/apollo',
+    '@nuxtjs/i18n',
   ],
-
+  i18n: {
+    locales: ['en', 'fa'],
+    defaultLocale: 'fa',
+    vueI18n: {
+      fallbackLocale: 'fa',
+      messages: {
+        en: {
+          welcome: 'Welcome'
+        },
+        fa: {
+          welcome: 'خوش آمدید'
+        }
+      }
+    }
+  },
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308

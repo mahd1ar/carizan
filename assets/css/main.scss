@@ -6,7 +6,7 @@
   html {
     @apply font-yekan;
   }
-  img {
+  img:not(div.content img) {
     @apply w-full h-full object-cover;
   }
 }

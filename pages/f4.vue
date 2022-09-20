@@ -88,7 +88,8 @@
         </div>
         <div class="w-9/12">
           <div class="rounded border-2 border-gray-300 w-full">
-            <img src="/sample/sample6.jpg" alt="" />
+            <ExpanableImg src="http://localhost:3000/sample/sample6.jpg" />
+            <!-- <img src="/sample/sample6.jpg" alt="" /> -->
           </div>
         </div>
       </div>
@@ -113,6 +114,7 @@
       </div>
 
       <div class="my-10 px-10">
+        {{ $t('welcome') }}
         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatem,
         quos! Odit doloremque qui consequatur at nemo eius dignissimos
         voluptates, accusamus, exercitationem ab enim maxime illo iusto velit
@@ -124,6 +126,7 @@
         consequatur at nemo eius dignissimos voluptates, accusamus,
         exercitationem ab enim maxime illo iusto velit voluptas sint libero.
       </div>
+      <WIYSWYG  :includeGallery="false" :html="result?.post?.content || '' " />
     </div>
     <FooterSection />
   </div>
@@ -135,6 +138,8 @@ import PRODUCT from '@/apollo/query/product.gql'
 import { ProductQuery } from '@/types/types'
 import { ref, Ref, computed, watch } from '@nuxtjs/composition-api'
 import { emptyArray } from '@/data/utils'
+import ExpanableImg from '~/components/ExpanableImg.vue'
+import WIYSWYG from '~/components/WIYSWYG.vue'
 
 const TLength: Ref<string[]> = ref([])
 const TDiameter: Ref<string[]> = ref([])
@@ -145,9 +150,10 @@ const TErr = ref(false)
 let dataTable: { [key: string]: string }[] = []
 const details: Ref<null | { [key: string]: string }> = ref(null)
 
-const { onResult: onResultTable, loading: loadingTable } =
+const { onResult: onResultTable, loading: loadingTable ,result } =
   useQuery<ProductQuery>(PRODUCT)
 
+    
 watch([TVLength, TVDiameter], () => {
   try {
     const x = dataTable.find((i) => Object.entries(i)[0][1] === TVLength.value)!

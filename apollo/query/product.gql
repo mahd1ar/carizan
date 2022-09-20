@@ -1,5 +1,5 @@
 query product {
-  post(id: "31", idType: DATABASE_ID) {
+  post(id: "41", idType: DATABASE_ID) {
     id
     uri
     title(format: RENDERED)
@@ -10,5 +10,6 @@ query product {
         mediaItemUrl
       }
     }
+    content
   }
 }

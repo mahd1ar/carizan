@@ -1,23 +1,20 @@
 <template>
-  <main
-    dir="rtl"
-    class="relative flex items-start justify-center min-h-screen bg-gray-100 sm:pt-0"
-  >
-    <div
-      v-if="showDevBox"
-      :style="`
-        position: fixed;
-        top: 200px;
-        left: 20px;
-        background: white;
-        direction: ltr;
-        z-index : 200;
-        opacity: 0.4;
-      `"
-    >
+  <main dir="rtl" class="relative flex items-start justify-center min-h-screen bg-gray-100 sm:pt-0">
+    <div v-if="showDevBox" :style="`
+      position: fixed;
+      top: 200px;
+      left: 20px;
+      background: white;
+      direction: ltr;
+      z-index : 200;
+      opacity: 0.4;
+    `">
       <div>quick navigatin for dev</div>
       <div style="background-color: red" class="text-white text-xs">
         this will not show in production
+      </div>
+      <div>
+        <button @click="changeLocal">change local [{{ locale }}]</button>
       </div>
       <ul>
         <li class="hover:bg-slate-800 hover:text-white">
@@ -49,16 +46,34 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, watchEffect, onMounted } from '@nuxtjs/composition-api'
+import {
+  ref,
+  watchEffect,
+  onMounted,
+  useContext,
+  useRouter,
+} from '@nuxtjs/composition-api'
 import { onKeyStroke } from '@vueuse/core'
 
-const showDevBox = ref(false)
+const showDevBox = ref(true)
 
 onKeyStroke('m', (e) => {
   e.preventDefault()
   showDevBox.value = !showDevBox.value
 })
 
+const { i18n } = useContext()
+const locale = ref(i18n.locale)
+
+const changeLocal = () => {
+  if (locale.value === 'fa') {
+    i18n.setLocale('en')
+    locale.value = 'en'
+  } else {
+    i18n.setLocale('fa')
+    locale.value = 'fa'
+  }
+}
 // watchEffect(() => {
 //   if (shift.value && a.value)
 // })
