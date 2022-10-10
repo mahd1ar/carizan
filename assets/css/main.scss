@@ -6,9 +6,9 @@
   html {
     @apply font-yekan;
   }
-  img:not(div.content img) {
-    @apply w-full h-full object-cover;
-  }
+  // img:not(div.content img) {
+  //   @apply w-full h-full object-cover;
+  // }
 }
 
 @layer components {

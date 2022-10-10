@@ -1,0 +1,20 @@
+query ChildCategoriesBySlug(
+  $id: ID = "dGVybToxNg=="
+  $language: LanguageCodeEnum = FA
+) {
+  category(id: $id, idType: ID) {
+    id
+    children(first: 10) {
+      edges {
+        node {
+          id
+          name
+          description
+        }
+      }
+    }
+    translation(language: $language) {
+      id
+    }
+  }
+}

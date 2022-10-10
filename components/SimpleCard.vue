@@ -3,17 +3,16 @@
     class="w-full flex gap-2"
     :class="{ container: !full, 'flex-row-reverse': left }"
   >
-    <div class="w-1/2 flex justify-center">
+    <div class="w-1/2 flex justify-start">
       <div
         class="flex flex-col items-start justify-center gap-4"
         :class="left ? 'pr-10' : 'pl-10'"
       >
-        <h2 class="text-5xl font-bold text-tm-gray-dark">پیچ</h2>
+        <h2 class="text-5xl font-bold text-tm-gray-dark">
+          {{ title }}
+        </h2>
         <p class="text-zinc-500 pl-10">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident
-          earum aliquam blanditiis qui, ad omnis ullam ducimus nobis deserunt,
-          nisi minus. Laboriosam obcaecati, consequatur atque nisi ullam ducimus
-          deserunt neque.
+          {{ body }}
         </p>
         <div
           class="bg-gray-700 px-4 overflow-hidden inline-flex py-2 text-bold text-tm-yellow items-center gap-2 rounded"
@@ -33,7 +32,11 @@
               d="M13.293 6.293L7.586 12l5.707 5.707l1.414-1.414L10.414 12l4.293-4.293z"
             />
           </svg>
-          <span class="px-2 hover:px-4 transition-all"> مشاهده </span>
+          <span
+            class="px-2 hover:px-4 transition-all flex justify-center items-center"
+          >
+            _SEEMORE {{ link }}
+          </span>
         </div>
       </div>
     </div>
@@ -42,7 +45,7 @@
     >
       <img
         ref="target"
-        class="hover:scale-105 transition-all ease-out duration-700"
+        class="hover:scale-105 h-full w-full object-cover transition-all ease-out duration-700"
         src="/sample/sample2.jpg"
         alt=""
       />
@@ -57,53 +60,36 @@
   </div>
 </template>
 
-<script lang="ts">
-import {
-  computed,
-  defineComponent,
-  PropType,
-  ref,
-  watch,
-} from '@nuxtjs/composition-api'
+<script lang="ts" setup>
+import { ref, watch } from '@nuxtjs/composition-api'
+
 import { useIntersectionObserver, useParallax } from '@vueuse/core'
 
-export default defineComponent({
-  props: {
-    full: {
-      type: Boolean,
-      default: false,
-    },
-    left: { type: Boolean, default: false },
-    title: { type: String, default: '' },
-    body: { type: String, default: '' },
-    src: { type: String, default: '' },
-  },
-  setup() {
-    const target = ref(null)
-    const targetIsVisible = ref(false)
-
-    const { stop } = useIntersectionObserver(
-      target,
-      ([{ isIntersecting }], observerElement) => {
-        targetIsVisible.value = isIntersecting
-      }
-    )
-
-    watch(targetIsVisible, () => {})
-    return {
-      target,
-    }
-  },
-})
-</script>
-<!-- <script lang="ts" setup>
-const { contained = true } = defineProps<{
-  rigth: boolean
-  contained?: {
-    type: Boolean
-    required: true
-  }
+const {
+  full = false,
+  left = false,
+  title = '',
+  body = '',
+  img: src = '',
+  link = '',
+} = defineProps<{
+  full: Boolean
+  left: Boolean
+  title: String
+  body: String
+  img: String
+  link: String
 }>()
 
-console.log(contained)
-</script> -->
+const target = ref(null)
+const targetIsVisible = ref(false)
+
+const { stop } = useIntersectionObserver(
+  target,
+  ([{ isIntersecting }], observerElement) => {
+    targetIsVisible.value = isIntersecting
+  }
+)
+
+watch(targetIsVisible, () => {})
+</script>

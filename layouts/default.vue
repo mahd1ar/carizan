@@ -1,6 +1,11 @@
 <template>
-  <main dir="rtl" class="relative flex items-start justify-center min-h-screen bg-gray-100 sm:pt-0">
-    <div v-if="showDevBox" :style="`
+  <main
+    dir="rtl"
+    class="relative flex items-start justify-center min-h-screen bg-gray-100 sm:pt-0"
+  >
+    <div
+      v-if="showDevBox"
+      :style="`
       position: fixed;
       top: 200px;
       left: 20px;
@@ -8,7 +13,8 @@
       direction: ltr;
       z-index : 200;
       opacity: 0.4;
-    `">
+    `"
+    >
       <div>quick navigatin for dev</div>
       <div style="background-color: red" class="text-white text-xs">
         this will not show in production
@@ -20,10 +26,8 @@
         <li class="hover:bg-slate-800 hover:text-white">
           <nuxt-link class="inline-block w-full" to="/">home</nuxt-link>
         </li>
-        <li class="hover:bg-slate-800 hover:text-white">
-          <nuxt-link class="inline-block w-full" to="/f">f</nuxt-link>
-        </li>
-        <li class="hover:bg-slate-800 hover:text-white">
+
+        <!-- <li class="hover:bg-slate-800 hover:text-white">
           <nuxt-link class="inline-block w-full" to="/f2">f2</nuxt-link>
         </li>
         <li class="hover:bg-slate-800 hover:text-white">
@@ -31,10 +35,7 @@
         </li>
         <li class="hover:bg-slate-800 hover:text-white">
           <nuxt-link class="inline-block w-full" to="/f2-v3">f2 ver3</nuxt-link>
-        </li>
-        <li class="hover:bg-slate-800 hover:text-white">
-          <nuxt-link class="inline-block w-full" to="/f4">f4</nuxt-link>
-        </li>
+        </li> -->
       </ul>
     </div>
     <div class="w-full">
@@ -46,13 +47,7 @@
 </template>
 
 <script lang="ts" setup>
-import {
-  ref,
-  watchEffect,
-  onMounted,
-  useContext,
-  useRouter,
-} from '@nuxtjs/composition-api'
+import { onMounted, ref, useContext } from '@nuxtjs/composition-api'
 import { onKeyStroke } from '@vueuse/core'
 
 const showDevBox = ref(true)
@@ -63,6 +58,7 @@ onKeyStroke('m', (e) => {
 })
 
 const { i18n } = useContext()
+
 const locale = ref(i18n.locale)
 
 const changeLocal = () => {
@@ -74,6 +70,7 @@ const changeLocal = () => {
     locale.value = 'fa'
   }
 }
+
 // watchEffect(() => {
 //   if (shift.value && a.value)
 // })

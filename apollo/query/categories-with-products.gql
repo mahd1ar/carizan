@@ -1,0 +1,25 @@
+query categoriesWithProducts($id: ID = "nut-fa", $first: Int = 4) {
+  category(id: $id, idType: SLUG) {
+    id
+    name
+    description
+    contentNodes(first: $first) {
+      edges {
+        node {
+          id
+          ... on Post {
+            id
+            title(format: RENDERED)
+            featuredImage {
+              node {
+                id
+                srcSet(size: MEDIUM)
+                sourceUrl
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

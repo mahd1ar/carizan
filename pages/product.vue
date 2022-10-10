@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <LoadingIndicator :isLoading="loadingProduct">
     <div class="container mx-auto mt-5 flex flex-col gap-10">
       <div class="flex">
         <div class="w-3/12">
@@ -9,12 +9,17 @@
         </div>
         <div class="w-9/12 text-left py-4 flex-center">
           <div class="w-full">
-            <h1 class="capitalize text-5xl text-gray-700 font-bold">din6921</h1>
-            <h3 class="capitalize text-2xl text-gray-600 font-bold">
-              پیچ آلن فولادی
-            </h3>
-            <h3 class="capitalize text-2xl text-gray-600 font-bold">
-              hexagon Socket Cheese HeadScrows
+            <h1
+              class="capitalize text-5xl text-gray-700 font-bold"
+              v-text="titleCollection[0]"
+            ></h1>
+
+            <h3
+              v-for="title in titleCollection.slice(1)"
+              :key="title"
+              class="capitalize text-2xl text-gray-600 font-bold"
+            >
+              {{ title }}
             </h3>
           </div>
         </div>
@@ -22,7 +27,7 @@
 
       <div class="flex gap-4">
         <div class="w-3/12">
-          <LoadingIndicator :isLoading="loadingTable">
+          <client-only>
             <div
               v-if="loadingTable === false"
               class="rounded border-2 border-gray-300 flex flex-col gap-2 p-2 hover:scale-105 transition-all transform-gpu duration-300"
@@ -84,12 +89,11 @@
                 </div>
               </div>
             </div>
-          </LoadingIndicator>
+          </client-only>
         </div>
         <div class="w-9/12">
-          <div class="rounded border-2 border-gray-300 w-full">
-            <ExpanableImg src="http://localhost:3000/sample/sample6.jpg" />
-            <!-- <img src="/sample/sample6.jpg" alt="" /> -->
+          <div v-if="mapImage" class="rounded border-2 border-gray-300 w-full">
+            <ExpanableImg :src="mapImage" />
           </div>
         </div>
       </div>
@@ -126,20 +130,33 @@
         consequatur at nemo eius dignissimos voluptates, accusamus,
         exercitationem ab enim maxime illo iusto velit voluptas sint libero.
       </div>
-      <WIYSWYG  :includeGallery="false" :html="result?.post?.content || '' " />
+      <WIYSWYG :includeGallery="false" :html="result?.post?.content || ''" />
     </div>
     <FooterSection />
-  </div>
+  </LoadingIndicator>
 </template>
 
 <script lang="ts" setup>
 import { useQuery } from '@vue/apollo-composable/dist'
 import PRODUCT from '@/apollo/query/product.gql'
-import { ProductQuery } from '@/types/types'
-import { ref, Ref, computed, watch } from '@nuxtjs/composition-api'
+import {
+  ProductQuery,
+  ProductQueryVariables,
+  LanguageCodeEnum,
+} from '@/types/types'
+import {
+  ref,
+  Ref,
+  computed,
+  watch,
+  useRoute,
+  useContext,
+} from '@nuxtjs/composition-api'
 import { emptyArray } from '@/data/utils'
 import ExpanableImg from '~/components/ExpanableImg.vue'
-import WIYSWYG from '~/components/WIYSWYG.vue'
+// import WIYSWYG from '~/components/WIYSWYG.vue'
+const route = useRoute()
+const ctx = useContext()
 
 const TLength: Ref<string[]> = ref([])
 const TDiameter: Ref<string[]> = ref([])
@@ -149,11 +166,32 @@ const TErr = ref(false)
 // const dataTable : Ref<{[key : string] : string}> = ref({})
 let dataTable: { [key: string]: string }[] = []
 const details: Ref<null | { [key: string]: string }> = ref(null)
+const loadingTable = ref(false)
+if (route.value.query.id === undefined) ctx.error({ message: 'not found' })
 
-const { onResult: onResultTable, loading: loadingTable ,result } =
-  useQuery<ProductQuery>(PRODUCT)
+const variable: ProductQueryVariables = {
+  id: route.value.query.id as string,
+  language:
+    ctx.i18n.locale.toLowerCase() === 'fa'
+      ? LanguageCodeEnum.En
+      : LanguageCodeEnum.Fa,
+}
 
-    
+const {
+  onResult: onResultTable,
+  onError: onResultError,
+  loading: loadingProduct,
+  result,
+} = useQuery<ProductQuery>(PRODUCT, variable)
+
+const titleCollection = computed(() => {
+  return result.value?.post?.title?.split('\\') || ['', '', '']
+})
+
+const mapImage = computed(() => {
+  return result.value?.post?.cf?.map?.sourceUrl || ''
+})
+
 watch([TVLength, TVDiameter], () => {
   try {
     const x = dataTable.find((i) => Object.entries(i)[0][1] === TVLength.value)!
@@ -171,12 +209,16 @@ watch([TVLength, TVDiameter], () => {
     details.value = null
   }
 })
-
+onResultError(() => {
+  ctx.error({ message: 'NOT FOUND' })
+})
 onResultTable(async (r) => {
-  if (r.data.post?.table?.table?.mediaItemUrl) {
+  if (r.data.post === null) ctx.error({ message: 'NOT FOUND' })
+  if (r.data.post?.cf?.table?.mediaItemUrl) {
     try {
+      loadingTable.value = true
       const f = await (
-        await fetch(r.data.post?.table?.table?.mediaItemUrl)
+        await fetch(r.data.post?.cf?.table?.mediaItemUrl)
       ).arrayBuffer()
       const { read, utils } = await import('xlsx')
       const wb = read(f)
@@ -201,6 +243,8 @@ onResultTable(async (r) => {
     } catch (error) {
       console.error(error)
       TErr.value = true
+    } finally {
+      loadingTable.value = false
     }
   } else TErr.value = true
 })

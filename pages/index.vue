@@ -31,7 +31,8 @@
             unde dicta alias ipsam sint repudiandae ab possimus, quo, fuga totam
             mollitia cupiditate.
           </p>
-          <div
+          <nuxt-link
+            :to="'/categories/' + prodLink"
             class="bg-gray-700 px-4 py-2 text-bold text-tm-yellow flex items-center gap-2 rounded"
           >
             <svg
@@ -50,7 +51,7 @@
               />
             </svg>
             <span class="px-2 hover:px-4 transition-all"> مشاهده </span>
-          </div>
+          </nuxt-link>
         </div>
       </div>
     </div>
@@ -180,11 +181,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@nuxtjs/composition-api'
+import { computed, defineComponent, useContext } from '@nuxtjs/composition-api'
 import HeroSectionVue from '~/components/homepage/HeroSection.vue'
-// import Vue from 'vue'
-// import { useQuery } from '@vue/apollo-composable/dist'
-// import TEST from '../text.gql'
+import { useQuery } from '@vue/apollo-composable/dist'
+import HOMEGQL from '@/apollo/query/Home.gql'
+import { HomeQuery, HomeQueryVariables, LanguageCodeEnum } from '@/types/types'
 
 export default defineComponent({
   components: {
@@ -193,8 +194,29 @@ export default defineComponent({
 
   name: 'IndexPage',
   setup() {
-    // const { result, loading, error } = useQuery(TEST)
-    // return { result }
+    const { i18n, error } = useContext()
+    const variable: HomeQueryVariables = {
+      languages:
+        i18n.locale.toLowerCase() === 'fa'
+          ? LanguageCodeEnum.En
+          : LanguageCodeEnum.Fa,
+    }
+    const { result, onError } = useQuery<HomeQuery>(HOMEGQL, variable)
+
+    onError(() => {
+      error({ message: '_GET_INFO_ERROR', statusCode: 500 })
+    })
+
+    const x = computed(() => {
+      return result?.value?.categories?.edges
+        ? result.value.categories.edges.map((i) => ({
+            id: i!.node!.id,
+            name: i?.node?.name || '',
+            img: i?.node?.cat_cf?.image?.sourceUrl || '',
+            description: i?.node?.description || '',
+          }))
+        : []
+    })
   },
 })
 </script>

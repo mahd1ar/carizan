@@ -1,0 +1,23 @@
+query Home($languages: [LanguageCodeEnum!] = FA) {
+  categories(
+    where: {
+      slug: ["products", "products-fa", "services", "services-fa"]
+      languages: $languages
+    }
+  ) {
+    edges {
+      node {
+        id
+        name
+        description
+        cat_cf {
+          image {
+            id
+            sourceUrl
+            srcSet
+          }
+        }
+      }
+    }
+  }
+}

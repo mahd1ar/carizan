@@ -11,14 +11,21 @@ export default {
       { hid: 'description', name: 'description', content: '' },
       { name: 'format-detection', content: 'telephone=no' },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    link: [
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: "stylesheet", type: "text/css", href: 'https://cdnjs.cloudflare.com/ajax/libs/imagehover.css/2.0.0/css/imagehover.min.css' }
+    ],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: ['@/assets/css/main.scss'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: ['~/plugins/apollo-client.js'],
+  plugins: [
+    '~/plugins/apollo-client.js',
+    { src: '~/plugins/i18n.js' },
+    { src: '~/plugins/eventbus.ts' }
+  ],
 
   serverMiddleware: [
     { path: '/api', handler: '~/server-middleware/backend.ts' },
@@ -45,7 +52,11 @@ export default {
     '@nuxtjs/i18n',
   ],
   i18n: {
-    locales: ['en', 'fa'],
+    locales: [
+      // file: 'en.js'
+      { code: 'en', iso: 'en-US', dir: 'ltr' },
+      { code: 'fa', iso: 'fa-IR', dir: 'rtl' },
+    ],
     defaultLocale: 'fa',
     vueI18n: {
       fallbackLocale: 'fa',

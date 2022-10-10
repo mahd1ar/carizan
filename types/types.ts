@@ -18,29 +18,6 @@ export type AcfFieldGroup = {
   fieldGroupName?: Maybe<Scalars['String']>;
 };
 
-/** Input for the addToWishlist mutation */
-export type AddToWishlistInput = {
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: InputMaybe<Scalars['String']>;
-  /** Product id */
-  productId?: InputMaybe<Scalars['Int']>;
-};
-
-/** The payload for the addToWishlist mutation */
-export type AddToWishlistPayload = {
-  __typename?: 'AddToWishlistPayload';
-  /** True if the product is removed, false otherwise */
-  added?: Maybe<Scalars['Boolean']>;
-  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: Maybe<Scalars['String']>;
-  /** Description of the error */
-  error?: Maybe<Scalars['String']>;
-  /** The Product id that was added */
-  productId?: Maybe<Scalars['Int']>;
-  /** The Product ids in the wishlist */
-  wishlistProductIds?: Maybe<Array<Maybe<Scalars['Int']>>>;
-};
-
 /** Avatars are profile images for users. WordPress by default uses the Gravatar service to host and fetch avatars from. */
 export type Avatar = {
   __typename?: 'Avatar';
@@ -85,6 +62,8 @@ export type Category = DatabaseIdentifier & HierarchicalTermNode & MenuItemLinka
   __typename?: 'Category';
   /** The ancestors of the node. Default ordered as lowest (closest to the child) to highest (closest to the root). */
   ancestors?: Maybe<CategoryToAncestorsCategoryConnection>;
+  /** Added to the GraphQL Schema because the ACF Field Group &quot;دسته بندیها&quot; was set to Show in GraphQL. */
+  cat_cf?: Maybe<Category_CatCf>;
   /**
    * The id field matches the WP_Post-&gt;ID field.
    * @deprecated Deprecated in favor of databaseId
@@ -463,6 +442,15 @@ export type CategoryToTaxonomyConnectionEdge = {
   __typename?: 'CategoryToTaxonomyConnectionEdge';
   /** The node of the connection, without the edges */
   node?: Maybe<Taxonomy>;
+};
+
+/** Field Group */
+export type Category_CatCf = AcfFieldGroup & {
+  __typename?: 'Category_CatCf';
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars['String']>;
+  /** انتخاب تصویر شاخص */
+  image?: Maybe<MediaItem>;
 };
 
 /** A Comment object */
@@ -1725,41 +1713,6 @@ export type GeneralSettings = {
   url?: Maybe<Scalars['String']>;
 };
 
-/** Header Type */
-export type HcmsFooter = {
-  __typename?: 'HCMSFooter';
-  /** Copyright text */
-  copyrightText?: Maybe<Scalars['String']>;
-  /** sidebarOne */
-  sidebarOne?: Maybe<Scalars['String']>;
-  /** sidebarTwo */
-  sidebarTwo?: Maybe<Scalars['String']>;
-  /** Social links */
-  socialLinks?: Maybe<Array<Maybe<HcmsSocialLinks>>>;
-};
-
-/** Header Type */
-export type HcmsHeader = {
-  __typename?: 'HCMSHeader';
-  /** favicon */
-  favicon?: Maybe<Scalars['String']>;
-  /** Site logo URL */
-  siteLogoUrl?: Maybe<Scalars['String']>;
-  /** Site tagline */
-  siteTagLine?: Maybe<Scalars['String']>;
-  /** Site title */
-  siteTitle?: Maybe<Scalars['String']>;
-};
-
-/** Social Links Type */
-export type HcmsSocialLinks = {
-  __typename?: 'HCMSSocialLinks';
-  /** Icon name */
-  iconName?: Maybe<Scalars['String']>;
-  /** Icon url */
-  iconUrl?: Maybe<Scalars['String']>;
-};
-
 /** Content node with hierarchical (parent/child) relationships */
 export type HierarchicalContentNode = {
   /** Returns ancestors of the node. Default ordered as lowest (closest to the child) to highest (closest to the root). */
@@ -2248,8 +2201,6 @@ export enum MediaItemSizeEnum {
   Medium = 'MEDIUM',
   /** MediaItem with the medium_large size */
   MediumLarge = 'MEDIUM_LARGE',
-  /** MediaItem with the post-thumbnail size */
-  PostThumbnail = 'POST_THUMBNAIL',
   /** MediaItem with the thumbnail size */
   Thumbnail = 'THUMBNAIL',
   /** MediaItem with the 1536x1536 size */
@@ -2605,14 +2556,8 @@ export type MenuItemToMenuItemLinkableConnectionEdge = {
 
 /** Registered menu locations */
 export enum MenuLocationEnum {
-  /** Put the menu in the hcms-menu-footer location */
-  HcmsMenuFooter = 'HCMS_MENU_FOOTER',
-  /** Put the menu in the hcms-menu-footer___fa location */
-  HcmsMenuFooterFa = 'HCMS_MENU_FOOTER___FA',
-  /** Put the menu in the hcms-menu-header location */
-  HcmsMenuHeader = 'HCMS_MENU_HEADER',
-  /** Put the menu in the hcms-menu-header___fa location */
-  HcmsMenuHeaderFa = 'HCMS_MENU_HEADER___FA'
+  /** Empty menu location */
+  Empty = 'EMPTY'
 }
 
 /** The Type of Identifier used to fetch a single node. Default is "ID". To be used along with the "id" field. */
@@ -3053,8 +2998,6 @@ export type Page = ContentNode & DatabaseIdentifier & HierarchicalContentNode & 
   authorDatabaseId?: Maybe<Scalars['Int']>;
   /** The globally unique identifier of the author of the node */
   authorId?: Maybe<Scalars['ID']>;
-  /** bodyClasses */
-  bodyClasses?: Maybe<Scalars['String']>;
   /** Connection between the HierarchicalContentNode type and the ContentNode type */
   children?: Maybe<HierarchicalContentNodeToContentNodeChildrenConnection>;
   /** The number of comments. Even though WPGraphQL denotes this field as an integer, in WordPress this field should be saved as a numeric string for compatibility. */
@@ -3529,12 +3472,10 @@ export type Post = ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & 
   authorDatabaseId?: Maybe<Scalars['Int']>;
   /** The globally unique identifier of the author of the node */
   authorId?: Maybe<Scalars['ID']>;
-  /** bodyClasses */
-  bodyClasses?: Maybe<Scalars['String']>;
   /** Connection between the post type and the category type */
   categories?: Maybe<PostToCategoryConnection>;
-  /** Co Authors */
-  coAuthors?: Maybe<Scalars['String']>;
+  /** Added to the GraphQL Schema because the ACF Field Group &quot;زمینه های سفارشی&quot; was set to Show in GraphQL. */
+  cf?: Maybe<Post_Cf>;
   /** The number of comments. Even though WPGraphQL denotes this field as an integer, in WordPress this field should be saved as a numeric string for compatibility. */
   commentCount?: Maybe<Scalars['Int']>;
   /** Whether the comments are open or closed for this particular post. */
@@ -3622,8 +3563,6 @@ export type Post = ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & 
   slug?: Maybe<Scalars['String']>;
   /** The current status of the object */
   status?: Maybe<Scalars['String']>;
-  /** Added to the GraphQL Schema because the ACF Field Group &quot;table&quot; was set to Show in GraphQL. */
-  table?: Maybe<Post_Table>;
   /** Connection between the post type and the tag type */
   tags?: Maybe<PostToTagConnection>;
   /** The template assigned to a node of content */
@@ -4636,10 +4575,12 @@ export type PostTypeLabelDetails = {
 };
 
 /** Field Group */
-export type Post_Table = AcfFieldGroup & {
-  __typename?: 'Post_Table';
+export type Post_Cf = AcfFieldGroup & {
+  __typename?: 'Post_Cf';
   /** The name of the ACF Field Group */
   fieldGroupName?: Maybe<Scalars['String']>;
+  /** انتخاب نقشه */
+  map?: Maybe<MediaItem>;
   table?: Maybe<MediaItem>;
 };
 
@@ -4711,29 +4652,6 @@ export enum RelationEnum {
   Or = 'OR'
 }
 
-/** Input for the removeFromWishlist mutation */
-export type RemoveFromWishlistInput = {
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: InputMaybe<Scalars['String']>;
-  /** Product id */
-  productId?: InputMaybe<Scalars['Int']>;
-};
-
-/** The payload for the removeFromWishlist mutation */
-export type RemoveFromWishlistPayload = {
-  __typename?: 'RemoveFromWishlistPayload';
-  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: Maybe<Scalars['String']>;
-  /** Description of the error */
-  error?: Maybe<Scalars['String']>;
-  /** The Product id that was deleted */
-  productId?: Maybe<Scalars['Int']>;
-  /** True if the product is removed, false otherwise */
-  removed?: Maybe<Scalars['Boolean']>;
-  /** The Product ids in the wishlist */
-  wishlistProductIds?: Maybe<Array<Maybe<Scalars['Int']>>>;
-};
-
 /** Input for the resetUserPassword mutation */
 export type ResetUserPasswordInput = {
   /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
@@ -4777,8 +4695,6 @@ export type RestoreCommentPayload = {
 /** The root mutation */
 export type RootMutation = {
   __typename?: 'RootMutation';
-  /** The payload for the addToWishlist mutation */
-  addToWishlist?: Maybe<AddToWishlistPayload>;
   /** The payload for the createCategory mutation */
   createCategory?: Maybe<CreateCategoryPayload>;
   /** The payload for the createComment mutation */
@@ -4815,8 +4731,6 @@ export type RootMutation = {
   increaseCount?: Maybe<Scalars['Int']>;
   /** The payload for the registerUser mutation */
   registerUser?: Maybe<RegisterUserPayload>;
-  /** The payload for the removeFromWishlist mutation */
-  removeFromWishlist?: Maybe<RemoveFromWishlistPayload>;
   /** The payload for the resetUserPassword mutation */
   resetUserPassword?: Maybe<ResetUserPasswordPayload>;
   /** The payload for the restoreComment mutation */
@@ -4841,12 +4755,6 @@ export type RootMutation = {
   updateTag?: Maybe<UpdateTagPayload>;
   /** The payload for the updateUser mutation */
   updateUser?: Maybe<UpdateUserPayload>;
-};
-
-
-/** The root mutation */
-export type RootMutationAddToWishlistArgs = {
-  input: AddToWishlistInput;
 };
 
 
@@ -4959,12 +4867,6 @@ export type RootMutationRegisterUserArgs = {
 
 
 /** The root mutation */
-export type RootMutationRemoveFromWishlistArgs = {
-  input: RemoveFromWishlistInput;
-};
-
-
-/** The root mutation */
 export type RootMutationResetUserPasswordArgs = {
   input: ResetUserPasswordInput;
 };
@@ -5062,10 +4964,6 @@ export type RootQuery = {
   discussionSettings?: Maybe<DiscussionSettings>;
   /** Fields of the &#039;GeneralSettings&#039; settings group */
   generalSettings?: Maybe<GeneralSettings>;
-  /** Get footer */
-  getFooter?: Maybe<HcmsFooter>;
-  /** Get header */
-  getHeader?: Maybe<HcmsHeader>;
   /** List available languages */
   languages?: Maybe<Array<Maybe<Language>>>;
   /** An object of the mediaItem Type.  */
@@ -5123,8 +5021,6 @@ export type RootQuery = {
   registeredStylesheets?: Maybe<RootQueryToEnqueuedStylesheetConnection>;
   /** Connection between the RootQuery type and the ContentRevisionUnion type */
   revisions?: Maybe<RootQueryToContentRevisionUnionConnection>;
-  /** Shipping Zones */
-  shippingInfo?: Maybe<ShippingInfo>;
   /** A 0bject */
   tag?: Maybe<Tag>;
   /** Connection between the RootQuery type and the tag type */
@@ -5153,10 +5049,6 @@ export type RootQuery = {
   users?: Maybe<RootQueryToUserConnection>;
   /** Returns the current user */
   viewer?: Maybe<User>;
-  /** Countries */
-  wooCountries?: Maybe<WooCountries>;
-  /** States */
-  wooStates?: Maybe<WooStates>;
   /** Fields of the &#039;WritingSettings&#039; settings group */
   writingSettings?: Maybe<WritingSettings>;
 };
@@ -5519,12 +5411,6 @@ export type RootQueryUsersArgs = {
   first?: InputMaybe<Scalars['Int']>;
   last?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<RootQueryToUserConnectionWhereArgs>;
-};
-
-
-/** The root entry point into the Graph */
-export type RootQueryWooStatesArgs = {
-  countryCode?: InputMaybe<Scalars['String']>;
 };
 
 /** Connection between the RootQuery type and the category type */
@@ -6152,8 +6038,6 @@ export type RootQueryToPostConnectionWhereArgs = {
   nameIn?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   /** Specify IDs NOT to retrieve. If this is used in the same query as "in", it will be ignored */
   notIn?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
-  /** The ID of the post object to filter by */
-  onlySticky?: InputMaybe<Scalars['Boolean']>;
   /** What paramater to use to order the objects by. */
   orderby?: InputMaybe<Array<InputMaybe<PostObjectsConnectionOrderbyInput>>>;
   /** Use ID to return only children. Use 0 to return only top-level items */
@@ -6554,13 +6438,6 @@ export type Settings = {
   writingSettingsDefaultPostFormat?: Maybe<Scalars['String']>;
   /** Settings of the the boolean Settings Group */
   writingSettingsUseSmilies?: Maybe<Scalars['Boolean']>;
-};
-
-/** Shipping Zones Type */
-export type ShippingInfo = {
-  __typename?: 'ShippingInfo';
-  shippingZones?: Maybe<Scalars['String']>;
-  storePostCode?: Maybe<Scalars['Int']>;
 };
 
 /** The tag type */
@@ -8146,31 +8023,6 @@ export type WpPageInfo = {
   startCursor?: Maybe<Scalars['String']>;
 };
 
-/** Countries Type */
-export type WooCountries = {
-  __typename?: 'WooCountries';
-  billingCountries?: Maybe<Array<Maybe<WooCountry>>>;
-  shippingCountries?: Maybe<Array<Maybe<WooCountry>>>;
-};
-
-export type WooCountry = {
-  __typename?: 'WooCountry';
-  countryCode?: Maybe<Scalars['String']>;
-  countryName?: Maybe<Scalars['String']>;
-};
-
-export type WooState = {
-  __typename?: 'WooState';
-  stateCode?: Maybe<Scalars['String']>;
-  stateName?: Maybe<Scalars['String']>;
-};
-
-/** States Type */
-export type WooStates = {
-  __typename?: 'WooStates';
-  states?: Maybe<Array<Maybe<WooState>>>;
-};
-
 /** The writing setting type */
 export type WritingSettings = {
   __typename?: 'WritingSettings';
@@ -8182,7 +8034,33 @@ export type WritingSettings = {
   useSmilies?: Maybe<Scalars['Boolean']>;
 };
 
-export type ProductQueryVariables = Exact<{ [key: string]: never; }>;
+export type CategoriesWithProductsQueryVariables = Exact<{
+  id?: InputMaybe<Scalars['ID']>;
+  first?: InputMaybe<Scalars['Int']>;
+}>;
 
 
-export type ProductQuery = { __typename?: 'RootQuery', post?: { __typename?: 'Post', id: string, uri?: string | null, title?: string | null, slug?: string | null, content?: string | null, table?: { __typename?: 'Post_Table', table?: { __typename?: 'MediaItem', id: string, mediaItemUrl?: string | null } | null } | null } | null };
+export type CategoriesWithProductsQuery = { __typename?: 'RootQuery', category?: { __typename?: 'Category', id: string, name?: string | null, description?: string | null, contentNodes?: { __typename?: 'CategoryToContentNodeConnection', edges?: Array<{ __typename?: 'CategoryToContentNodeConnectionEdge', node?: { __typename?: 'MediaItem', id: string } | { __typename?: 'Page', id: string } | { __typename?: 'Post', id: string, title?: string | null, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node?: { __typename?: 'MediaItem', id: string, srcSet?: string | null, sourceUrl?: string | null } | null } | null } | null } | null> | null } | null } | null };
+
+export type ChildCategoriesBySlugQueryVariables = Exact<{
+  id?: InputMaybe<Scalars['ID']>;
+  language?: InputMaybe<LanguageCodeEnum>;
+}>;
+
+
+export type ChildCategoriesBySlugQuery = { __typename?: 'RootQuery', category?: { __typename?: 'Category', id: string, children?: { __typename?: 'CategoryToCategoryConnection', edges?: Array<{ __typename?: 'CategoryToCategoryConnectionEdge', node?: { __typename?: 'Category', id: string, name?: string | null, description?: string | null } | null } | null> | null } | null, translation?: { __typename?: 'Category', id: string } | null } | null };
+
+export type HomeQueryVariables = Exact<{
+  languages?: InputMaybe<Array<LanguageCodeEnum> | LanguageCodeEnum>;
+}>;
+
+
+export type HomeQuery = { __typename?: 'RootQuery', categories?: { __typename?: 'RootQueryToCategoryConnection', edges?: Array<{ __typename?: 'RootQueryToCategoryConnectionEdge', node?: { __typename?: 'Category', id: string, name?: string | null, description?: string | null, cat_cf?: { __typename?: 'Category_CatCf', image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null, srcSet?: string | null } | null } | null } | null } | null> | null } | null };
+
+export type ProductQueryVariables = Exact<{
+  id?: InputMaybe<Scalars['ID']>;
+  language?: InputMaybe<LanguageCodeEnum>;
+}>;
+
+
+export type ProductQuery = { __typename?: 'RootQuery', post?: { __typename?: 'Post', id: string, uri?: string | null, title?: string | null, slug?: string | null, content?: string | null, cf?: { __typename?: 'Post_Cf', fieldGroupName?: string | null, map?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null } | null, table?: { __typename?: 'MediaItem', id: string, mediaItemUrl?: string | null } | null } | null, translation?: { __typename?: 'Post', id: string } | null } | null };
