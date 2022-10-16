@@ -23,9 +23,9 @@
         <button @click="changeLocal">change local [{{ locale }}]</button>
       </div>
       <ul>
-        <li class="hover:bg-slate-800 hover:text-white">
+        <!-- <li class="hover:bg-slate-800 hover:text-white">
           <nuxt-link class="inline-block w-full" to="/">home</nuxt-link>
-        </li>
+        </li> -->
 
         <!-- <li class="hover:bg-slate-800 hover:text-white">
           <nuxt-link class="inline-block w-full" to="/f2">f2</nuxt-link>

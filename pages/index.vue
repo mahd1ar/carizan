@@ -59,7 +59,7 @@
     <div class="flex relative flex-row-reverse bg-tm-gray-dark h-[50vh]">
       <div class="w-7/12 relative">
         <img
-          class="w-full object-cover"
+          class="w-full object-cover h-full"
           src="/sample/sample2.jpg"
           style="clip-path: polygon(0px 0px, 100% 0px, 85% 100%, 0% 100%)"
           alt=""
@@ -175,7 +175,7 @@
         </div>
       </div>
     </section>
-
+    <pre></pre>
     <FooterSection />
   </div>
 </template>
@@ -198,8 +198,8 @@ export default defineComponent({
     const variable: HomeQueryVariables = {
       languages:
         i18n.locale.toLowerCase() === 'fa'
-          ? LanguageCodeEnum.En
-          : LanguageCodeEnum.Fa,
+          ? LanguageCodeEnum.Fa
+          : LanguageCodeEnum.En,
     }
     const { result, onError } = useQuery<HomeQuery>(HOMEGQL, variable)
 
@@ -207,7 +207,7 @@ export default defineComponent({
       error({ message: '_GET_INFO_ERROR', statusCode: 500 })
     })
 
-    const x = computed(() => {
+    const cats = computed(() => {
       return result?.value?.categories?.edges
         ? result.value.categories.edges.map((i) => ({
             id: i!.node!.id,
@@ -217,6 +217,10 @@ export default defineComponent({
           }))
         : []
     })
+
+    return {
+      xyz,
+    }
   },
 })
 </script>

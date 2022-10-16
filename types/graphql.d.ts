@@ -26,6 +26,15 @@ declare module '*/home.gql' {
 }
     
 
+declare module '*/page.gql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const Page: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
 declare module '*/product.gql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;

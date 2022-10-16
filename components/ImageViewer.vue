@@ -1,5 +1,5 @@
 <template>
-  <dir v-show="open">
+  <div v-show="open">
     <transition name="scale-up" @after-leave="closeViewer" @enter="enter">
       <div
         v-show="show"
@@ -134,7 +134,7 @@
         </div>
       </div>
     </transition>
-  </dir>
+  </div>
 </template>
 
 <script lang="ts">

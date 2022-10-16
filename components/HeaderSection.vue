@@ -88,12 +88,13 @@
               />
             </svg>
           </div>
-          <a
+          <nuxt-link
+            :to="localePath('/')"
             class="font-bold h-full flex-center px-3 text-gray-900 hover:text-gray-500 bg-tm-yellow rounded-sm"
-            href="#"
           >
             خانه
-          </a>
+          </nuxt-link>
+
           <a
             class="font-bold h-full flex-center px-3 text-gray-900 hover:text-gray-500"
             href="#"

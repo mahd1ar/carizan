@@ -11,7 +11,7 @@
     "lint": "yarn lint:prettier",
     "lintfix": "prettier --write --list-different .",
     "codegen": "graphql-codegen --config codegen.yml",
-    "push": "~/proxy-chains/proxychains_win32_x64.exe -f ~/proxy-chains/proxychains.conf git push lab master"
+    "push": "shx ~/proxy-chains/proxychains_win32_x64.exe -f ~/proxy-chains/proxychains.conf git push lab master"
   },
   "dependencies": {
     "@nuxtjs/apollo": "^4.0.1-rc.5",

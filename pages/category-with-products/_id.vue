@@ -73,7 +73,6 @@ import {
   useRoute,
   useRouter,
 } from '@nuxtjs/composition-api'
-import { slugTranslate } from '~/data/utils'
 
 export default defineComponent({
   name: 'categoryWithProducts',

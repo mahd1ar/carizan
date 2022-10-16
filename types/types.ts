@@ -8057,6 +8057,15 @@ export type HomeQueryVariables = Exact<{
 
 export type HomeQuery = { __typename?: 'RootQuery', categories?: { __typename?: 'RootQueryToCategoryConnection', edges?: Array<{ __typename?: 'RootQueryToCategoryConnectionEdge', node?: { __typename?: 'Category', id: string, name?: string | null, description?: string | null, cat_cf?: { __typename?: 'Category_CatCf', image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null, srcSet?: string | null } | null } | null } | null } | null> | null } | null };
 
+export type PageQueryVariables = Exact<{
+  id?: InputMaybe<Scalars['ID']>;
+  idType?: InputMaybe<PageIdType>;
+  language?: InputMaybe<LanguageCodeEnum>;
+}>;
+
+
+export type PageQuery = { __typename?: 'RootQuery', page?: { __typename?: 'Page', id: string, title?: string | null, content?: string | null, translation?: { __typename?: 'Page', id: string } | null } | null };
+
 export type ProductQueryVariables = Exact<{
   id?: InputMaybe<Scalars['ID']>;
   language?: InputMaybe<LanguageCodeEnum>;
