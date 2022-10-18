@@ -7,7 +7,7 @@
             class="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden"
           >
             <img
-            v-if="i.image"
+              v-if="i.image"
               class="lg:h-48 md:h-36 w-full object-cover object-center"
               :src="i.image"
               alt="blog"

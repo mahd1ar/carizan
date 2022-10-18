@@ -4,7 +4,7 @@
   <div class="w-full">
     <HeroSection />
 
-    <div class="flex relative bg-tm-yellow h-[50vh]">
+    <div v-if="cats[1]" class="flex relative bg-tm-yellow h-[50vh]">
       <div
         class="w-6/12 relative"
         style="clip-path: polygon(20% 0%, 100% 0, 100% 100%, 0% 100%)"
@@ -53,9 +53,10 @@
       </div>
     </div>
 
-    <div class="flex relative flex-row-reverse bg-tm-gray-dark h-[50vh]">
+    <div v-if="cats[0]" class="flex relative flex-row-reverse bg-tm-gray-dark h-[50vh]">
       <div class="w-7/12 relative">
         <img
+          v-if="cats[0].img"
           class="w-full object-cover h-full"
           :src="cats[0].img"
           style="clip-path: polygon(0px 0px, 100% 0px, 85% 100%, 0% 100%)"
@@ -67,12 +68,7 @@
       >
         <div class="container flex flex-col justify-start items-start gap-4">
           <h2 class="text-5xl font-semibold text-gray-200">{{ cats[0].name }}</h2>
-          <p class="text-gray-300">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate
-            eligendi dolorem sapiente consequatur magni aliquam error nesciunt,
-            unde dicta alias ipsam sint repudiandae ab possimus, quo, fuga totam
-            mollitia cupiditate.
-          </p>
+          <p class="text-gray-300" v-text="cats[0].description"></p>
 
           <nuxt-link
           :to="'/categories/' + cats[0].id"
