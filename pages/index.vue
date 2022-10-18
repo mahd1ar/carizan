@@ -181,7 +181,7 @@
 import { computed, defineComponent, useContext } from '@nuxtjs/composition-api'
 import HeroSectionVue from '~/components/homepage/HeroSection.vue'
 import { useQuery } from '@vue/apollo-composable/dist'
-import HOMEGQL from '@/apollo/query/Home.gql'
+import HOMEGQL from '@/apollo/query/home-page.gql'
 import { HomeQuery, HomeQueryVariables, LanguageCodeEnum } from '@/types/types'
 
 export default defineComponent({
