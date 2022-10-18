@@ -24,7 +24,8 @@ export default {
   plugins: [
     '~/plugins/apollo-client.js',
     { src: '~/plugins/i18n.js' },
-    { src: '~/plugins/eventbus.ts' }
+    { src: '~/plugins/eventbus.ts' },
+    { src: '~/plugins/snip.js' }
   ],
 
   serverMiddleware: [

@@ -1,0 +1,35 @@
+query categoriesWithCategories(
+  $id: ID = "dGVybToyNg=="
+  $language: LanguageCodeEnum = EN
+  $first: Int = 10
+) {
+  category(id: $id, idType: ID) {
+    id
+    name
+    description
+    cat_cf {
+      image {
+        id
+        srcSet(size: MEDIUM)
+        sourceUrl
+      }
+    }
+    translation(language: $language) {
+      id
+    }
+    children(first: $first) {
+      edges {
+        node {
+          id
+          name
+          cat_cf {
+            image {
+              altText
+              sourceUrl
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -41,9 +41,6 @@ export default defineComponent({
       variable
     )
 
-    console.log(i18n.locale)
-    console.log(route.value.params.id)
-
     $mitt.on('languageSwitched', () => {
       router.push({
         path: localePath('/categories'),
@@ -58,7 +55,7 @@ export default defineComponent({
         return result.value?.category?.children?.edges?.map((i) => ({
           title: i?.node?.name,
           excerpt: i?.node?.description,
-          link: i?.node?.id,
+          link: localePath( '/category-with-category/' + i?.node?.id),
         }))
       }),
     }

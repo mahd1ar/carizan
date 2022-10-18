@@ -14,6 +14,7 @@
       :style="{ '--count': index }"
       :link="item.link"
       img=""
+      :full="false"
     />
     <div aria-hidden="true" class="h-6"></div>
   </div>

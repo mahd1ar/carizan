@@ -29,7 +29,7 @@
         <div class="w-3/12">
           <client-only>
             <div
-              v-if="loadingTable === false"
+              v-if="loadingTable === false && TErr === false"
               class="rounded border-2 border-gray-300 flex flex-col gap-2 p-2 hover:scale-105 transition-all transform-gpu duration-300"
             >
               <div>
@@ -130,7 +130,7 @@
         consequatur at nemo eius dignissimos voluptates, accusamus,
         exercitationem ab enim maxime illo iusto velit voluptas sint libero.
       </div>
-      <WIYSWYG :includeGallery="false" :html="result?.post?.content || ''" />
+      <WYSIWYG :includeGallery="false" :html="result?.post?.content || ''" />
     </div>
     <FooterSection />
   </LoadingIndicator>
@@ -163,6 +163,7 @@ const TDiameter: Ref<string[]> = ref([])
 const TVLength: Ref<string> = ref('')
 const TVDiameter: Ref<string> = ref('')
 const TErr = ref(false)
+
 // const dataTable : Ref<{[key : string] : string}> = ref({})
 let dataTable: { [key: string]: string }[] = []
 const details: Ref<null | { [key: string]: string }> = ref(null)
@@ -179,7 +180,7 @@ const variable: ProductQueryVariables = {
 
 const {
   onResult: onResultTable,
-  onError: onResultError,
+  onError: onErrorTable,
   loading: loadingProduct,
   result,
 } = useQuery<ProductQuery>(PRODUCT, variable)
@@ -209,11 +210,13 @@ watch([TVLength, TVDiameter], () => {
     details.value = null
   }
 })
-onResultError(() => {
-  ctx.error({ message: 'NOT FOUND' })
+onErrorTable((err) => {
+  console.error(err)
+  ctx.error({ message: 'SOEMTHING WENT WRONG' })
 })
 onResultTable(async (r) => {
-  if (r.data.post === null) ctx.error({ message: 'NOT FOUND' })
+
+  if (r.data.post === null) ctx.error({ message: 'SOEMTHING WENT WRONG' })
   if (r.data.post?.cf?.table?.mediaItemUrl) {
     try {
       loadingTable.value = true

@@ -1,4 +1,13 @@
 
+declare module '*/categories-with-categories.gql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const categoriesWithCategories: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
 declare module '*/categories-with-products.gql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;

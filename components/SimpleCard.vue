@@ -11,10 +11,10 @@
         <h2 class="text-5xl font-bold text-tm-gray-dark">
           {{ title }}
         </h2>
-        <p class="text-zinc-500 pl-10">
+        <p class="text-zinc-500 pl-10" v-snip="{ lines: 4 }">
           {{ body }}
         </p>
-        <div
+        <nuxt-link :to="link"
           class="bg-gray-700 px-4 overflow-hidden inline-flex py-2 text-bold text-tm-yellow items-center gap-2 rounded"
         >
           <svg
@@ -37,7 +37,7 @@
           >
             _SEEMORE {{ link }}
           </span>
-        </div>
+        </nuxt-link>
       </div>
     </div>
     <div

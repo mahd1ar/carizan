@@ -11,7 +11,7 @@
       >
         <img
           class="w-full object-cover h-full"
-          src="/sample/sample1.jpg"
+          :src="cats[1].img"
           alt=""
         />
       </div>
@@ -24,15 +24,12 @@
             alt=""
           /> -->
         <div class="container flex flex-col justify-start items-start gap-4">
-          <h2 class="text-5xl font-semibold text-gray-700">محصولات</h2>
+          <h2 class="text-5xl font-semibold text-gray-700">{{ cats[1].name }}</h2>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate
-            eligendi dolorem sapiente consequatur magni aliquam error nesciunt,
-            unde dicta alias ipsam sint repudiandae ab possimus, quo, fuga totam
-            mollitia cupiditate.
+            {{cats[1].description}}
           </p>
           <nuxt-link
-            :to="'/categories/' + prodLink"
+            :to="'/categories/' + cats[1].id"
             class="bg-gray-700 px-4 py-2 text-bold text-tm-yellow flex items-center gap-2 rounded"
           >
             <svg
@@ -60,7 +57,7 @@
       <div class="w-7/12 relative">
         <img
           class="w-full object-cover h-full"
-          src="/sample/sample2.jpg"
+          :src="cats[0].img"
           style="clip-path: polygon(0px 0px, 100% 0px, 85% 100%, 0% 100%)"
           alt=""
         />
@@ -69,14 +66,16 @@
         class="w-5/12 relative flex items-center bg-tm-gray-dark overflow-hidden"
       >
         <div class="container flex flex-col justify-start items-start gap-4">
-          <h2 class="text-5xl font-semibold text-gray-200">محصولات</h2>
+          <h2 class="text-5xl font-semibold text-gray-200">{{ cats[0].name }}</h2>
           <p class="text-gray-300">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate
             eligendi dolorem sapiente consequatur magni aliquam error nesciunt,
             unde dicta alias ipsam sint repudiandae ab possimus, quo, fuga totam
             mollitia cupiditate.
           </p>
-          <div
+
+          <nuxt-link
+          :to="'/categories/' + cats[0].id"
             class="bg-gray-200 px-4 py-2 text-bold text-tm-black flex items-center gap-2 rounded"
           >
             <svg
@@ -95,7 +94,7 @@
               />
             </svg>
             <span class="px-2 hover:px-4 transition-all"> مشاهده </span>
-          </div>
+          </nuxt-link>
         </div>
       </div>
     </div>
@@ -175,7 +174,9 @@
         </div>
       </div>
     </section>
-    <pre></pre>
+   <pre>
+     {{ cats }}
+   </pre>
     <FooterSection />
   </div>
 </template>
@@ -201,6 +202,7 @@ export default defineComponent({
           ? LanguageCodeEnum.Fa
           : LanguageCodeEnum.En,
     }
+
     const { result, onError } = useQuery<HomeQuery>(HOMEGQL, variable)
 
     onError(() => {
@@ -219,7 +221,7 @@ export default defineComponent({
     })
 
     return {
-      xyz,
+      cats,
     }
   },
 })

@@ -1,4 +1,5 @@
 <template>
+ 
     <loading-indicator :isLoading="loading">
 
       <CategoryWithItems :page-info="pageInfo" :items="items" />
@@ -8,10 +9,10 @@
 
 <script lang="ts">
 import {
-  CategoriesWithProductsQuery,
-  CategoriesWithProductsQueryVariables,
+  CategoriesWithCategoriesQuery,
+  CategoriesWithCategoriesQueryVariables,
 } from '@/types/types'
-import CATWITHPRODS from '@/apollo/query/categories-with-products.gql'
+import CATWITHPRODS from '@/apollo/query/categories-with-categories.gql'
 import { useQuery } from '@vue/apollo-composable/dist'
 import {
   computed,
@@ -25,17 +26,17 @@ import CategoryWithItems from '~/components/inc/CategoryWithItems.vue'
 
 export default defineComponent({
   components : {CategoryWithItems},
-  name: 'categoryWithProducts',
+  name: 'categoryWithCategory',
   setup() {
     const { i18n, localePath } = useContext()
     const route = useRoute()
     const router = useRouter()
     const { $mitt } = useContext()
 
-    const variable: CategoriesWithProductsQueryVariables = {
+    const variable: CategoriesWithCategoriesQueryVariables = {
       id: route.value.params.id,
     }
-    const { result , loading } = useQuery<CategoriesWithProductsQuery>(
+    const { result , loading } = useQuery<CategoriesWithCategoriesQuery>(
       CATWITHPRODS,
       variable
     )
@@ -56,24 +57,19 @@ export default defineComponent({
       image : result.value?.category?.cat_cf?.image?.sourceUrl || ''
     }))
 
-   
     const items = computed(
-       () =>
-      result.value?.category?.contentNodes?.edges ? result.value.category.contentNodes.edges.map((i) =>
-        i?.node?.__typename === 'Post'
-          ? {
-              image: i.node.featuredImage?.node?.sourceUrl || '',
-              title: i.node?.title ? i.node.title.split("\\").join("<br />") : '',
-              id: i.node.id,
-              link : localePath('/product?id=' + i.node!.id)
-            }
-            : {
-              image: '',
-              title: '',
-              id: '',
-              link : '/'
-            }
-      ) || [] : []
+      () => {
+
+        return result.value?.category?.children?.edges ? result.value.category.children.edges.map( i => {
+          return { 
+            title : i?.node?.name || '' , 
+            id : i?.node?.id ,
+            image : i?.node?.cat_cf?.image,
+            link : localePath('/category-with-products/' + i!.node!.id)
+           }
+        } ) : []
+          
+      }
     )
 
     return {

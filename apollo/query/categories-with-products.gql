@@ -1,5 +1,9 @@
-query categoriesWithProducts($id: ID = "nut-fa", $first: Int = 4) {
-  category(id: $id, idType: SLUG) {
+query categoriesWithProducts(
+  $id: ID = "dGVybToyNg=="
+  $first: Int = 4
+  $language: LanguageCodeEnum = EN
+) {
+  category(id: $id, idType: ID) {
     id
     name
     description
@@ -20,6 +24,16 @@ query categoriesWithProducts($id: ID = "nut-fa", $first: Int = 4) {
           }
         }
       }
+    }
+    cat_cf {
+      image {
+        id
+        srcSet(size: MEDIUM)
+        sourceUrl
+      }
+    }
+    translation(language: $language) {
+      id
     }
   }
 }
