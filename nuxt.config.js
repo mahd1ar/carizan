@@ -51,12 +51,14 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/apollo',
     '@nuxtjs/i18n',
+    // '@vueuse/motion/nuxt'
   ],
   i18n: {
+
     locales: [
       // file: 'en.js'
-      { code: 'en', iso: 'en-US', dir: 'ltr' },
       { code: 'fa', iso: 'fa-IR', dir: 'rtl' },
+      { code: 'en', iso: 'en-US', dir: 'ltr' },
     ],
     defaultLocale: 'fa',
     vueI18n: {

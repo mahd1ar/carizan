@@ -70,8 +70,9 @@
           <h2 class="text-5xl font-semibold text-gray-200">{{ cats[0].name }}</h2>
           <p class="text-gray-300" v-text="cats[0].description"></p>
 
+          <!-- :to="'/categories/' + cats[0].id" -->
           <nuxt-link
-          :to="'/categories/' + cats[0].id"
+            to="/services"
             class="bg-gray-200 px-4 py-2 text-bold text-tm-black flex items-center gap-2 rounded"
           >
             <svg

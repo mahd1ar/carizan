@@ -4,6 +4,14 @@ query product($id: ID = "cG9zdDo2OA==", $language: LanguageCodeEnum = EN) {
     uri
     title(format: RENDERED)
     slug
+    featuredImage {
+      node {
+        id
+        srcSet
+        altText
+        sourceUrl
+      }
+    }
     cf {
       fieldGroupName
       map {

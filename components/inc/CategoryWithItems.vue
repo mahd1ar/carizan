@@ -17,7 +17,7 @@
           >
             <div class="container h-full">
               <div class="w-4/12 flex flex-col justify-center h-full">
-                <h1 class="text-white text-6xl font-bold">
+                <h1 class="text-white text-6xl font-bold" :class="{'whitespace-nowrap' : !pageInfo.image }" >
                   {{ pageInfo.title }}
                 </h1>
               </div>

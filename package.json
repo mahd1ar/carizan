@@ -19,6 +19,7 @@
     "@nuxtjs/composition-api": "^0.33.1",
     "@nuxtjs/i18n": "^7.3.0",
     "@vue/apollo-composable": "^4.0.0-alpha.19",
+    "@vueuse/motion": "^2.0.0-beta.12",
     "core-js": "^3.19.3",
     "graphql-tag": "^2.12.6",
     "mitt": "^3.0.0",

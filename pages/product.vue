@@ -4,18 +4,18 @@
       <div class="flex">
         <div class="w-3/12">
           <div class="rounded border-4 border-gray-400 aspect-square w-full">
-            <img src="/sample/pich.jpg" alt="" />
+            <img class="w-full h-full object-cover" :src="pageContent.featuredImage" alt="" />
           </div>
         </div>
         <div class="w-9/12 text-left py-4 flex-center">
           <div class="w-full">
             <h1
               class="capitalize text-5xl text-gray-700 font-bold"
-              v-text="titleCollection[0]"
+              v-text="pageContent.titleCollection[0]"
             ></h1>
 
             <h3
-              v-for="title in titleCollection.slice(1)"
+              v-for="title in pageContent.titleCollection.slice(1)"
               :key="title"
               class="capitalize text-2xl text-gray-600 font-bold"
             >
@@ -92,15 +92,15 @@
           </client-only>
         </div>
         <div class="w-9/12">
-          <div v-if="mapImage" class="rounded border-2 border-gray-300 w-full">
-            <ExpanableImg :src="mapImage" />
+          <div v-if="pageContent.mapImage" class="rounded border-2 border-gray-300 w-full">
+            <ExpanableImg :src="pageContent.mapImage" />
           </div>
         </div>
       </div>
 
       <div class="flex flex-row-reverse gap-6">
         <div class="w-1/2">
-          <img src="/sample/sample5.jpg" alt="" />
+          <img :src="pageContent.featuredImage" alt="" />
         </div>
         <div class="w-1/2">
           <h3 class="text-3xl">کنترل کیفیت</h3>
@@ -185,13 +185,16 @@ const {
   result,
 } = useQuery<ProductQuery>(PRODUCT, variable)
 
-const titleCollection = computed(() => {
-  return result.value?.post?.title?.split('\\') || ['', '', '']
+const pageContent = computed(() => {
+  return {
+    titleCollection : result.value?.post?.title?.split('\\') || ['', '', ''],
+    mapImage : result.value?.post?.cf?.map?.sourceUrl || '',
+    featuredImage : result.value?.post?.featuredImage?.node?.sourceUrl || ''
+  }
 })
 
-const mapImage = computed(() => {
-  return result.value?.post?.cf?.map?.sourceUrl || ''
-})
+
+
 
 watch([TVLength, TVDiameter], () => {
   try {
@@ -210,10 +213,12 @@ watch([TVLength, TVDiameter], () => {
     details.value = null
   }
 })
+
 onErrorTable((err) => {
   console.error(err)
   ctx.error({ message: 'SOEMTHING WENT WRONG' })
 })
+
 onResultTable(async (r) => {
 
   if (r.data.post === null) ctx.error({ message: 'SOEMTHING WENT WRONG' })

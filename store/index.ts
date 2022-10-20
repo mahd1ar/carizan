@@ -1,22 +1,45 @@
 import { GetterTree, ActionTree, MutationTree } from 'vuex'
+import MAINNAV from "@/apollo/query/top-nav.gql"
+import { MainNavQuery, MainNavQueryVariables } from "@/types/types"
+import { Context, NuxtAppOptions } from '@nuxt/types'
+type NavItem = {
+    label: string,
+    link: string,
+    id: string,
+    lang: string
+}
 
 export const state = () => ({
-    lang: "en" as "en" | "fa"
+    navItem: [] as NavItem[]
 })
 
 export type RootState = ReturnType<typeof state>
 
 export const getters: GetterTree<RootState, RootState> = {
-    lang: state => state.lang,
+    lang: state => state.navItem,
 }
 
 export const mutations: MutationTree<RootState> = {
-    CHANGE_LANG: (state, newName: RootState['lang']) => (state.lang = newName),
+    ADD_NAV: (state, newNav: NavItem[]) => {
+        newNav.forEach(i => state.navItem.push(i))
+    },
 }
 
 export const actions: ActionTree<RootState, RootState> = {
-    async changeLang({ commit }, newlang: RootState['lang']) {
+    async nuxtServerInit({ commit }, ctx: Context) {
+        const variable: MainNavQueryVariables = {}
+        // $apolloProvider.defaultClient.query
 
-        commit('CHANGE_LANG', newlang)
+        const res = await ctx.app.apolloProvider.defaultClient.query({ query: MAINNAV })
+
+        const data = res.data as MainNavQuery
+        const navItem: NavItem[] = data.menus!.edges!.map(e => e!.node!.menuItems!.edges!.map(ed => ({ label: ed!.node!.label || '', id: ed!.node!.id || '', lang: e!.node!.name!.search(/-en$/) > -1 ? 'en' : 'fa', link: ed!.node!.uri || '' }))).flat()
+
+        commit('ADD_NAV', navItem)
+
+    },
+    async addNav({ commit }, newlang: NavItem[]) {
+
+        commit('ADD_NAV', newlang)
     },
 }

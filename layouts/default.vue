@@ -47,7 +47,7 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, ref, useContext } from '@nuxtjs/composition-api'
+import { ref, useContext } from '@nuxtjs/composition-api'
 import { onKeyStroke } from '@vueuse/core'
 
 const showDevBox = ref(true)

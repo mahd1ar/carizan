@@ -101,18 +101,19 @@
           >
             محصولات
           </a>
-          <a
+
+          <nuxt-link
+            :to="localePath('/services')"
             class="font-bold h-full flex-center px-3 text-gray-900 hover:text-gray-500"
-            href="#"
           >
             خدمات
-          </a>
-          <a
+          </nuxt-link>
+          <nuxt-link
+            :to="localePath('/labandqc')"
             class="font-bold h-full flex-center px-3 text-gray-900 hover:text-gray-500"
-            href="#"
           >
             آزمایشگاه کنترل کیفیت
-          </a>
+          </nuxt-link>
           <a
             class="font-bold h-full flex-center px-3 text-gray-900 hover:text-gray-500"
             href="#"

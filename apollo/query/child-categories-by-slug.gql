@@ -10,6 +10,12 @@ query ChildCategoriesBySlug(
           id
           name
           description
+          cat_cf {
+            image {
+              id
+              sourceUrl
+            }
+          }
         }
       }
     }

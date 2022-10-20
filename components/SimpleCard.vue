@@ -35,18 +35,20 @@
           <span
             class="px-2 hover:px-4 transition-all flex justify-center items-center"
           >
-            _SEEMORE {{ link }}
+            _SEEMORE 
           </span>
         </nuxt-link>
       </div>
     </div>
     <div
+
       class="w-1/2 h-[400px] rounded overflow-hidden shadow-xl shadow-gray-400"
     >
       <img
+      v-if="img"
         ref="target"
         class="hover:scale-105 h-full w-full object-cover transition-all ease-out duration-700"
-        src="/sample/sample2.jpg"
+        :src="img"
         alt=""
       />
     </div>
@@ -70,7 +72,7 @@ const {
   left = false,
   title = '',
   body = '',
-  img: src = '',
+  img = '',
   link = '',
 } = defineProps<{
   full: Boolean

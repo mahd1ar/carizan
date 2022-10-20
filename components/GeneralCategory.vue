@@ -13,7 +13,7 @@
       :left="!!(index % 2)"
       :style="{ '--count': index }"
       :link="item.link"
-      img=""
+      :img="item.image"
       :full="false"
     />
     <div aria-hidden="true" class="h-6"></div>
@@ -29,6 +29,7 @@ defineProps({
       title: string
       excerpt: string
       link: string
+      image : string
     }[]
   >,
   pageTitle: {
