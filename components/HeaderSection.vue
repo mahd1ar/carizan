@@ -94,14 +94,14 @@
           >
             خانه
           </nuxt-link>
-
-          <a
-            class="font-bold h-full flex-center px-3 text-gray-900 hover:text-gray-500"
-            href="#"
-          >
-            محصولات
-          </a>
-
+        
+        <nuxt-link
+        :to="localePath('/products')"
+        class="font-bold h-full flex-center px-3 text-gray-900 hover:text-gray-500"
+        >
+        محصولات
+            خدمات
+          </nuxt-link>
           <nuxt-link
             :to="localePath('/services')"
             class="font-bold h-full flex-center px-3 text-gray-900 hover:text-gray-500"

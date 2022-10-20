@@ -28,8 +28,9 @@
           <p>
             {{cats[1].description}}
           </p>
+          <!-- :to="'/categories/' + cats[1].id" -->
           <nuxt-link
-            :to="'/categories/' + cats[1].id"
+          to="/products"
             class="bg-gray-700 px-4 py-2 text-bold text-tm-yellow flex items-center gap-2 rounded"
           >
             <svg
