@@ -100,7 +100,7 @@
         class="font-bold h-full flex-center px-3 text-gray-900 hover:text-gray-500"
         >
         محصولات
-            خدمات
+            
           </nuxt-link>
           <nuxt-link
             :to="localePath('/services')"
