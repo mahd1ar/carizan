@@ -57,9 +57,11 @@ export default {
 
     locales: [
       // file: 'en.js'
-      { code: 'fa', iso: 'fa-IR', dir: 'rtl' },
-      { code: 'en', iso: 'en-US', dir: 'ltr' },
+      // { code: 'fa', iso: 'fa-IR', dir: 'rtl' },
+      // { code: 'en', iso: 'en-US', dir: 'ltr' },
+      'fa', 'en'
     ],
+    detectBrowserLanguage: false,
     defaultLocale: 'fa',
     vueI18n: {
       fallbackLocale: 'fa',

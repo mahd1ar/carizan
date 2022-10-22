@@ -57,7 +57,10 @@ onKeyStroke('m', (e) => {
   showDevBox.value = !showDevBox.value
 })
 
+
 const { i18n } = useContext()
+
+console.log(i18n.defaultLocale)
 
 const locale = ref(i18n.locale)
 
