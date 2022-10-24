@@ -1,7 +1,7 @@
 <template>
-    <main>
+    <main class="my-8" >
 
-        <div class="container relative mx-auto flex flex-col gap-3 my-8" dir="rtl">
+        <div class="container relative mx-auto flex flex-col gap-3 mb-5" dir="rtl">
             <!-- Breadcrumb -->
             <!-- <div class="flex justify-center sm:justify-start">
                 <span class="breadcrumb inline-flex items-center gap-2 rounded-lg bg-white py-1 px-2">
@@ -37,7 +37,7 @@
                                             <div
                                                 class="relative overflow-hidden rounded-3xl border border-gray-400 bg-white">
                                                 <input class="py-2 px-6 w-full focus:placeholder:text-white" type="text"
-                                                    placeholder="" v-model="yourName" />
+                                                    placeholder="" v-model="yourName" required/>
                                             </div>
                                         </div>
                                     </div>
@@ -50,7 +50,7 @@
                                             <div
                                                 class="relative overflow-hidden rounded-3xl border border-gray-400 bg-white">
                                                 <input class="py-2 px-6 w-full focus:placeholder:text-white" type="text"
-                                                    placeholder="" v-model="yourEmail" />
+                                                    placeholder="" v-model="yourEmail" required />
                                             </div>
                                         </div>
                                     </div>
@@ -63,7 +63,7 @@
                                         </span>
                                         <div class="relative overflow-hidden rounded-3xl border border-gray-400 bg-white">
                                             <input class="py-2 px-6 w-full focus:placeholder:text-white" type="text"
-                                                placeholder="" v-model="yourSubject" />
+                                                placeholder="" v-model="yourSubject" required/>
                                         </div>
                                     </div>
                                 </div>
@@ -77,13 +77,13 @@
                                             <textarea
                                                 class="w-full py-3 px-6 focus:placeholder:text-white focus-visible:outline-none"
                                                 type="text" placeholder="" cols="30" rows="7"
-                                                v-model="yourMessage"></textarea>
+                                                v-model="yourMessage" required></textarea>
                                         </div>
                                     </div>
                                 </div>
                                 <div>
                                     <button
-                                        class="inline-block rounded-3xl bg-primery px-4 py-2 font-bold text-primery-dark shadow-xl hover:bg-yellow-200"
+                                        class="inline-block rounded bg-primary px-6 py-2 font-bold text-primery-dark hover:bg-primary-light"
                                         type="submit">
                                         ارسال
                                     </button>
@@ -93,10 +93,14 @@
                     </div>
                     <div class="w-full lg:w-1/2">
                         <div class="relative flex h-72 flex-col items-center justify-center">
-                            <iframe
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d202.25586606050027!2d51.43391800734024!3d35.7976291!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f8e05de51d30e27%3A0xc66fc983b889cd4f!2sQCXM%2B2JC%20District%201%2C%20Tehran%2C%20Tehran%20Province%2C%20Iran!5e0!3m2!1sen!2s!4v1666612200158!5m2!1sen!2s" 
+                             style="border:0;"
+                             class="h-full w-full rounded-3xl opacity-80 brightness-100 grayscale filter"
+                             allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            <!-- <iframe
                                 src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d12939.179951151129!2d50.981228732403565!3d35.82950540204879!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2see!4v1645952091896!5m2!1sen!2see"
                                 class="h-full w-full rounded-3xl opacity-80 brightness-100 grayscale filter"
-                                style="border: 0" allowfullscreen="" loading="lazy"></iframe>
+                                style="border: 0" allowfullscreen="" loading="lazy"></iframe> -->
                             <div
                                 class="bottom-10 flex w-full flex-col items-center justify-center gap-1 sm:absolute sm:w-10/12 sm:flex-row sm:gap-4">
                                 <a href="#"
@@ -118,26 +122,26 @@
                                     <img class="object-contain" src="svg/location.svg" alt="" />
                                 </span>
                                 <div>
-                                    خیابان شهید بهشتی،خیابان مهناز(صابونچی)،پلاک 58،طبقه 3،واحد 5
+                                    شریعتی_ بالاتر از پل رومی _ بالاتر از مترو قیطریه _ جنب بانک شهر پلاک ۱۸۴۱_واحد ۱
                                 </div>
                             </div>
                             <div class="flex gap-2 text-gray-600">
                                 <span class="flex-center w-10">
                                     <img class="object-contain" src="svg/phone-black.svg" alt="" />
                                 </span>
-                                <div>43000030</div>
+                                <div>02122218151</div>
                             </div>
                             <div class="flex gap-2 text-gray-600">
                                 <span class="flex-center w-10">
                                     <img class="object-contain" src="svg/email.svg" alt="" />
                                 </span>
-                                <div>info@bisanseir.com</div>
+                                <div>info@carizanin.com</div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="mt-1 flex flex-col gap-4 border-t pt-6 text-gray-500">
-                    <div>
+                    <!-- <div>
                         ﭘﺸﺘﯿﺒﺎﻧﯽ ﺑﯿﺴﺎن ﺳﯿﺮ در ﺗﻤﺎم ﻃﻮل ﻫﻔﺘﻪ، ﺑﻪ ﺻﻮﺮﺗ 24 ﺳﺎﻋﺘﻪ ﭘﺎﺳﺨﮕﻮی ﺷﻤﺎ در
                         زﻣﯿﻨﻪ ﻫﺎی ﻣﺨﺘﻠﻒ از ﺟﻤﻠﻪ: وﯾﺰﺎﯾ ﺗﮏ و ﮔﺮوﻫﯽ، ﺑﻠﯿﻂ ﻫﻮاﭘﯿﻤﺎ، رزرو ﻫﺘﻞ و
                         ﺗﻮر و... ﻣﯽ ﺑﺎﺷﺪ.
@@ -146,7 +150,7 @@
                     <div>
                         ﺑﯿﺴﺎن‌ﺳﯿﺮ ﯾﮑﯽ از ﻣﻤﺘﺎزﺗﺮﯾﻦ ﺷﺮﮐﺖ‌ﻫﺎی اراﺋﻪ ﺧﺪﻣﺎت ﮔﺮدﺷﮕﺮی ﻣﯽ‌ﺑﺎﺷﺪ و
                         ﺑﻪ‌ﺧﻮد ﻣﯽ‌ﺑﺎﻟﯿﻢ ﮐﻪ ﻫﻤﻪ روﺰﻫ ﺑﻪ ﺗﻌﺪاد ﻣﺸﺘﺮﯾﺎن وﻓﺎدارﻣﺎن اﻓﺰوﺪﻫ ﻣﯽ‌ﺷﻮد
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -158,6 +162,7 @@
 import Schema from '@/data/schema'
 
 import { useAsync, useContext, ref } from '@nuxtjs/composition-api'
+import { validateEmail } from '~/data/utils';
 const { $axios } = useContext()
 
 // const contact7Form = useAsync(() =>
@@ -166,12 +171,20 @@ const { $axios } = useContext()
 //     )
 // )
 
-const yourName = ref("mahdiyar anari");
-const yourEmail = ref("a.mahdiyar7@yahoo.com");
-const yourSubject = ref("something wrong");
-const yourMessage = ref("asdasd asd asdf ");
+const yourName = ref("");
+const yourEmail = ref("");
+const yourSubject = ref("");
+const yourMessage = ref("");
 
 const sendForm = async () => {
+    
+    if(!validateEmail(yourEmail.value)){
+             // TODO :translate
+        alert("ایمیل غیر معتبر")
+        return
+
+    }
+
     const form = new FormData();
     form.append("your-name", yourName.value);
     form.append("your-email", yourEmail.value);
@@ -188,7 +201,8 @@ const sendForm = async () => {
 
         const response = await $axios.post('//api.carizanin.com/wp-json/contact-form-7/v1/contact-forms/176/feedback', form ,options)
         console.log(response.data)
-        alert("DONR")
+        // TODO :translate
+        alert("پیام شما با موفقیت دریافت شد")
     } catch (error) {
         console.log(error)
     }

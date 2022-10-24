@@ -8441,7 +8441,7 @@ export type CategoriesWithCategoriesQueryVariables = Exact<{
 }>;
 
 
-export type CategoriesWithCategoriesQuery = { __typename?: 'RootQuery', category?: { __typename?: 'Category', id: string, name?: string | null, description?: string | null, cat_cf?: { __typename?: 'Category_CatCf', image?: { __typename?: 'MediaItem', id: string, srcSet?: string | null, sourceUrl?: string | null } | null } | null, translation?: { __typename?: 'Category', id: string } | null, children?: { __typename?: 'CategoryToCategoryConnection', edges?: Array<{ __typename?: 'CategoryToCategoryConnectionEdge', node?: { __typename?: 'Category', id: string, name?: string | null, cat_cf?: { __typename?: 'Category_CatCf', image?: { __typename?: 'MediaItem', altText?: string | null, sourceUrl?: string | null } | null } | null } | null } | null> | null } | null } | null };
+export type CategoriesWithCategoriesQuery = { __typename?: 'RootQuery', category?: { __typename?: 'Category', id: string, name?: string | null, description?: string | null, cat_cf?: { __typename?: 'Category_CatCf', image?: { __typename?: 'MediaItem', id: string, srcSet?: string | null, sourceUrl?: string | null } | null } | null, translation?: { __typename?: 'Category', id: string } | null, children?: { __typename?: 'CategoryToCategoryConnection', edges?: Array<{ __typename?: 'CategoryToCategoryConnectionEdge', node?: { __typename?: 'Category', id: string, name?: string | null, description?: string | null, cat_cf?: { __typename?: 'Category_CatCf', image?: { __typename?: 'MediaItem', altText?: string | null, sourceUrl?: string | null } | null } | null } | null } | null> | null } | null } | null };
 
 export type CategoriesWithProductsQueryVariables = Exact<{
   id?: InputMaybe<Scalars['ID']>;

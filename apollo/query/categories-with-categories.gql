@@ -22,6 +22,7 @@ query categoriesWithCategories(
         node {
           id
           name
+          description
           cat_cf {
             image {
               altText

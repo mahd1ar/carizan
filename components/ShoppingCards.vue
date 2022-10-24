@@ -1,8 +1,9 @@
 <template>
-  <section  class="text-gray-600 body-font">
+  <section class="text-gray-600 body-font">
+
     <div class="container px-5 py-12 mx-auto">
       <div class="flex flex-wrap -m-4">
-        <div v-for="(i, index) in cards" :key="index"  class="p-4 md:w-1/3">
+        <div v-for="(i) in cards" :key="i.id" class="p-4 md:w-1/3">
           <div
             class="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden"
           >
@@ -18,20 +19,20 @@
               >
                 CATEGORY
               </h2>
-              <h1 class="title-font text-lg font-medium text-gray-900 mb-3" v-html="i.title"> 
-              </h1>
-              <p class="leading-relaxed mb-3">
-                Photo booth fam kinfolk cold-pressed sriracha leggings jianbing
-                microdosing tousled waistcoat.
+              <h1
+                class="title-font text-lg font-medium text-gray-900 mb-3"
+                v-html="i.title"
+              ></h1>
+              <p class="leading-relaxed mb-3" v-text="i.body">
               </p>
               <!-- localePath('/product?id=' + i.id) -->
               <div class="flex items-center flex-wrap">
-                
                 <nuxt-link
                   :to="i.link"
                   class="text-indigo-500 inline-flex items-center md:mb-2 lg:mb-0"
                 >
-                  _MORE
+                  <!-- TODO : translate this -->
+                  <!-- _MORE -->
                   <svg
                     class="w-4 h-4 ml-2"
                     viewBox="0 0 24 24"
@@ -44,6 +45,7 @@
                     <path d="M5 12h14"></path>
                     <path d="M12 5l7 7-7 7"></path>
                   </svg>
+                  ادامه
                 </nuxt-link>
                 <span
                   class="text-gray-400 mr-3 inline-flex items-center lg:ml-auto md:ml-0 ml-auto leading-none text-sm pr-3 py-1 border-r-2 border-gray-200 invisible"
@@ -98,10 +100,11 @@ const { cards = [] } = defineProps({
   cards: {
     type: Array as PropType<
       {
+        id: string
         image: string
         title: string
-        id: string
-        link : string
+        body: string
+        link: string
       }[]
     >,
   },

@@ -20,7 +20,7 @@ module.exports = {
     },
     extend: {
       colors: {
-        primary: { DEFAULT: '#FFC800', dark: '#67540a' },
+        primary: { DEFAULT: '#FFC800', dark: '#67540a' , light : "#f7de85" },
         tm: {
           black: '#232E3B',
           gray: { ligth: '#AFAFAE', dark: '#3F3F3F' },

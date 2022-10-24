@@ -15,7 +15,7 @@
           {{ body }}
         </p>
         <nuxt-link :to="link"
-          class="bg-gray-700 px-4 overflow-hidden inline-flex py-2 text-bold text-primary items-center gap-2 rounded"
+          class="bg-gray-700 px-4 overflow-hidden inline-flex flex-row-reverse py-2 text-bold text-primary items-start gap-1 rounded"
         >
           <svg
             class="w-5 h-5 flex-shrink-0"
@@ -35,7 +35,9 @@
           <span
             class="px-2 hover:px-4 transition-all flex justify-center items-center"
           >
-            _SEEMORE 
+          <!-- TODO : translate this -->
+            <!-- _SEEMORE  -->
+            ادامه
           </span>
         </nuxt-link>
       </div>

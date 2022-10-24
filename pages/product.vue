@@ -89,7 +89,7 @@
                 </div>
 
                 <div class="flex border-t border-gray-200 py-2">
-                  <span class="text-gray-500">کام</span>
+                  <span class="text-gray-500">گام</span>
                   <span class="mr-auto text-gray-900">
                     {{ details.step }}
                   </span>
@@ -116,7 +116,7 @@
         </div>
       </div>
 
-      <div class="flex flex-row-reverse gap-6">
+      <!-- <div class="flex flex-row-reverse gap-6">
         <div class="w-1/2">
           <img :src="pageContent.featuredImage" alt="" />
         </div>
@@ -147,10 +147,10 @@
         amet consectetur adipisicing elit. Voluptatem, quos! Odit doloremque qui
         consequatur at nemo eius dignissimos voluptates, accusamus,
         exercitationem ab enim maxime illo iusto velit voluptas sint libero.
-      </div>
+      </div> -->
       <WYSIWYG :includeGallery="false" :html="result?.post?.content || ''" />
     </div>
-    <FooterSection />
+    <FooterSection class="mt-12" />
   </LoadingIndicator>
 </template>
 

@@ -20,9 +20,9 @@ import {
   useContext,
   useRoute,
   useRouter,
+  ComputedRef
 } from '@nuxtjs/composition-api'
 import CategoryWithItems from '~/components/inc/CategoryWithItems.vue'
-
 
 export default defineComponent({
   components : {CategoryWithItems},
@@ -57,14 +57,16 @@ export default defineComponent({
       image : result.value?.category?.cat_cf?.image?.sourceUrl || ''
     }))
 
+
     const items = computed(
       () => {
 
         return result.value?.category?.children?.edges ? result.value.category.children.edges.map( i => {
           return { 
             title : i?.node?.name || '' , 
-            id : i?.node?.id ,
-            image : i?.node?.cat_cf?.image?.sourceUrl,
+            id : i!.node!.id ,
+            body : i?.node?.description || "",
+            image : i?.node?.cat_cf?.image?.sourceUrl || '',
             link : localePath('/category-with-products/' + i!.node!.id)
            }
         } ) : []
