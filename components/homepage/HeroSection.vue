@@ -60,7 +60,7 @@
 
         <div class="mt-4 sm:mt-8">
           <a
-            class="inline-flex items-center gap-3 px-8 py-3 transition bg-tm-yellow text-black font-bold rounded"
+            class="inline-flex items-center gap-3 px-8 py-3 transition bg-primary text-black font-bold rounded"
             href="#"
           >
             <span class="text-sm font-medium"> درباره ما </span>
@@ -109,14 +109,14 @@ export default Vue.extend({
 }
 
 .line-1 {
-  @apply bg-tm-yellow w-8 h-56 rotate-[45deg] translate-y-20;
+  @apply bg-primary w-8 h-56 rotate-[45deg] translate-y-20;
 }
 
 .line-2 {
-  @apply bg-tm-yellow w-6 h-56 rotate-[50deg] left-96 -top-12;
+  @apply bg-primary w-6 h-56 rotate-[50deg] left-96 -top-12;
 }
 
 .line-3 {
-  @apply bg-tm-yellow w-10 h-72 rotate-[45deg] left-0  bottom-0;
+  @apply bg-primary w-10 h-72 rotate-[45deg] left-0  bottom-0;
 }
 </style>

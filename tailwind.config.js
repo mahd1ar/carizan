@@ -20,10 +20,10 @@ module.exports = {
     },
     extend: {
       colors: {
+        primary: { DEFAULT: '#FFC800', dark: '#67540a' },
         tm: {
           black: '#232E3B',
           gray: { ligth: '#AFAFAE', dark: '#3F3F3F' },
-          yellow: { DEFAULT: '#FFC800', dark: '#67540a' },
         },
       },
       fontFamily: {

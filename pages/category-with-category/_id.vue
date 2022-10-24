@@ -64,7 +64,7 @@ export default defineComponent({
           return { 
             title : i?.node?.name || '' , 
             id : i?.node?.id ,
-            image : i?.node?.cat_cf?.image,
+            image : i?.node?.cat_cf?.image?.sourceUrl,
             link : localePath('/category-with-products/' + i!.node!.id)
            }
         } ) : []

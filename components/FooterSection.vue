@@ -12,7 +12,7 @@
       <div class="grid grid-cols-1 gap-8 sm:grid-cols-2">
         <div>
           <p class="font-medium">
-            <span class="text-xs tracking-widest uppercase text-tm-yellow">
+            <span class="text-xs tracking-widest uppercase text-primary">
               Call
             </span>
 
@@ -139,7 +139,7 @@
 
         <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div>
-            <p class="font-medium text-tm-yellow">Support</p>
+            <p class="font-medium text-primary">Support</p>
 
             <nav class="flex flex-col mt-4 space-y-2 text-sm text-gray-300">
               <a class="hover:opacity-75" href=""> Contact </a>
@@ -150,7 +150,7 @@
           </div>
 
           <div>
-            <p class="font-medium text-tm-yellow">Products</p>
+            <p class="font-medium text-primary">Products</p>
 
             <nav class="flex flex-col mt-4 space-y-2 text-sm text-gray-300">
               <a class="hover:opacity-75" href=""> 1to1 Coaching </a>

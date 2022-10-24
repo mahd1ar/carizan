@@ -69,7 +69,7 @@
         class="hs-collapse hidden overflow-hidden transition-all duration-300 basis-full grow sm:block h-full"
       >
         <div
-          class="flex flex-col mt-5 h-full sm:flex-row-reverse sm:items-center sm:justify-start sm:mt-0 sm:pl-5"
+          class="flex flex-col mt-5 h-full sm:flex-row-reverse sm:items-center sm:justify-start sm:mt-0 sm:pl-5 bg-gray-100"
         >
           <div class="text-gray-900 mx-4 cursor-pointer">
             <svg
@@ -90,17 +90,16 @@
           </div>
           <nuxt-link
             :to="localePath('/')"
-            class="font-bold h-full flex-center px-3 text-gray-900 hover:text-gray-500 bg-tm-yellow rounded-sm"
+            class="font-bold h-full flex-center px-3 text-primary-dark hover:text-gray-500 bg-primary rounded-sm"
           >
             خانه
           </nuxt-link>
-        
-        <nuxt-link
-        :to="localePath('/products')"
-        class="font-bold h-full flex-center px-3 text-gray-900 hover:text-gray-500"
-        >
-        محصولات
-            
+
+          <nuxt-link
+            :to="localePath('/products')"
+            class="font-bold h-full flex-center px-3 text-gray-900 hover:text-gray-500"
+          >
+            محصولات
           </nuxt-link>
           <nuxt-link
             :to="localePath('/services')"
@@ -114,20 +113,45 @@
           >
             آزمایشگاه کنترل کیفیت
           </nuxt-link>
-          <a
+          <nuxt-link
+            :to="localePath('/standards')"
             class="font-bold h-full flex-center px-3 text-gray-900 hover:text-gray-500"
-            href="#"
           >
             استاندارد
-          </a>
-          <a
-            class="font-bold h-full flex-center px-2 text-gray-900 hover:text-gray-500"
-            href="#"
+          </nuxt-link>
+          <nuxt-link
+            :to="localePath('/contact')"
+            class="font-bold h-full flex-center px-3 text-gray-900 hover:text-gray-500"
           >
             تماس با ما
-          </a>
+          </nuxt-link>
         </div>
       </div>
     </nav>
   </header>
 </template>
+
+<style lang="scss">
+
+.nuxt-link-active {
+  @apply relative;
+  &::after {
+    content: '';
+    animation: example 250ms ease-out 0ms;
+    animation-fill-mode: forwards;
+    // animation-play-state: running;
+    // w-9/12
+    @apply absolute  transition-all ease-out border-primary border-b-4 rounded  bottom-0;
+  }
+}
+//
+@keyframes example {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 75%;
+  }
+}
+
+</style>

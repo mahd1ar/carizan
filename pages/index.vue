@@ -4,7 +4,7 @@
   <div class="w-full">
     <HeroSection />
 
-    <div v-if="cats[1]" class="flex relative bg-tm-yellow h-[50vh]">
+    <div v-if="cats[1]" class="flex relative bg-primary h-[50vh]">
       <div
         class="w-6/12 relative"
         style="clip-path: polygon(20% 0%, 100% 0, 100% 100%, 0% 100%)"
@@ -16,7 +16,7 @@
         />
       </div>
       <div
-        class="w-6/12 relative flex items-center bg-tm-yellow overflow-hidden"
+        class="w-6/12 relative flex items-center bg-primary overflow-hidden"
       >
         <!-- <img
             class="w-full object-cover absolute grayscale scale-150 opacity-10 pointer-events-none"
@@ -31,7 +31,7 @@
           <!-- :to="'/categories/' + cats[1].id" -->
           <nuxt-link
           to="/products"
-            class="bg-gray-700 px-4 py-2 text-bold text-tm-yellow flex items-center gap-2 rounded"
+            class="bg-gray-700 px-4 py-2 text-bold text-primary flex items-center gap-2 rounded"
           >
             <svg
               class="w-5 h-5 flex-shrink-0"

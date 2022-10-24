@@ -15,7 +15,7 @@
           {{ body }}
         </p>
         <nuxt-link :to="link"
-          class="bg-gray-700 px-4 overflow-hidden inline-flex py-2 text-bold text-tm-yellow items-center gap-2 rounded"
+          class="bg-gray-700 px-4 overflow-hidden inline-flex py-2 text-bold text-primary items-center gap-2 rounded"
         >
           <svg
             class="w-5 h-5 flex-shrink-0"
@@ -52,13 +52,6 @@
         alt=""
       />
     </div>
-    <!-- <pre>
-        {{ tilt }}
-      {{ roll }},
-      {{ source }},
-      
-      </pre
-    > -->
   </div>
 </template>
 
