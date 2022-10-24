@@ -20,4 +20,17 @@ query Home($languages: [LanguageCodeEnum!] = FA) {
       }
     }
   }
+  page(id: "cG9zdDoxMzQ=") {
+    id
+    title
+    content(format: RAW)
+    featuredImage {
+      node {
+        id
+        altText
+        sourceUrl
+        srcSet
+      }
+    }
+  }
 }

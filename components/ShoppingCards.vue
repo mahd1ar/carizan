@@ -1,5 +1,5 @@
 <template>
-  <section dir="ltr" class="text-gray-600 body-font">
+  <section  class="text-gray-600 body-font">
     <div class="container px-5 py-12 mx-auto">
       <div class="flex flex-wrap -m-4">
         <div v-for="(i, index) in cards" :key="index"  class="p-4 md:w-1/3">

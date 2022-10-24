@@ -87,6 +87,24 @@
                     {{ details.TotalHeight }}
                   </span>
                 </div>
+
+                <div class="flex border-t border-gray-200 py-2">
+                  <span class="text-gray-500">کام</span>
+                  <span class="mr-auto text-gray-900">
+                    {{ details.step }}
+                  </span>
+                </div>
+
+              </div>
+
+              <div v-else>
+                <div class="mt-6">مشخصات</div>
+                <div class="flex border-t border-gray-200 py-2">
+                  <span class="text-gray-500 text-center">اطلاعاتی در دسترس نیست</span>
+                  
+                </div>
+                
+
               </div>
             </div>
           </client-only>
@@ -203,11 +221,13 @@ watch([TVLength, TVDiameter], () => {
     const z = y.split(':')
 
     details.value = {
-      Weight: z[0],
-      QuantityPerKg: z[1],
-      Wrench: z[2],
-      TotalHeight: z[3],
+      Weight: z[0] || "",
+      QuantityPerKg: z[1] || "",
+      Wrench: z[3] || "" ,
+      TotalHeight: z[4] || "" ,
+      step : z[2] || ""
     }
+
   } catch (error) {
     console.log(error)
     details.value = null
@@ -220,8 +240,8 @@ onErrorTable((err) => {
 })
 
 onResultTable(async (r) => {
-
   if (r.data.post === null) ctx.error({ message: 'SOEMTHING WENT WRONG' })
+  
   if (r.data.post?.cf?.table?.mediaItemUrl) {
     try {
       loadingTable.value = true
@@ -233,7 +253,7 @@ onResultTable(async (r) => {
       const data = utils.sheet_to_json<{ [key: string]: string }>(
         wb.Sheets[wb.SheetNames[0]]
       )
-
+      console.log("here")
       dataTable = data
 
       emptyArray(TLength.value)

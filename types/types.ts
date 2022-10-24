@@ -4272,6 +4272,8 @@ export enum PostStatusEnum {
   AutoDraft = 'AUTO_DRAFT',
   /** Objects with the draft status */
   Draft = 'DRAFT',
+  /** Objects with the flamingo-spam status */
+  FlamingoSpam = 'FLAMINGO_SPAM',
   /** Objects with the future status */
   Future = 'FUTURE',
   /** Objects with the inherit status */
@@ -8471,7 +8473,7 @@ export type HomeQueryVariables = Exact<{
 }>;
 
 
-export type HomeQuery = { __typename?: 'RootQuery', categories?: { __typename?: 'RootQueryToCategoryConnection', edges?: Array<{ __typename?: 'RootQueryToCategoryConnectionEdge', node?: { __typename?: 'Category', id: string, name?: string | null, description?: string | null, cat_cf?: { __typename?: 'Category_CatCf', image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null, srcSet?: string | null } | null } | null } | null } | null> | null } | null };
+export type HomeQuery = { __typename?: 'RootQuery', categories?: { __typename?: 'RootQueryToCategoryConnection', edges?: Array<{ __typename?: 'RootQueryToCategoryConnectionEdge', node?: { __typename?: 'Category', id: string, name?: string | null, description?: string | null, cat_cf?: { __typename?: 'Category_CatCf', image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null, srcSet?: string | null } | null } | null } | null } | null> | null } | null, page?: { __typename?: 'Page', id: string, title?: string | null, content?: string | null, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node?: { __typename?: 'MediaItem', id: string, altText?: string | null, sourceUrl?: string | null, srcSet?: string | null } | null } | null } | null };
 
 export type LabAndQaQueryVariables = Exact<{
   id?: InputMaybe<Scalars['ID']>;
