@@ -23,7 +23,7 @@ query Home($languages: [LanguageCodeEnum!] = FA) {
   page(id: "cG9zdDoxMzQ=") {
     id
     title
-    content(format: RAW)
+    content(format: RENDERED)
     featuredImage {
       node {
         id

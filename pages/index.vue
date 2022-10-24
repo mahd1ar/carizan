@@ -67,7 +67,7 @@
         <div class="w-8/12 px-8">
           <div class="gap-4 flex flex-col">
             <h2 class="text-3xl font-semibold text-gray-700">{{ explain.title }}</h2>
-            <p v-text="explain.title">
+            <p v-text="explain.body">
             </p>
           </div>
         </div>
@@ -111,9 +111,7 @@
         </div>
       </div>
     </section>
-    <pre>
-     {{ cats }}
-   </pre>
+  
     <FooterSection />
   </div>
 </template>
@@ -124,6 +122,7 @@ import HeroSectionVue from '~/components/homepage/HeroSection.vue'
 import { useQuery } from '@vue/apollo-composable/dist'
 import HOMEGQL from '@/apollo/query/home-page.gql'
 import { HomeQuery, HomeQueryVariables, LanguageCodeEnum } from '@/types/types'
+import { stripHtml } from '~/data/utils'
 
 export default defineComponent({
   components: {
@@ -162,7 +161,7 @@ export default defineComponent({
         imageSrc: result.value?.page?.featuredImage?.node?.sourceUrl || "",
         imageAlt: result.value?.page?.featuredImage?.node?.altText || "",
         title: result.value?.page?.title || "",
-        body: result.value?.page?.content || ''
+        body: stripHtml( result.value?.page?.content || '')
       }
     })
 

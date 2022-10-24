@@ -203,6 +203,10 @@ const sendForm = async () => {
         console.log(response.data)
         // TODO :translate
         alert("پیام شما با موفقیت دریافت شد")
+        yourEmail.value = ""
+        yourSubject.value = ""
+        yourMessage.value = ""
+        yourName.value = ""
     } catch (error) {
         console.log(error)
     }
