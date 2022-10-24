@@ -11,10 +11,16 @@
         <h2 class="text-5xl font-bold text-tm-gray-dark">
           {{ title }}
         </h2>
-        <p class="text-zinc-500 pl-10" v-snip="{ lines: 4 }">
+        <p
+          ref="snipable"
+          style="opacity: 0"
+          class="text-zinc-500 pl-10 "
+          v-snip="{ lines: 4, onSnipped }"
+        >
           {{ body }}
         </p>
-        <nuxt-link :to="link"
+        <nuxt-link
+          :to="link"
           class="bg-gray-700 px-4 overflow-hidden inline-flex flex-row-reverse py-2 text-bold text-primary items-start gap-1 rounded"
         >
           <svg
@@ -35,7 +41,7 @@
           <span
             class="px-2 hover:px-4 transition-all flex justify-center items-center"
           >
-          <!-- TODO : translate this -->
+            <!-- TODO : translate this -->
             <!-- _SEEMORE  -->
             ادامه
           </span>
@@ -43,11 +49,10 @@
       </div>
     </div>
     <div
-
       class="w-1/2 h-[400px] rounded overflow-hidden shadow-xl shadow-gray-400"
     >
       <img
-      v-if="img"
+        v-if="img"
         ref="target"
         class="hover:scale-105 h-full w-full object-cover transition-all ease-out duration-700"
         :src="img"
@@ -58,9 +63,10 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, watch } from '@nuxtjs/composition-api'
+import { ref, watch, onBeforeUnmount } from '@nuxtjs/composition-api'
 
 import { useIntersectionObserver, useParallax } from '@vueuse/core'
+import { useMotion } from '@vueuse/motion'
 
 const {
   full = false,
@@ -79,7 +85,31 @@ const {
 }>()
 
 const target = ref(null)
+const snipable = ref<HTMLElement>()
 const targetIsVisible = ref(false)
+
+const onSnipped = () => {
+  useMotion(snipable, {
+    initial: {
+      opacity: 0,
+      x: -50,
+    },
+    enter: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        type: 'spring',
+        stiffness: 250,
+        damping: 25,
+        mass: 0.5,
+      },
+    },
+  })
+}
+
+onBeforeUnmount(() => {
+  if (snipable.value) snipable.value.style.opacity = '0'
+})
 
 const { stop } = useIntersectionObserver(
   target,

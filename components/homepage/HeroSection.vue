@@ -39,11 +39,11 @@
     <!-- style="background-image: url(/sample/sample3.jpg)" -->
     <div class="w-6/12 h-96 flex-center">
       <div class="max-w-lg text-center sm:text-left">
-        <h2
-          class="text-2xl font-bold text-gray-500 sm:text-3xl md:text-5xl z-10 relative"
+        <h1
+          class="text-2xl font-bold text-gray-500 sm:text-3xl md:text-7xl z-10 relative"
         >
           کاریزان پیچ گستر
-        </h2>
+        </h1>
 
         <img src="/hero/pich-s.svg" class="pattern pich-1" alt="" />
         <img src="/hero/pich-g.svg" class="pattern pich-2" alt="" />

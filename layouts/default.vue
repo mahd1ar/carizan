@@ -1,7 +1,7 @@
 <template>
   <main
     dir="rtl"
-    class="relative flex items-start justify-center min-h-screen bg-gray-100 sm:pt-0"
+    class="relative flex-col items-start justify-between min-h-screen bg-gray-100 sm:pt-0"
   >
     <div
       v-if="showDevBox"
@@ -38,7 +38,7 @@
         </li> -->
       </ul>
     </div>
-    <div class="w-full">
+    <div class="w-full flex-grow">
       <HeaderSection />
 
       <Nuxt ref="nuxt" />
@@ -50,7 +50,7 @@
 import { ref, useContext } from '@nuxtjs/composition-api'
 import { onKeyStroke } from '@vueuse/core'
 
-const showDevBox = ref(true)
+const showDevBox = ref(false)
 
 onKeyStroke('m', (e) => {
   e.preventDefault()

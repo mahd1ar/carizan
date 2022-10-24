@@ -35,8 +35,8 @@
                                                 نام
                                             </span>
                                             <div
-                                                class="relative overflow-hidden rounded-3xl border border-gray-400 bg-white">
-                                                <input class="py-2 px-6 w-full focus:placeholder:text-white" type="text"
+                                                class="relative overflow-hidden rounded border border-gray-400 bg-white">
+                                                <input class="py-2 px-6 w-full focus:placeholder:text-white outline-none" type="text"
                                                     placeholder="" v-model="yourName" required/>
                                             </div>
                                         </div>
@@ -48,8 +48,8 @@
                                                 ایمیل شما
                                             </span>
                                             <div
-                                                class="relative overflow-hidden rounded-3xl border border-gray-400 bg-white">
-                                                <input class="py-2 px-6 w-full focus:placeholder:text-white" type="text"
+                                                class="relative overflow-hidden rounded border border-gray-400 bg-white">
+                                                <input class="py-2 px-6 w-full focus:placeholder:text-white outline-none" type="text"
                                                     placeholder="" v-model="yourEmail" required />
                                             </div>
                                         </div>
@@ -61,8 +61,8 @@
                                             class="absolute top-0 right-5 z-20 -translate-y-1/2 transform bg-white p-1 text-xs">
                                             موضوع
                                         </span>
-                                        <div class="relative overflow-hidden rounded-3xl border border-gray-400 bg-white">
-                                            <input class="py-2 px-6 w-full focus:placeholder:text-white" type="text"
+                                        <div class="relative overflow-hidden rounded border border-gray-400 bg-white">
+                                            <input class="py-2 px-6 w-full focus:placeholder:text-white outline-none" type="text"
                                                 placeholder="" v-model="yourSubject" required/>
                                         </div>
                                     </div>
@@ -73,9 +73,9 @@
                                             class="absolute top-0 right-5 z-20 -translate-y-1/2 transform bg-white p-1 text-xs">
                                             پیام شما
                                         </span>
-                                        <div class="relative overflow-hidden rounded-3xl border border-gray-400 bg-white">
+                                        <div class="relative overflow-hidden rounded border border-gray-400 bg-white">
                                             <textarea
-                                                class="w-full py-3 px-6 focus:placeholder:text-white focus-visible:outline-none"
+                                                class="w-full py-3 px-6 focus:placeholder:text-white outline-none"
                                                 type="text" placeholder="" cols="30" rows="7"
                                                 v-model="yourMessage" required></textarea>
                                         </div>
@@ -95,7 +95,7 @@
                         <div class="relative flex h-72 flex-col items-center justify-center">
                             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d202.25586606050027!2d51.43391800734024!3d35.7976291!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f8e05de51d30e27%3A0xc66fc983b889cd4f!2sQCXM%2B2JC%20District%201%2C%20Tehran%2C%20Tehran%20Province%2C%20Iran!5e0!3m2!1sen!2s!4v1666612200158!5m2!1sen!2s" 
                              style="border:0;"
-                             class="h-full w-full rounded-3xl opacity-80 brightness-100 grayscale filter"
+                             class="h-full w-full rounded-3xl opacity-80 brightness-100  filter"
                              allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                             <!-- <iframe
                                 src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d12939.179951151129!2d50.981228732403565!3d35.82950540204879!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2see!4v1645952091896!5m2!1sen!2see"

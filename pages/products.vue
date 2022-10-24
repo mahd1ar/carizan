@@ -61,7 +61,7 @@
             excerpt: i?.node?.description,
             link:  localePath(  '/category-with-category/' + i!.node!.id),
             image : i?.node?.cat_cf?.image?.sourceUrl || ''
-          }))
+          })) // .sort((a,b) => a.title!.charCodeAt(0) - b.title!.charCodeAt(0))
         }),
       }
     },

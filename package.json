@@ -22,6 +22,7 @@
     "@vueuse/motion": "^2.0.0-beta.12",
     "core-js": "^3.19.3",
     "graphql-tag": "^2.12.6",
+    "js-snip": "^1.1.0",
     "mitt": "^3.0.0",
     "nuxt": "^2.15.8",
     "vue": "^2.6.14",

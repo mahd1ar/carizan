@@ -17,7 +17,9 @@
               <h2
                 class="tracking-widest text-xs title-font font-medium text-gray-400 mb-1"
               >
-                CATEGORY
+               <!-- TODO : translate -->
+                <!-- CATEGORY -->
+                دسته بندی ها  
               </h2>
               <h1
                 class="title-font text-lg font-medium text-gray-900 mb-3"

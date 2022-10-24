@@ -3,7 +3,7 @@
     <aside class="hidden lg:relative lg:col-span-2 lg:block">
       <img
         class="absolute inset-0 object-cover w-full h-full"
-        src="https://images.unsplash.com/photo-1567093322102-6bdd32fba67d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80"
+        src="/footer.avif"
         alt="Comic Graphic"
       />
     </aside>
@@ -13,17 +13,19 @@
         <div>
           <p class="font-medium">
             <span class="text-xs tracking-widest uppercase text-primary">
-              Call
+              <!-- TODO translate -->
+              <!-- Call -->
+              تماس با ما
             </span>
 
-            <a class="block text-2xl sm:text-3xl hover:opacity-75" href="">
-              0123456789
+            <a href="tel:+982122218151" class="block text-2xl sm:text-3xl hover:opacity-75" >
+              02122218151
             </a>
           </p>
 
           <ul class="mt-8 space-y-2 text-sm">
-            <li>Monday to Friday: 10am - 5pm</li>
-            <li>Weekend: 10am - 3pm</li>
+            <li>شنبه تا 4 شنبه : از 8 صبح تا 5 بعدازظهر</li>
+            <li>پنچ شنبه : از 8 صبح تا 12 ظهر</li>
           </ul>
 
           <div class="flex mt-16 space-x-3">
@@ -139,7 +141,7 @@
 
         <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div>
-            <p class="font-medium text-primary">Support</p>
+            <p class="font-medium text-primary">خدمات</p>
 
             <nav class="flex flex-col mt-4 space-y-2 text-sm text-gray-300">
               <a class="hover:opacity-75" href=""> Contact </a>
@@ -150,7 +152,7 @@
           </div>
 
           <div>
-            <p class="font-medium text-primary">Products</p>
+            <p class="font-medium text-primary">محصولات</p>
 
             <nav class="flex flex-col mt-4 space-y-2 text-sm text-gray-300">
               <a class="hover:opacity-75" href=""> 1to1 Coaching </a>
