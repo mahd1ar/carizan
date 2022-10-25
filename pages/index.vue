@@ -4,9 +4,9 @@
   <div class="w-full">
     <HeroSection />
 
-    <div v-if="cats[1]" class="flex relative bg-primary h-[50vh]">
+    <div v-if="cats[0]" class="flex relative bg-primary h-[50vh]">
       <div class="w-6/12 relative" style="clip-path: polygon(20% 0%, 100% 0, 100% 100%, 0% 100%)">
-        <img class="w-full object-cover h-full" :src="cats[1].img" alt="" />
+        <img class="w-full object-cover h-full" :src="cats[0].img" alt="" />
       </div>
       <div class="w-6/12 relative flex items-center bg-primary overflow-hidden">
         <!-- <img
@@ -15,9 +15,9 @@
             alt=""
           /> -->
         <div class="container flex flex-col justify-start items-start gap-4">
-          <h2 class="text-5xl font-semibold text-gray-700">{{ cats[1].name }}</h2>
+          <h2 class="text-5xl font-semibold text-gray-700">{{ cats[0].name }}</h2>
           <p>
-            {{cats[1].description}}
+            {{cats[0].description}}
           </p>
           <!-- :to="'/categories/' + cats[1].id" -->
           <nuxt-link to="/products"
@@ -34,15 +34,15 @@
       </div>
     </div>
 
-    <div v-if="cats[0]" class="flex relative flex-row-reverse bg-tm-gray-dark h-[50vh]">
+    <div v-if="cats[1]" class="flex relative flex-row-reverse bg-tm-gray-dark h-[50vh]">
       <div class="w-7/12 relative">
-        <img v-if="cats[0].img" class="w-full object-cover h-full" :src="cats[0].img"
+        <img v-if="cats[1].img" class="w-full object-cover h-full" :src="cats[1].img"
           style="clip-path: polygon(0px 0px, 100% 0px, 85% 100%, 0% 100%)" alt="" />
       </div>
       <div class="w-5/12 relative flex items-center bg-tm-gray-dark overflow-hidden">
         <div class="container flex flex-col justify-start items-start gap-4">
-          <h2 class="text-5xl font-semibold text-gray-200">{{ cats[0].name }}</h2>
-          <p class="text-gray-300" v-text="cats[0].description"></p>
+          <h2 class="text-5xl font-semibold text-gray-200">{{ cats[1].name }}</h2>
+          <p class="text-gray-300" v-text="cats[1].description"></p>
 
           <!-- :to="'/categories/' + cats[0].id" -->
           <nuxt-link to="/services"
