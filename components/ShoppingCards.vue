@@ -3,11 +3,12 @@
 
     <div class="container px-5 py-12 mx-auto">
       <div class="flex flex-wrap -m-4">
-        <div v-for="(i) in cards" :key="i.id" class="p-4 md:w-1/3">
+        <div v-for="(i) in cards" :key="i.id"  class="p-4 md:w-1/3">
           <div
             class="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden"
           >
             <img
+            
               v-if="i.image"
               class="lg:h-48 md:h-36 w-full object-cover object-center"
               :src="i.image"

@@ -15,6 +15,7 @@
       :link="item.link"
       :img="item.image"
       :full="false"
+      :index="index"
     />
     <div aria-hidden="true" class="h-6"></div>
   </div>

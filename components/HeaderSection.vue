@@ -3,6 +3,46 @@
     dir="ltr"
     class="flex flex-wrap sm:justify-start sm:flex-nowrap z-50 w-full py-4 bg-gray-100 shadow-lg sticky top-0"
   >
+    <!-- mobile nav -->
+    <transition name="fade">
+      <nav
+        v-if="showMobileMenu"
+        class="mobile-nav fixed w-full h-full z-20 bg-gradient-to-tr from-black to-gray-900/90 top-0 flex flex-col justify-center items-start"
+      >
+        <button class=" right-4 top-5 absolute text-white" @click="showMobileMenu = false">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10" preserveAspectRatio="xMidYMid meet" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="m7.116 8l-4.558 4.558l.884.884L8 8.884l4.558 4.558l.884-.884L8.884 8l4.558-4.558l-.884-.884L8 7.116L3.442 2.558l-.884.884L7.116 8z" clip-rule="evenodd"/></svg>
+        </button>
+        <ul class="text-primary flex flex-col left-10 text-3xl relative">
+          <li
+            v-for="(i, index) in navItems"
+            :key="i.id"
+            @click="showMobileMenu = false"
+            class="py-4 px-2"
+            v-motion
+            :initial="{
+              scale: 1.5,
+              y: 100, //* ( index % 2 === 0 ? 1 : -1),
+              opacity: 0,
+            }"
+            :enter="{
+              opacity: 1,
+              y: 0,
+              scale: 1,
+              transition: {
+                type: 'spring',
+                stiffness: 250,
+                damping: 25,
+                mass: 0.5,
+                delay: index * 70,
+              },
+            }"
+          >
+            <nuxt-link :to="i.link" v-text="i.label"></nuxt-link>
+          </li>
+        </ul>
+      </nav>
+    </transition>
+
     <nav
       class="max-w-[85rem] w-full mx-auto px-4 sm:flex sm:items-center sm:justify-between"
       aria-label="Global"
@@ -36,6 +76,7 @@
         <div class="sm:hidden">
           <button
             type="button"
+            @click="showMobileMenu = true"
             class="hs-collapse-toggle p-2 inline-flex justify-center items-center gap-2 rounded-md border font-medium bg-white text-gray-700 shadow-sm align-middle hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-blue-600 transition-all dark:bg-gray-800 dark:hover:bg-slate-800 dark:border-gray-700 dark:text-gray-400 dark:hover:text-white dark:focus:ring-offset-gray-800"
             aria-label="Toggle navigation"
           >
@@ -69,7 +110,7 @@
         class="hs-collapse hidden overflow-hidden transition-all duration-300 basis-full grow sm:block h-full"
       >
         <div
-          class="flex flex-col mt-5 h-full sm:flex-row-reverse sm:items-center sm:justify-start sm:mt-0 sm:pl-5 bg-gray-100"
+          class="desktop-nav flex flex-col mt-5 h-full sm:flex-row-reverse sm:items-center sm:justify-start sm:mt-0 sm:pl-5 bg-gray-100"
         >
           <div class="text-gray-900 mx-4 cursor-pointer">
             <svg
@@ -96,34 +137,12 @@
           </nuxt-link>
 
           <nuxt-link
-            :to="localePath('/products')"
+            v-for="i in navItems"
+            :key="i.id"
+            :to="localePath(i.link)"
             class="font-bold h-full flex-center px-3 text-gray-900 hover:text-gray-500"
           >
-            محصولات
-          </nuxt-link>
-          <nuxt-link
-            :to="localePath('/services')"
-            class="font-bold h-full flex-center px-3 text-gray-900 hover:text-gray-500"
-          >
-            خدمات
-          </nuxt-link>
-          <nuxt-link
-            :to="localePath('/labandqc')"
-            class="font-bold h-full flex-center px-3 text-gray-900 hover:text-gray-500"
-          >
-            آزمایشگاه کنترل کیفیت
-          </nuxt-link>
-          <nuxt-link
-            :to="localePath('/standards')"
-            class="font-bold h-full flex-center px-3 text-gray-900 hover:text-gray-500"
-          >
-            استاندارد
-          </nuxt-link>
-          <nuxt-link
-            :to="localePath('/contact')"
-            class="font-bold h-full flex-center px-3 text-gray-900 hover:text-gray-500"
-          >
-            تماس با ما
+            {{ i.label }}
           </nuxt-link>
         </div>
       </div>
@@ -131,27 +150,62 @@
   </header>
 </template>
 
-<style lang="scss">
+<script lang="ts" setup>
+import { useContext, useStore, computed, ref } from '@nuxtjs/composition-api'
+import { RootState } from '@/store/index'
 
-.nuxt-link-active {
+const store = useStore<RootState>()
+const { i18n } = useContext()
+
+const showMobileMenu = ref(false)
+
+const navItems = computed(() => {
+  return (store.getters.navItems as RootState['navItem']).filter(
+    (i) => i.lang === i18n.locale.toLowerCase()
+  )
+})
+</script>
+
+<style lang="scss" scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.5s ease;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+  // transform: scale(0.95);
+}
+
+.desktop-nav .nuxt-link-exact-active {
   @apply relative;
+
   &::after {
     content: '';
     animation: example 250ms ease-out 0ms;
     animation-fill-mode: forwards;
     // animation-play-state: running;
     // w-9/12
-    @apply absolute  transition-all ease-out border-primary border-b-4 rounded  bottom-0;
+    @apply absolute transition-all ease-out border-primary border-b-4 rounded bottom-0;
   }
 }
+
 //
 @keyframes example {
   from {
     width: 0%;
   }
+
   to {
     width: 75%;
   }
 }
 
+.mobile-nav .nuxt-link-exact-active {
+  @apply relative flex items-center gap-2 flex-row-reverse justify-end;
+
+  &::after {
+    content: '';
+    @apply transition-all ease-out border-primary-light w-6 border-b-4 rounded;
+  }
+}
 </style>

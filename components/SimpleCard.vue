@@ -1,5 +1,6 @@
 <template>
   <div
+  ref="root"
     class="w-full flex gap-2"
     :class="{ container: !full, 'flex-row-reverse': left }"
   >
@@ -14,7 +15,7 @@
         <p
           ref="snipable"
           style="opacity: 0"
-          class="text-zinc-500 pl-10 "
+          class="text-zinc-500 pl-10 h-24 overflow-hidden"
           v-snip="{ lines: 4, onSnipped }"
         >
           {{ body }}
@@ -45,6 +46,8 @@
             <!-- _SEEMORE  -->
             ادامه
           </span>
+
+
         </nuxt-link>
       </div>
     </div>
@@ -53,8 +56,25 @@
     >
       <img
         v-if="img"
+        v-motion
+        :initial="{
+          scale: 1.5,
+              x: 100,
+            }"
+        :enter="{
+          opacity: 1,
+          x: 0,
+          scale: 1,
+          transition: {
+            type: 'spring',
+            stiffness: 250,
+            damping: 25,
+            mass: 0.5,
+            delay: index * 100,
+          },
+        }"
         ref="target"
-        class="hover:scale-105 h-full w-full object-cover transition-all ease-out duration-700"
+        class="hover:scale-105 scale-150 h-full w-full object-cover transition-all ease-out duration-700"
         :src="img"
         alt=""
       />
@@ -63,10 +83,12 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, watch, onBeforeUnmount } from '@nuxtjs/composition-api'
+import { ref, watch, onBeforeUnmount ,onMounted } from '@nuxtjs/composition-api'
 
 import { useIntersectionObserver, useParallax } from '@vueuse/core'
 import { useMotion } from '@vueuse/motion'
+
+const root = ref<HTMLElement>()
 
 const {
   full = false,
@@ -75,6 +97,7 @@ const {
   body = '',
   img = '',
   link = '',
+  index = 0
 } = defineProps<{
   full: Boolean
   left: Boolean
@@ -82,6 +105,7 @@ const {
   body: String
   img: String
   link: String
+  index: number
 }>()
 
 const target = ref(null)
@@ -102,6 +126,7 @@ const onSnipped = () => {
         stiffness: 250,
         damping: 25,
         mass: 0.5,
+        
       },
     },
   })

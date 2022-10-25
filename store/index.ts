@@ -16,7 +16,7 @@ export const state = () => ({
 export type RootState = ReturnType<typeof state>
 
 export const getters: GetterTree<RootState, RootState> = {
-    lang: state => state.navItem,
+    navItems: state => state.navItem,
 }
 
 export const mutations: MutationTree<RootState> = {
