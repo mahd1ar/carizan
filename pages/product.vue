@@ -216,6 +216,7 @@ const pageContent = computed(() => {
 
 watch([TVLength, TVDiameter], () => {
   try {
+    
     const x = dataTable.find((i) => Object.entries(i)[0][1] === TVLength.value)!
     const y = Object.entries(x).find((i) => i[0] === TVDiameter.value)![1]
     const z = y.split(':')
@@ -240,6 +241,7 @@ onErrorTable((err) => {
 })
 
 onResultTable(async (r) => {
+  
   if (r.data.post === null) ctx.error({ message: 'SOEMTHING WENT WRONG' })
   
   if (r.data.post?.cf?.table?.mediaItemUrl) {
@@ -258,14 +260,17 @@ onResultTable(async (r) => {
 
       emptyArray(TLength.value)
       emptyArray(TDiameter.value)
-
-      for (let i = 0; i < Object.entries(data[0]).length; i++)
+      // @ts-ignore
+      window.xxx = data
+      for (let i = 0; i < Object.entries(data.sort((a,b) => Object.keys(b).length - Object.keys(a).length)[0]).length; i++)
         if (i !== 0) TDiameter.value.push(Object.entries(data[0])[i][0])
 
       data.forEach((i) => {
         TLength.value.push(Object.entries(i)[0][1])
       })
 
+      console.log(TLength)
+      TLength.value.sort((a ,b ) =>  Number(a) - Number(b))
       TVDiameter.value = TDiameter.value[0]
       TVLength.value = TLength.value[0]
     } catch (error) {
