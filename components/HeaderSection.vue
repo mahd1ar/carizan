@@ -9,8 +9,23 @@
         v-if="showMobileMenu"
         class="mobile-nav fixed w-full h-full z-20 bg-gradient-to-tr from-black to-gray-900/90 top-0 flex flex-col justify-center items-start"
       >
-        <button class=" right-4 top-5 absolute text-white" @click="showMobileMenu = false">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10" preserveAspectRatio="xMidYMid meet" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="m7.116 8l-4.558 4.558l.884.884L8 8.884l4.558 4.558l.884-.884L8.884 8l4.558-4.558l-.884-.884L8 7.116L3.442 2.558l-.884.884L7.116 8z" clip-rule="evenodd"/></svg>
+        <button
+          class="right-4 top-5 absolute text-white"
+          @click="showMobileMenu = false"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-10 h-10"
+            preserveAspectRatio="xMidYMid meet"
+            viewBox="0 0 16 16"
+          >
+            <path
+              fill="currentColor"
+              fill-rule="evenodd"
+              d="m7.116 8l-4.558 4.558l.884.884L8 8.884l4.558 4.558l.884-.884L8.884 8l4.558-4.558l-.884-.884L8 7.116L3.442 2.558l-.884.884L7.116 8z"
+              clip-rule="evenodd"
+            />
+          </svg>
         </button>
         <ul class="text-primary flex flex-col left-10 text-3xl relative">
           <li
@@ -133,6 +148,7 @@
             :to="localePath('/')"
             class="font-bold h-full flex-center px-3 text-primary-dark hover:text-gray-500 bg-primary rounded-sm"
           >
+          
             خانه
           </nuxt-link>
 
@@ -140,6 +156,7 @@
             v-for="i in navItems"
             :key="i.id"
             :to="localePath(i.link)"
+            v-if="i.link !== '/'"
             class="font-bold h-full flex-center px-3 text-gray-900 hover:text-gray-500"
           >
             {{ i.label }}
@@ -171,7 +188,11 @@ const navItems = computed(() => {
 .fade-leave-active {
   transition: all 0.5s ease;
 }
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+
+.fade-enter,
+.fade-leave-to
+
+/* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
   // transform: scale(0.95);
 }

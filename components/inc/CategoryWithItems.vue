@@ -5,8 +5,8 @@
     <div>
       <div class="container my-10">
         
-        <!-- <p class="leading-8 text-lg text-gray-700" v-html="pageInfo.description">
-        </p> -->
+        <p class="leading-8 text-lg text-gray-700" v-html="pageInfo.description">
+        </p>
       </div>
     </div>
 

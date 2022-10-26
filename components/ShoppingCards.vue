@@ -3,7 +3,17 @@
 
     <div class="container px-5 py-12 mx-auto">
       <div class="flex flex-wrap -m-4">
-        <div v-for="(i) in cards" :key="i.id"  class="p-4 md:w-1/3">
+        <div 
+        v-for="(i,index) in cards" 
+        :key="i.id"  
+        class="p-4 md:w-1/3"
+        v-motion
+        :initial="{ opacity: 0.4 }"
+        :visible="{
+          opacity: 1,
+        }"
+        :delay="(index % 3 )*200"
+        >
           <div
             class="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden"
           >
