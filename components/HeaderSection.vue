@@ -10,7 +10,9 @@
         class="mobile-nav fixed w-full h-full z-20 bg-gradient-to-tr from-black to-gray-900/90 top-0 flex flex-col justify-center items-start"
       >
         <button
-          class="right-4 top-5 absolute text-white"
+          id="btn"
+          ref="crossIcon"
+          class="right-4 top-5 absolute text-white w-10 h-10"
           @click="showMobileMenu = false"
         >
           <svg
@@ -92,7 +94,7 @@
           <button
             type="button"
             @click="showMobileMenu = true"
-            class="hs-collapse-toggle p-2 inline-flex justify-center items-center gap-2 rounded-md border font-medium bg-white text-gray-700 shadow-sm align-middle hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-blue-600 transition-all dark:bg-gray-800 dark:hover:bg-slate-800 dark:border-gray-700 dark:text-gray-400 dark:hover:text-white dark:focus:ring-offset-gray-800"
+            class="p-2 inline-flex justify-center items-center gap-2 rounded border font-medium bg-white text-gray-700 shadow-sm align-middle focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600 transition-all hover:bg-slate-800 border-gray-700 hover:text-white focus:ring-offset-gray-800"
             aria-label="Toggle navigation"
           >
             <svg
@@ -145,18 +147,44 @@
             </svg>
           </div>
           <nuxt-link
-            :to="localePath('/')"
+            :to="localePath('/pich-gostar')"
             class="font-bold h-full flex-center px-3 text-primary-dark hover:text-gray-500 bg-primary rounded-sm"
           >
-          
             خانه
           </nuxt-link>
 
           <nuxt-link
-            v-for="i in navItems"
+            v-for="(i, index) in navItems"
             :key="i.id"
             :to="localePath(i.link)"
-            v-if="i.link !== '/'"
+            v-if="i.link !== '/pich-gostar'"
+            v-motion
+            :initial="{
+              opacity: 0,
+              y: 100,
+            }"
+            :enter="{
+              opacity: 1,
+              y: 0,
+              transition: {
+                type: 'spring',
+                stiffness: 250,
+                damping: 25,
+                mass: 0.5,
+                delay: index * 100,
+              },
+            }"
+            :leave="{
+              y: -100,
+              opacity: 0,
+              transition: {
+                type: 'spring',
+                stiffness: 250,
+                damping: 25,
+                mass: 0.5,
+                delay: index * 100,
+              },
+            }"
             class="font-bold h-full flex-center px-3 text-gray-900 hover:text-gray-500"
           >
             {{ i.label }}
@@ -168,7 +196,13 @@
 </template>
 
 <script lang="ts" setup>
-import { useContext, useStore, computed, ref } from '@nuxtjs/composition-api'
+import {
+  useContext,
+  useStore,
+  computed,
+  ref,
+  watch,
+} from '@nuxtjs/composition-api'
 import { RootState } from '@/store/index'
 
 const store = useStore<RootState>()
@@ -190,9 +224,7 @@ const navItems = computed(() => {
 }
 
 .fade-enter,
-.fade-leave-to
-
-/* .fade-leave-active below version 2.1.8 */ {
+.fade-leave-to {
   opacity: 0;
   // transform: scale(0.95);
 }

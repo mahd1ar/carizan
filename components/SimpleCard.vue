@@ -74,7 +74,7 @@
           },
         }"
         ref="target"
-        class="hover:scale-105 scale-150 h-full w-full object-cover transition-all ease-out duration-700"
+        class=" origin-right translate-x-24 scale-150 h-full w-full object-cover transition-all ease-out duration-700"
         :src="img"
         alt=""
       />
@@ -116,16 +116,13 @@ const onSnipped = () => {
   useMotion(snipable, {
     initial: {
       opacity: 0,
-      x: -50,
+      x: -10,
     },
     enter: {
       opacity: 1,
       x: 0,
       transition: {
-        type: 'spring',
-        stiffness: 250,
-        damping: 25,
-        mass: 0.5,
+        duration : 1000
         
       },
     },

@@ -41,7 +41,7 @@ export const actions: ActionTree<RootState, RootState> = {
         const res = await ctx.app.apolloProvider.defaultClient.query({ query: MAINNAV, variable })
 
         const data = res.data as MainNavQuery
-        const navItem: NavItem[] = data.menus!.edges!.map(e => e!.node!.menuItems!.edges!.map(ed => ({ label: ed!.node!.label || '', id: ed!.node!.id || '', lang: e!.node!.name!.search(/-en$/) > -1 ? 'en' : 'fa', link: ed!.node!.uri || '' }))).flat()
+        const navItem: NavItem[] = data.menus!.edges!.map(e => e!.node!.menuItems!.edges!.map(ed => ({ label: ed!.node!.label || '', id: ed!.node!.id || '', lang: e!.node!.name!.search(/-en$/) > -1 ? 'en' : 'fa', link: '/pich-gostar' + ed!.node!.uri || '' }))).flat()
 
         commit('ADD_NAV', navItem)
 

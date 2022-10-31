@@ -67,10 +67,10 @@ export default {
       fallbackLocale: 'fa',
       messages: {
         en: {
-          welcome: 'Welcome'
+          _details: 'details'
         },
         fa: {
-          welcome: 'خوش آمدید'
+          _details: 'جزییات '
         }
       }
     }

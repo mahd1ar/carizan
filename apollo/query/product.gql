@@ -12,15 +12,20 @@ query product($id: ID = "cG9zdDo2OA==", $language: LanguageCodeEnum = EN) {
         sourceUrl
       }
     }
-    cf {
-      fieldGroupName
-      map {
-        id
-        sourceUrl
-      }
-      table {
-        id
-        mediaItemUrl
+    template {
+      ... on Template_Product {
+        templateName
+        cf {
+          fieldGroupName
+          map {
+            id
+            sourceUrl
+          }
+          table {
+            id
+            mediaItemUrl
+          }
+        }
       }
     }
     content

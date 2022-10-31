@@ -206,7 +206,7 @@ const {
 const pageContent = computed(() => {
   return {
     titleCollection : result.value?.post?.title?.split('\\') || ['', '', ''],
-    mapImage : result.value?.post?.cf?.map?.sourceUrl || '',
+    mapImage : result.value?.post?.template?.__typename === 'Template_Product' ? result.value.post.template.cf?.map?.sourceUrl || '' : '' ,
     featuredImage : result.value?.post?.featuredImage?.node?.sourceUrl || ''
   }
 })
@@ -244,11 +244,12 @@ onResultTable(async (r) => {
   
   if (r.data.post === null) ctx.error({ message: 'SOEMTHING WENT WRONG' })
   
-  if (r.data.post?.cf?.table?.mediaItemUrl) {
+  if (r.data.post?.template?.__typename === 'Template_Product' && r.data.post?.template.cf?.table?.mediaItemUrl) {
     try {
       loadingTable.value = true
+      // cf?.table?.mediaItemUrl
       const f = await (
-        await fetch(r.data.post?.cf?.table?.mediaItemUrl)
+        await fetch(r.data.post.template.cf.table.mediaItemUrl)
       ).arrayBuffer()
       const { read, utils } = await import('xlsx')
       const wb = read(f)

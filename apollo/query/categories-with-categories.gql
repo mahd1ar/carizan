@@ -1,7 +1,7 @@
 query categoriesWithCategories(
-  $id: ID = "dGVybToyNg=="
-  $language: LanguageCodeEnum = EN
+  $id: ID = "dGVybToxNDM="
   $first: Int = 10
+  $language: LanguageCodeEnum = EN
 ) {
   category(id: $id, idType: ID) {
     id
@@ -14,9 +14,6 @@ query categoriesWithCategories(
         sourceUrl
       }
     }
-    translation(language: $language) {
-      id
-    }
     children(first: $first) {
       edges {
         node {
@@ -28,6 +25,9 @@ query categoriesWithCategories(
               altText
               sourceUrl
             }
+          }
+          translation(language: $language) {
+            id
           }
         }
       }

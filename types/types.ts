@@ -64,6 +64,8 @@ export type Category = DatabaseIdentifier & HierarchicalTermNode & MenuItemLinka
   ancestors?: Maybe<CategoryToAncestorsCategoryConnection>;
   /** Added to the GraphQL Schema because the ACF Field Group &quot;دسته بندیها&quot; was set to Show in GraphQL. */
   cat_cf?: Maybe<Category_CatCf>;
+  /** Added to the GraphQL Schema because the ACF Field Group &quot;test&quot; was set to Show in GraphQL. */
+  category?: Maybe<TermNode_Category>;
   /**
    * The id field matches the WP_Post-&gt;ID field.
    * @deprecated Deprecated in favor of databaseId
@@ -95,6 +97,8 @@ export type Category = DatabaseIdentifier & HierarchicalTermNode & MenuItemLinka
   language?: Maybe<Language>;
   /** The link to the term */
   link?: Maybe<Scalars['String']>;
+  /** Connection between the Category type and the mediaItem type */
+  mediaItems?: Maybe<CategoryToMediaItemConnection>;
   /** The human friendly name of the object. */
   name?: Maybe<Scalars['String']>;
   /** Connection between the Category type and the page type */
@@ -170,6 +174,16 @@ export type CategoryEnqueuedStylesheetsArgs = {
   before?: InputMaybe<Scalars['String']>;
   first?: InputMaybe<Scalars['Int']>;
   last?: InputMaybe<Scalars['Int']>;
+};
+
+
+/** The category type */
+export type CategoryMediaItemsArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<CategoryToMediaItemConnectionWhereArgs>;
 };
 
 
@@ -322,6 +336,80 @@ export type CategoryToContentNodeConnectionEdge = {
 export type CategoryToContentNodeConnectionWhereArgs = {
   /** The Types of content to filter */
   contentTypes?: InputMaybe<Array<InputMaybe<ContentTypesOfCategoryEnum>>>;
+  /** Filter the connection based on dates */
+  dateQuery?: InputMaybe<DateQueryInput>;
+  /** True for objects with passwords; False for objects without passwords; null for all objects with or without passwords */
+  hasPassword?: InputMaybe<Scalars['Boolean']>;
+  /** Specific database ID of the object */
+  id?: InputMaybe<Scalars['Int']>;
+  /** Array of IDs for the objects to retrieve */
+  in?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  /** Get objects with a specific mimeType property */
+  mimeType?: InputMaybe<MimeTypeEnum>;
+  /** Slug / post_name of the object */
+  name?: InputMaybe<Scalars['String']>;
+  /** Specify objects to retrieve. Use slugs */
+  nameIn?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** Specify IDs NOT to retrieve. If this is used in the same query as "in", it will be ignored */
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  /** What paramater to use to order the objects by. */
+  orderby?: InputMaybe<Array<InputMaybe<PostObjectsConnectionOrderbyInput>>>;
+  /** Use ID to return only children. Use 0 to return only top-level items */
+  parent?: InputMaybe<Scalars['ID']>;
+  /** Specify objects whose parent is in an array */
+  parentIn?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  /** Specify posts whose parent is not in an array */
+  parentNotIn?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  /** Show posts with a specific password. */
+  password?: InputMaybe<Scalars['String']>;
+  /** Show Posts based on a keyword search */
+  search?: InputMaybe<Scalars['String']>;
+  /** Retrieve posts where post status is in an array. */
+  stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
+  /** Show posts with a specific status. */
+  status?: InputMaybe<PostStatusEnum>;
+  /** Title of the object */
+  title?: InputMaybe<Scalars['String']>;
+};
+
+/** Connection between the Category type and the mediaItem type */
+export type CategoryToMediaItemConnection = {
+  __typename?: 'CategoryToMediaItemConnection';
+  /** Edges for the CategoryToMediaItemConnection connection */
+  edges?: Maybe<Array<Maybe<CategoryToMediaItemConnectionEdge>>>;
+  /** The nodes of the connection, without the edges */
+  nodes?: Maybe<Array<Maybe<MediaItem>>>;
+  /** Information about pagination in a connection. */
+  pageInfo?: Maybe<WpPageInfo>;
+};
+
+/** An edge in a connection */
+export type CategoryToMediaItemConnectionEdge = {
+  __typename?: 'CategoryToMediaItemConnectionEdge';
+  /** A cursor for use in pagination */
+  cursor?: Maybe<Scalars['String']>;
+  /** The item at the end of the edge */
+  node?: Maybe<MediaItem>;
+};
+
+/** Arguments for filtering the CategoryToMediaItemConnection connection */
+export type CategoryToMediaItemConnectionWhereArgs = {
+  /** The user that's connected as the author of the object. Use the userId for the author object. */
+  author?: InputMaybe<Scalars['Int']>;
+  /** Find objects connected to author(s) in the array of author's userIds */
+  authorIn?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  /** Find objects connected to the author by the author's nicename */
+  authorName?: InputMaybe<Scalars['String']>;
+  /** Find objects NOT connected to author(s) in the array of author's userIds */
+  authorNotIn?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  /** Category ID */
+  categoryId?: InputMaybe<Scalars['Int']>;
+  /** Array of category IDs, used to display objects from one category OR another */
+  categoryIn?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  /** Use Category Slug */
+  categoryName?: InputMaybe<Scalars['String']>;
+  /** Array of category IDs, used to display objects from one category OR another */
+  categoryNotIn?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
   /** Filter the connection based on dates */
   dateQuery?: InputMaybe<DateQueryInput>;
   /** True for objects with passwords; False for objects without passwords; null for all objects with or without passwords */
@@ -564,6 +652,8 @@ export type Comment = DatabaseIdentifier & Node & {
   author?: Maybe<CommentToCommenterConnectionEdge>;
   /** IP address for the author. This field is equivalent to WP_Comment-&gt;comment_author_IP and the value matching the &quot;comment_author_IP&quot; column in SQL. */
   authorIp?: Maybe<Scalars['String']>;
+  /** Added to the GraphQL Schema because the ACF Field Group &quot;test&quot; was set to Show in GraphQL. */
+  category?: Maybe<Comment_Category>;
   /**
    * ID for the comment, unique among comments.
    * @deprecated Deprecated in favor of databaseId
@@ -819,6 +909,14 @@ export type CommentToParentCommentConnectionWhereArgs = {
   userId?: InputMaybe<Scalars['ID']>;
 };
 
+/** Field Group */
+export type Comment_Category = AcfFieldGroup & {
+  __typename?: 'Comment_Category';
+  cat?: Maybe<Array<Maybe<Category>>>;
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars['String']>;
+};
+
 /** The author of a comment */
 export type Commenter = {
   /** Avatar object for user. The avatar object can be retrieved in different sizes by specifying the size argument. */
@@ -875,6 +973,8 @@ export enum CommentsConnectionOrderbyEnum {
 
 /** Nodes used to manage content */
 export type ContentNode = {
+  /** Added to the GraphQL Schema because the ACF Field Group &quot;test&quot; was set to Show in GraphQL. */
+  category?: Maybe<ContentNode_Category>;
   /** Connection between the ContentNode type and the ContentType type */
   contentType?: Maybe<ContentNodeToContentTypeConnectionEdge>;
   /** The name of the Content Type the node belongs to */
@@ -1020,13 +1120,31 @@ export type ContentNodeToEnqueuedStylesheetConnectionEdge = {
   node?: Maybe<EnqueuedStylesheet>;
 };
 
+/** Field Group */
+export type ContentNode_Category = AcfFieldGroup & {
+  __typename?: 'ContentNode_Category';
+  cat?: Maybe<Array<Maybe<Category>>>;
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars['String']>;
+};
+
 /** A union of Content Node Types that support revisions */
 export type ContentRevisionUnion = Page | Post;
 
 /** The template assigned to a node of content */
 export type ContentTemplate = {
+  /** Added to the GraphQL Schema because the ACF Field Group &quot;test&quot; was set to Show in GraphQL. */
+  category?: Maybe<ContentTemplate_Category>;
   /** The name of the template */
   templateName?: Maybe<Scalars['String']>;
+};
+
+/** Field Group */
+export type ContentTemplate_Category = AcfFieldGroup & {
+  __typename?: 'ContentTemplate_Category';
+  cat?: Maybe<Array<Maybe<Category>>>;
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars['String']>;
 };
 
 /** An Post Type object */
@@ -1217,6 +1335,8 @@ export type ContentTypeToTaxonomyConnectionEdge = {
 
 /** Allowed Content Types of the Category taxonomy. */
 export enum ContentTypesOfCategoryEnum {
+  /** The Type of Content object */
+  Attachment = 'ATTACHMENT',
   /** The Type of Content object */
   Page = 'PAGE',
   /** The Type of Content object */
@@ -1575,6 +1695,8 @@ export type DateQueryInput = {
 /** The template assigned to the node */
 export type DefaultTemplate = ContentTemplate & {
   __typename?: 'DefaultTemplate';
+  /** Added to the GraphQL Schema because the ACF Field Group &quot;test&quot; was set to Show in GraphQL. */
+  category?: Maybe<ContentTemplate_Category>;
   /** The name of the template */
   templateName?: Maybe<Scalars['String']>;
 };
@@ -2066,6 +2188,10 @@ export type MediaItem = ContentNode & DatabaseIdentifier & HierarchicalContentNo
   authorId?: Maybe<Scalars['ID']>;
   /** The caption for the resource */
   caption?: Maybe<Scalars['String']>;
+  /** Connection between the MediaItem type and the category type */
+  categories?: Maybe<MediaItemToCategoryConnection>;
+  /** Added to the GraphQL Schema because the ACF Field Group &quot;test&quot; was set to Show in GraphQL. */
+  category?: Maybe<ContentNode_Category>;
   /** Connection between the HierarchicalContentNode type and the ContentNode type */
   children?: Maybe<HierarchicalContentNodeToContentNodeChildrenConnection>;
   /** The number of comments. Even though WPGraphQL denotes this field as an integer, in WordPress this field should be saved as a numeric string for compatibility. */
@@ -2155,6 +2281,8 @@ export type MediaItem = ContentNode & DatabaseIdentifier & HierarchicalContentNo
   status?: Maybe<Scalars['String']>;
   /** The template assigned to the node */
   template?: Maybe<ContentTemplate>;
+  /** Connection between the MediaItem type and the TermNode type */
+  terms?: Maybe<MediaItemToTermNodeConnection>;
   /** The title of the post. This is currently just the raw title. An amendment to support rendered title needs to be made. */
   title?: Maybe<Scalars['String']>;
   /** Get specific translation version of this object */
@@ -2179,6 +2307,16 @@ export type MediaItemAncestorsArgs = {
 /** The mediaItem type */
 export type MediaItemCaptionArgs = {
   format?: InputMaybe<PostObjectFieldFormatEnum>;
+};
+
+
+/** The mediaItem type */
+export type MediaItemCategoriesArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<MediaItemToCategoryConnectionWhereArgs>;
 };
 
 
@@ -2247,6 +2385,16 @@ export type MediaItemSourceUrlArgs = {
 /** The mediaItem type */
 export type MediaItemSrcSetArgs = {
   size?: InputMaybe<MediaItemSizeEnum>;
+};
+
+
+/** The mediaItem type */
+export type MediaItemTermsArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<MediaItemToTermNodeConnectionWhereArgs>;
 };
 
 
@@ -2332,6 +2480,72 @@ export enum MediaItemStatusEnum {
   Trash = 'TRASH'
 }
 
+/** Connection between the MediaItem type and the category type */
+export type MediaItemToCategoryConnection = {
+  __typename?: 'MediaItemToCategoryConnection';
+  /** Edges for the MediaItemToCategoryConnection connection */
+  edges?: Maybe<Array<Maybe<MediaItemToCategoryConnectionEdge>>>;
+  /** The nodes of the connection, without the edges */
+  nodes?: Maybe<Array<Maybe<Category>>>;
+  /** Information about pagination in a connection. */
+  pageInfo?: Maybe<WpPageInfo>;
+};
+
+/** An edge in a connection */
+export type MediaItemToCategoryConnectionEdge = {
+  __typename?: 'MediaItemToCategoryConnectionEdge';
+  /** A cursor for use in pagination */
+  cursor?: Maybe<Scalars['String']>;
+  /** The item at the end of the edge */
+  node?: Maybe<Category>;
+};
+
+/** Arguments for filtering the MediaItemToCategoryConnection connection */
+export type MediaItemToCategoryConnectionWhereArgs = {
+  /** Unique cache key to be produced when this query is stored in an object cache. Default is 'core'. */
+  cacheDomain?: InputMaybe<Scalars['String']>;
+  /** Term ID to retrieve child terms of. If multiple taxonomies are passed, $child_of is ignored. Default 0. */
+  childOf?: InputMaybe<Scalars['Int']>;
+  /** True to limit results to terms that have no children. This parameter has no effect on non-hierarchical taxonomies. Default false. */
+  childless?: InputMaybe<Scalars['Boolean']>;
+  /** Retrieve terms where the description is LIKE the input value. Default empty. */
+  descriptionLike?: InputMaybe<Scalars['String']>;
+  /** Array of term ids to exclude. If $include is non-empty, $exclude is ignored. Default empty array. */
+  exclude?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  /** Array of term ids to exclude along with all of their descendant terms. If $include is non-empty, $exclude_tree is ignored. Default empty array. */
+  excludeTree?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  /** Whether to hide terms not assigned to any posts. Accepts true or false. Default false */
+  hideEmpty?: InputMaybe<Scalars['Boolean']>;
+  /** Whether to include terms that have non-empty descendants (even if $hide_empty is set to true). Default true. */
+  hierarchical?: InputMaybe<Scalars['Boolean']>;
+  /** Array of term ids to include. Default empty array. */
+  include?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  /** Array of names to return term(s) for. Default empty. */
+  name?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** Retrieve terms where the name is LIKE the input value. Default empty. */
+  nameLike?: InputMaybe<Scalars['String']>;
+  /** Array of object IDs. Results will be limited to terms associated with these objects. */
+  objectIds?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  /** Direction the connection should be ordered in */
+  order?: InputMaybe<OrderEnum>;
+  /** Field(s) to order terms by. Defaults to 'name'. */
+  orderby?: InputMaybe<TermObjectsConnectionOrderbyEnum>;
+  /** Whether to pad the quantity of a term's children in the quantity of each term's "count" object variable. Default false. */
+  padCounts?: InputMaybe<Scalars['Boolean']>;
+  /** Parent term ID to retrieve direct-child terms of. Default empty. */
+  parent?: InputMaybe<Scalars['Int']>;
+  /** Search criteria to match terms. Will be SQL-formatted with wildcards before and after. Default empty. */
+  search?: InputMaybe<Scalars['String']>;
+  /** Array of slugs to return term(s) for. Default empty. */
+  slug?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** Array of term taxonomy IDs, to match when querying terms. */
+  termTaxonomId?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  /** Array of term taxonomy IDs, to match when querying terms. */
+  termTaxonomyId?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  /** Whether to prime meta caches for matched terms. Default true. */
+  updateTermMetaCache?: InputMaybe<Scalars['Boolean']>;
+};
+
 /** Connection between the MediaItem type and the Comment type */
 export type MediaItemToCommentConnection = {
   __typename?: 'MediaItemToCommentConnection';
@@ -2414,6 +2628,74 @@ export type MediaItemToCommentConnectionWhereArgs = {
   userId?: InputMaybe<Scalars['ID']>;
 };
 
+/** Connection between the MediaItem type and the TermNode type */
+export type MediaItemToTermNodeConnection = {
+  __typename?: 'MediaItemToTermNodeConnection';
+  /** Edges for the MediaItemToTermNodeConnection connection */
+  edges?: Maybe<Array<Maybe<MediaItemToTermNodeConnectionEdge>>>;
+  /** The nodes of the connection, without the edges */
+  nodes?: Maybe<Array<Maybe<TermNode>>>;
+  /** Information about pagination in a connection. */
+  pageInfo?: Maybe<WpPageInfo>;
+};
+
+/** An edge in a connection */
+export type MediaItemToTermNodeConnectionEdge = {
+  __typename?: 'MediaItemToTermNodeConnectionEdge';
+  /** A cursor for use in pagination */
+  cursor?: Maybe<Scalars['String']>;
+  /** The item at the end of the edge */
+  node?: Maybe<TermNode>;
+};
+
+/** Arguments for filtering the MediaItemToTermNodeConnection connection */
+export type MediaItemToTermNodeConnectionWhereArgs = {
+  /** Unique cache key to be produced when this query is stored in an object cache. Default is 'core'. */
+  cacheDomain?: InputMaybe<Scalars['String']>;
+  /** Term ID to retrieve child terms of. If multiple taxonomies are passed, $child_of is ignored. Default 0. */
+  childOf?: InputMaybe<Scalars['Int']>;
+  /** True to limit results to terms that have no children. This parameter has no effect on non-hierarchical taxonomies. Default false. */
+  childless?: InputMaybe<Scalars['Boolean']>;
+  /** Retrieve terms where the description is LIKE the input value. Default empty. */
+  descriptionLike?: InputMaybe<Scalars['String']>;
+  /** Array of term ids to exclude. If $include is non-empty, $exclude is ignored. Default empty array. */
+  exclude?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  /** Array of term ids to exclude along with all of their descendant terms. If $include is non-empty, $exclude_tree is ignored. Default empty array. */
+  excludeTree?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  /** Whether to hide terms not assigned to any posts. Accepts true or false. Default false */
+  hideEmpty?: InputMaybe<Scalars['Boolean']>;
+  /** Whether to include terms that have non-empty descendants (even if $hide_empty is set to true). Default true. */
+  hierarchical?: InputMaybe<Scalars['Boolean']>;
+  /** Array of term ids to include. Default empty array. */
+  include?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  /** Array of names to return term(s) for. Default empty. */
+  name?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** Retrieve terms where the name is LIKE the input value. Default empty. */
+  nameLike?: InputMaybe<Scalars['String']>;
+  /** Array of object IDs. Results will be limited to terms associated with these objects. */
+  objectIds?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  /** Direction the connection should be ordered in */
+  order?: InputMaybe<OrderEnum>;
+  /** Field(s) to order terms by. Defaults to 'name'. */
+  orderby?: InputMaybe<TermObjectsConnectionOrderbyEnum>;
+  /** Whether to pad the quantity of a term's children in the quantity of each term's "count" object variable. Default false. */
+  padCounts?: InputMaybe<Scalars['Boolean']>;
+  /** Parent term ID to retrieve direct-child terms of. Default empty. */
+  parent?: InputMaybe<Scalars['Int']>;
+  /** Search criteria to match terms. Will be SQL-formatted with wildcards before and after. Default empty. */
+  search?: InputMaybe<Scalars['String']>;
+  /** Array of slugs to return term(s) for. Default empty. */
+  slug?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** The Taxonomy to filter terms by */
+  taxonomies?: InputMaybe<Array<InputMaybe<TaxonomyEnum>>>;
+  /** Array of term taxonomy IDs, to match when querying terms. */
+  termTaxonomId?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  /** Array of term taxonomy IDs, to match when querying terms. */
+  termTaxonomyId?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  /** Whether to prime meta caches for matched terms. Default true. */
+  updateTermMetaCache?: InputMaybe<Scalars['Boolean']>;
+};
+
 /** Details of an available size for a media item */
 export type MediaSize = {
   __typename?: 'MediaSize';
@@ -2436,6 +2718,8 @@ export type MediaSize = {
 /** Menus are the containers for navigation items. Menus can be assigned to menu locations, which are typically registered by the active theme. */
 export type Menu = DatabaseIdentifier & Node & {
   __typename?: 'Menu';
+  /** Added to the GraphQL Schema because the ACF Field Group &quot;test&quot; was set to Show in GraphQL. */
+  category?: Maybe<Menu_Category>;
   /** The number of items in the menu */
   count?: Maybe<Scalars['Int']>;
   /** The unique identifier stored in the database */
@@ -2472,6 +2756,8 @@ export type MenuMenuItemsArgs = {
 /** Navigation menu items are the individual items assigned to a menu. These are rendered as the links in a navigation menu. */
 export type MenuItem = DatabaseIdentifier & Node & {
   __typename?: 'MenuItem';
+  /** Added to the GraphQL Schema because the ACF Field Group &quot;test&quot; was set to Show in GraphQL. */
+  category?: Maybe<MenuItem_Category>;
   /** Connection between the MenuItem type and the MenuItem type */
   childItems?: Maybe<MenuItemToMenuItemConnection>;
   /** Connection from MenuItem to it&#039;s connected node */
@@ -2599,6 +2885,14 @@ export type MenuItemToMenuItemLinkableConnectionEdge = {
   node?: Maybe<MenuItemLinkable>;
 };
 
+/** Field Group */
+export type MenuItem_Category = AcfFieldGroup & {
+  __typename?: 'MenuItem_Category';
+  cat?: Maybe<Array<Maybe<Category>>>;
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars['String']>;
+};
+
 /** Registered menu locations */
 export enum MenuLocationEnum {
   /** Put the menu in the mainnav location */
@@ -2651,6 +2945,14 @@ export type MenuToMenuItemConnectionWhereArgs = {
   parentDatabaseId?: InputMaybe<Scalars['Int']>;
   /** The ID of the parent menu object */
   parentId?: InputMaybe<Scalars['ID']>;
+};
+
+/** Field Group */
+export type Menu_Category = AcfFieldGroup & {
+  __typename?: 'Menu_Category';
+  cat?: Maybe<Array<Maybe<Category>>>;
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars['String']>;
 };
 
 /** The MimeType of the object */
@@ -2999,6 +3301,8 @@ export type Page = ContentNode & DatabaseIdentifier & HierarchicalContentNode & 
   authorId?: Maybe<Scalars['ID']>;
   /** Connection between the Page type and the category type */
   categories?: Maybe<PageToCategoryConnection>;
+  /** Added to the GraphQL Schema because the ACF Field Group &quot;test&quot; was set to Show in GraphQL. */
+  category?: Maybe<ContentNode_Category>;
   /** Connection between the HierarchicalContentNode type and the ContentNode type */
   children?: Maybe<HierarchicalContentNodeToContentNodeChildrenConnection>;
   /** The number of comments. Even though WPGraphQL denotes this field as an integer, in WordPress this field should be saved as a numeric string for compatibility. */
@@ -3691,8 +3995,8 @@ export type Post = ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & 
   authorId?: Maybe<Scalars['ID']>;
   /** Connection between the Post type and the category type */
   categories?: Maybe<PostToCategoryConnection>;
-  /** Added to the GraphQL Schema because the ACF Field Group &quot;زمینه های سفارشی&quot; was set to Show in GraphQL. */
-  cf?: Maybe<Post_Cf>;
+  /** Added to the GraphQL Schema because the ACF Field Group &quot;test&quot; was set to Show in GraphQL. */
+  category?: Maybe<ContentNode_Category>;
   /** The number of comments. Even though WPGraphQL denotes this field as an integer, in WordPress this field should be saved as a numeric string for compatibility. */
   commentCount?: Maybe<Scalars['Int']>;
   /** Whether the comments are open or closed for this particular post. */
@@ -3925,6 +4229,8 @@ export type PostFormat = DatabaseIdentifier & Node & TermNode & UniformResourceI
   __typename?: 'PostFormat';
   /** Added to the GraphQL Schema because the ACF Field Group &quot;دسته بندیها&quot; was set to Show in GraphQL. */
   cat_cf?: Maybe<PostFormat_CatCf>;
+  /** Added to the GraphQL Schema because the ACF Field Group &quot;test&quot; was set to Show in GraphQL. */
+  category?: Maybe<TermNode_Category>;
   /** Connection between the PostFormat type and the ContentNode type */
   contentNodes?: Maybe<PostFormatToContentNodeConnection>;
   /** The number of objects connected to the object */
@@ -4810,16 +5116,6 @@ export type PostTypeLabelDetails = {
   viewItem?: Maybe<Scalars['String']>;
   /** Label for viewing post type archives. */
   viewItems?: Maybe<Scalars['String']>;
-};
-
-/** Field Group */
-export type Post_Cf = AcfFieldGroup & {
-  __typename?: 'Post_Cf';
-  /** The name of the ACF Field Group */
-  fieldGroupName?: Maybe<Scalars['String']>;
-  /** انتخاب نقشه */
-  map?: Maybe<MediaItem>;
-  table?: Maybe<MediaItem>;
 };
 
 /** The reading setting type */
@@ -6018,6 +6314,14 @@ export type RootQueryToMediaItemConnectionWhereArgs = {
   authorName?: InputMaybe<Scalars['String']>;
   /** Find objects NOT connected to author(s) in the array of author's userIds */
   authorNotIn?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  /** Category ID */
+  categoryId?: InputMaybe<Scalars['Int']>;
+  /** Array of category IDs, used to display objects from one category OR another */
+  categoryIn?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  /** Use Category Slug */
+  categoryName?: InputMaybe<Scalars['String']>;
+  /** Array of category IDs, used to display objects from one category OR another */
+  categoryNotIn?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
   /** Filter the connection based on dates */
   dateQuery?: InputMaybe<DateQueryInput>;
   /** True for objects with passwords; False for objects without passwords; null for all objects with or without passwords */
@@ -6712,6 +7016,8 @@ export type Tag = DatabaseIdentifier & MenuItemLinkable & Node & TermNode & Unif
   __typename?: 'Tag';
   /** Added to the GraphQL Schema because the ACF Field Group &quot;دسته بندیها&quot; was set to Show in GraphQL. */
   cat_cf?: Maybe<Tag_CatCf>;
+  /** Added to the GraphQL Schema because the ACF Field Group &quot;test&quot; was set to Show in GraphQL. */
+  category?: Maybe<TermNode_Category>;
   /** Connection between the Tag type and the ContentNode type */
   contentNodes?: Maybe<TagToContentNodeConnection>;
   /** The number of objects connected to the object */
@@ -7176,6 +7482,8 @@ export type TaxonomyToContentTypeConnectionEdge = {
 /** The template assigned to the node */
 export type Template_Blank = ContentTemplate & {
   __typename?: 'Template_Blank';
+  /** Added to the GraphQL Schema because the ACF Field Group &quot;test&quot; was set to Show in GraphQL. */
+  category?: Maybe<ContentTemplate_Category>;
   /** The name of the template */
   templateName?: Maybe<Scalars['String']>;
 };
@@ -7183,6 +7491,8 @@ export type Template_Blank = ContentTemplate & {
 /** The template assigned to the node */
 export type Template_PageLargeHeader = ContentTemplate & {
   __typename?: 'Template_PageLargeHeader';
+  /** Added to the GraphQL Schema because the ACF Field Group &quot;test&quot; was set to Show in GraphQL. */
+  category?: Maybe<ContentTemplate_Category>;
   /** The name of the template */
   templateName?: Maybe<Scalars['String']>;
 };
@@ -7190,19 +7500,46 @@ export type Template_PageLargeHeader = ContentTemplate & {
 /** The template assigned to the node */
 export type Template_PageNoSeparators = ContentTemplate & {
   __typename?: 'Template_PageNoSeparators';
+  /** Added to the GraphQL Schema because the ACF Field Group &quot;test&quot; was set to Show in GraphQL. */
+  category?: Maybe<ContentTemplate_Category>;
   /** The name of the template */
   templateName?: Maybe<Scalars['String']>;
 };
 
 /** The template assigned to the node */
+export type Template_Product = ContentTemplate & {
+  __typename?: 'Template_Product';
+  /** Added to the GraphQL Schema because the ACF Field Group &quot;test&quot; was set to Show in GraphQL. */
+  category?: Maybe<ContentTemplate_Category>;
+  /** Added to the GraphQL Schema because the ACF Field Group &quot;زمینه های سفارشی&quot; was set to Show in GraphQL. */
+  cf?: Maybe<Template_Product_Cf>;
+  /** The name of the template */
+  templateName?: Maybe<Scalars['String']>;
+};
+
+/** Field Group */
+export type Template_Product_Cf = AcfFieldGroup & {
+  __typename?: 'Template_Product_Cf';
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars['String']>;
+  /** انتخاب نقشه */
+  map?: Maybe<MediaItem>;
+  table?: Maybe<MediaItem>;
+};
+
+/** The template assigned to the node */
 export type Template_SinglePostNoSeparators = ContentTemplate & {
   __typename?: 'Template_SinglePostNoSeparators';
+  /** Added to the GraphQL Schema because the ACF Field Group &quot;test&quot; was set to Show in GraphQL. */
+  category?: Maybe<ContentTemplate_Category>;
   /** The name of the template */
   templateName?: Maybe<Scalars['String']>;
 };
 
 /** Terms are nodes within a Taxonomy, used to group and relate other nodes. */
 export type TermNode = {
+  /** Added to the GraphQL Schema because the ACF Field Group &quot;test&quot; was set to Show in GraphQL. */
+  category?: Maybe<TermNode_Category>;
   /** The number of objects connected to the object */
   count?: Maybe<Scalars['Int']>;
   /** Identifies the primary key from the database. */
@@ -7307,6 +7644,14 @@ export type TermNodeToEnqueuedStylesheetConnectionEdge = {
   cursor?: Maybe<Scalars['String']>;
   /** The item at the end of the edge */
   node?: Maybe<EnqueuedStylesheet>;
+};
+
+/** Field Group */
+export type TermNode_Category = AcfFieldGroup & {
+  __typename?: 'TermNode_Category';
+  cat?: Maybe<Array<Maybe<Category>>>;
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars['String']>;
 };
 
 /** Options for ordering the connection by */
@@ -7737,6 +8082,8 @@ export type User = Commenter & DatabaseIdentifier & Node & UniformResourceIdenti
   capKey?: Maybe<Scalars['String']>;
   /** A list of capabilities (permissions) granted to the user */
   capabilities?: Maybe<Array<Maybe<Scalars['String']>>>;
+  /** Added to the GraphQL Schema because the ACF Field Group &quot;test&quot; was set to Show in GraphQL. */
+  category?: Maybe<User_Category>;
   /** Connection between the User type and the Comment type */
   comments?: Maybe<UserToCommentConnection>;
   /** Identifies the primary key from the database. */
@@ -8140,6 +8487,14 @@ export type UserToMediaItemConnectionWhereArgs = {
   authorName?: InputMaybe<Scalars['String']>;
   /** Find objects NOT connected to author(s) in the array of author's userIds */
   authorNotIn?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  /** Category ID */
+  categoryId?: InputMaybe<Scalars['Int']>;
+  /** Array of category IDs, used to display objects from one category OR another */
+  categoryIn?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  /** Use Category Slug */
+  categoryName?: InputMaybe<Scalars['String']>;
+  /** Array of category IDs, used to display objects from one category OR another */
+  categoryNotIn?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
   /** Filter the connection based on dates */
   dateQuery?: InputMaybe<DateQueryInput>;
   /** True for objects with passwords; False for objects without passwords; null for all objects with or without passwords */
@@ -8368,6 +8723,14 @@ export type UserToUserRoleConnectionEdge = {
   node?: Maybe<UserRole>;
 };
 
+/** Field Group */
+export type User_Category = AcfFieldGroup & {
+  __typename?: 'User_Category';
+  cat?: Maybe<Array<Maybe<Category>>>;
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars['String']>;
+};
+
 /** Field to order the connection by */
 export enum UsersConnectionOrderbyEnum {
   /** Order by display name */
@@ -8436,21 +8799,24 @@ export type WritingSettings = {
 
 export type CategoriesWithCategoriesQueryVariables = Exact<{
   id?: InputMaybe<Scalars['ID']>;
-  language?: InputMaybe<LanguageCodeEnum>;
   first?: InputMaybe<Scalars['Int']>;
+  language?: InputMaybe<LanguageCodeEnum>;
 }>;
 
 
-export type CategoriesWithCategoriesQuery = { __typename?: 'RootQuery', category?: { __typename?: 'Category', id: string, name?: string | null, description?: string | null, cat_cf?: { __typename?: 'Category_CatCf', image?: { __typename?: 'MediaItem', id: string, srcSet?: string | null, sourceUrl?: string | null } | null } | null, translation?: { __typename?: 'Category', id: string } | null, children?: { __typename?: 'CategoryToCategoryConnection', edges?: Array<{ __typename?: 'CategoryToCategoryConnectionEdge', node?: { __typename?: 'Category', id: string, name?: string | null, description?: string | null, cat_cf?: { __typename?: 'Category_CatCf', image?: { __typename?: 'MediaItem', altText?: string | null, sourceUrl?: string | null } | null } | null } | null } | null> | null } | null } | null };
+export type CategoriesWithCategoriesQuery = { __typename?: 'RootQuery', category?: { __typename?: 'Category', id: string, name?: string | null, description?: string | null, cat_cf?: { __typename?: 'Category_CatCf', image?: { __typename?: 'MediaItem', id: string, srcSet?: string | null, sourceUrl?: string | null } | null } | null, children?: { __typename?: 'CategoryToCategoryConnection', edges?: Array<{ __typename?: 'CategoryToCategoryConnectionEdge', node?: { __typename?: 'Category', id: string, name?: string | null, description?: string | null, cat_cf?: { __typename?: 'Category_CatCf', image?: { __typename?: 'MediaItem', altText?: string | null, sourceUrl?: string | null } | null } | null, translation?: { __typename?: 'Category', id: string } | null } | null } | null> | null } | null } | null };
 
 export type CategoriesWithProductsQueryVariables = Exact<{
   id?: InputMaybe<Scalars['ID']>;
   first?: InputMaybe<Scalars['Int']>;
   language?: InputMaybe<LanguageCodeEnum>;
+  isPost?: InputMaybe<Scalars['Boolean']>;
+  isPage?: InputMaybe<Scalars['Boolean']>;
+  isMedia?: InputMaybe<Scalars['Boolean']>;
 }>;
 
 
-export type CategoriesWithProductsQuery = { __typename?: 'RootQuery', category?: { __typename?: 'Category', id: string, name?: string | null, description?: string | null, contentNodes?: { __typename?: 'CategoryToContentNodeConnection', edges?: Array<{ __typename?: 'CategoryToContentNodeConnectionEdge', node?: { __typename?: 'MediaItem', id: string } | { __typename?: 'Page', id: string } | { __typename?: 'Post', id: string, title?: string | null, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node?: { __typename?: 'MediaItem', id: string, srcSet?: string | null, sourceUrl?: string | null } | null } | null } | null } | null> | null } | null, cat_cf?: { __typename?: 'Category_CatCf', image?: { __typename?: 'MediaItem', id: string, srcSet?: string | null, sourceUrl?: string | null } | null } | null, translation?: { __typename?: 'Category', id: string } | null } | null };
+export type CategoriesWithProductsQuery = { __typename?: 'RootQuery', category?: { __typename?: 'Category', id: string, name?: string | null, description?: string | null, mediaItems?: { __typename?: 'CategoryToMediaItemConnection', nodes?: Array<{ __typename?: 'MediaItem', id: string, title?: string | null, sourceUrl?: string | null, mediaItemUrl?: string | null } | null> | null } | null, contentNodes?: { __typename?: 'CategoryToContentNodeConnection', edges?: Array<{ __typename?: 'CategoryToContentNodeConnectionEdge', node?: { __typename?: 'MediaItem', id: string } | { __typename?: 'Page', id: string, title?: string | null, content?: string | null, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node?: { __typename?: 'MediaItem', id: string, srcSet?: string | null, sourceUrl?: string | null } | null } | null } | { __typename?: 'Post', id: string, title?: string | null, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node?: { __typename?: 'MediaItem', id: string, srcSet?: string | null, sourceUrl?: string | null } | null } | null } | null } | null> | null } | null, cat_cf?: { __typename?: 'Category_CatCf', image?: { __typename?: 'MediaItem', id: string, srcSet?: string | null, sourceUrl?: string | null } | null } | null, translation?: { __typename?: 'Category', id: string } | null } | null };
 
 export type CategoryItemsQueryVariables = Exact<{
   id?: InputMaybe<Scalars['ID']>;
@@ -8463,10 +8829,12 @@ export type CategoryItemsQuery = { __typename?: 'RootQuery', category?: { __type
 export type ChildCategoriesBySlugQueryVariables = Exact<{
   id?: InputMaybe<Scalars['ID']>;
   language?: InputMaybe<LanguageCodeEnum>;
+  isChildCategory?: InputMaybe<Scalars['Boolean']>;
+  isChildPage?: InputMaybe<Scalars['Boolean']>;
 }>;
 
 
-export type ChildCategoriesBySlugQuery = { __typename?: 'RootQuery', category?: { __typename?: 'Category', id: string, children?: { __typename?: 'CategoryToCategoryConnection', edges?: Array<{ __typename?: 'CategoryToCategoryConnectionEdge', node?: { __typename?: 'Category', id: string, name?: string | null, description?: string | null, cat_cf?: { __typename?: 'Category_CatCf', image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null } | null } | null } | null } | null> | null } | null, translation?: { __typename?: 'Category', id: string } | null } | null };
+export type ChildCategoriesBySlugQuery = { __typename?: 'RootQuery', category?: { __typename?: 'Category', id: string, contentNodes?: { __typename?: 'CategoryToContentNodeConnection', nodes?: Array<{ __typename?: 'MediaItem', id: string } | { __typename?: 'Page', id: string, title?: string | null, content?: string | null, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null, altText?: string | null } | null } | null, translation?: { __typename?: 'Page', id: string } | null } | { __typename?: 'Post', id: string } | null> | null } | null, children?: { __typename?: 'CategoryToCategoryConnection', edges?: Array<{ __typename?: 'CategoryToCategoryConnectionEdge', node?: { __typename?: 'Category', id: string, name?: string | null, description?: string | null, cat_cf?: { __typename?: 'Category_CatCf', image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null } | null } | null, translation?: { __typename?: 'Category', id: string } | null } | null } | null> | null } | null, translation?: { __typename?: 'Category', id: string } | null } | null };
 
 export type HomeQueryVariables = Exact<{
   languages?: InputMaybe<Array<LanguageCodeEnum> | LanguageCodeEnum>;
@@ -8497,7 +8865,7 @@ export type ProductQueryVariables = Exact<{
 }>;
 
 
-export type ProductQuery = { __typename?: 'RootQuery', post?: { __typename?: 'Post', id: string, uri?: string | null, title?: string | null, slug?: string | null, content?: string | null, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node?: { __typename?: 'MediaItem', id: string, srcSet?: string | null, altText?: string | null, sourceUrl?: string | null } | null } | null, cf?: { __typename?: 'Post_Cf', fieldGroupName?: string | null, map?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null } | null, table?: { __typename?: 'MediaItem', id: string, mediaItemUrl?: string | null } | null } | null, translation?: { __typename?: 'Post', id: string } | null } | null };
+export type ProductQuery = { __typename?: 'RootQuery', post?: { __typename?: 'Post', id: string, uri?: string | null, title?: string | null, slug?: string | null, content?: string | null, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node?: { __typename?: 'MediaItem', id: string, srcSet?: string | null, altText?: string | null, sourceUrl?: string | null } | null } | null, template?: { __typename?: 'DefaultTemplate' } | { __typename?: 'Template_Blank' } | { __typename?: 'Template_PageLargeHeader' } | { __typename?: 'Template_PageNoSeparators' } | { __typename?: 'Template_Product', templateName?: string | null, cf?: { __typename?: 'Template_Product_Cf', fieldGroupName?: string | null, map?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null } | null, table?: { __typename?: 'MediaItem', id: string, mediaItemUrl?: string | null } | null } | null } | { __typename?: 'Template_SinglePostNoSeparators' } | null, translation?: { __typename?: 'Post', id: string } | null } | null };
 
 export type MainNavQueryVariables = Exact<{ [key: string]: never; }>;
 

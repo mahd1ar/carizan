@@ -20,12 +20,11 @@ import PAGE from '@/apollo/query/page.gql'
 const route = useRoute()
 const ctx = useContext()
 
-const id = route.value.query.id as string
+const q = route.value.query as { fa : string , en : string }
 
-if (!id) ctx.error({ message: 'not found', statusCode: 500 })
 
 const variable: PageQueryVariables = {
-  id,
+  id : ctx.i18n.locale === 'fa' ? q.fa : q.en ,
   language:
     ctx.i18n.locale.toLowerCase() === 'fa'
       ? LanguageCodeEnum.En

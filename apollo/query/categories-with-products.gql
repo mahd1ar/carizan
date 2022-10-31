@@ -2,18 +2,41 @@ query categoriesWithProducts(
   $id: ID = "dGVybToyNg=="
   $first: Int = 4
   $language: LanguageCodeEnum = EN
+  $isPost: Boolean = true
+  $isPage: Boolean = false
+  $isMedia: Boolean = false
 ) {
   category(id: $id, idType: ID) {
     id
     name
     description
+    mediaItems @include(if: $isMedia) {
+      nodes {
+        id
+        title
+        sourceUrl
+        mediaItemUrl
+      }
+    }
     contentNodes(first: $first) {
       edges {
         node {
           id
-          ... on Post {
+          ... on Post @include(if: $isPost) {
             id
             title(format: RENDERED)
+            featuredImage {
+              node {
+                id
+                srcSet(size: MEDIUM)
+                sourceUrl
+              }
+            }
+          }
+          ... on Page @include(if: $isPage) {
+            id
+            title(format: RENDERED)
+            content
             featuredImage {
               node {
                 id
