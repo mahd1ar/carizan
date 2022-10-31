@@ -1,14 +1,14 @@
 <template>
   <div>
     <div class="h-[400px] bg-black w-full overflow-hidden relative">
-      <img v-if="image" class="w-full" :src="image" :alt="altimage || ''" />
+      <img v-if="image" class="w-full h-full object-cover" :src="image" :alt="altimage || ''" />
       <!-- overlay -->
       <div
         class="bg-gradient-to-l from-black to-transparent absolute top-0 left-0 z-10 w-full h-full"
       >
         <div class="container flex items-center h-full">
           <h1
-            class="text-white text-6xl"
+            class="text-white text-6xl ml-0 rtl:ml-auto"
             v-motion
             :initial="{
               opacity: 0,

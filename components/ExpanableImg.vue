@@ -1,30 +1,13 @@
 <template>
-  <div class="">
-    <transition name="fade">
-      <figure
-        @click="preview"
-        v-show="isImageLoaded"
-        class="imghvr-push-down cursor-pointer"
-      >
-        <img
-          class="w-full h-full object-cover"
-          :style="{ objectFit: obj }"
-          :src="src"
-          alt=""
-          @load="imageLoaded"
-        />
-        <figcaption>
-          <h3>title</h3>
-          <span
-            >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus
-            ratione ab dolorum quas vel repellat. Doloremque, laboriosam
-            voluptatem recusandae culpa eligendi, voluptatum quam tempora ullam
-            alias facere libero mollitia perferendis.</span
-          >
-        </figcaption>
-      </figure>
-    </transition>
-  </div>
+  <img
+    @click="preview"
+    v-show="isImageLoaded"
+    class="w-full h-full object-cover"
+    :style="{ objectFit: obj }"
+    :src="src"
+    alt=""
+    @load="imageLoaded"
+  />
 </template>
 
 <script lang="ts" setup>
@@ -61,14 +44,3 @@ const preview = () => {
   })
 }
 </script>
-
-<style scoped>
-.fade-enter-active,
-.fade-leave-active {
-  transition: all 0.5s ease;
-}
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-  opacity: 0;
-  transform: scale(0.9);
-}
-</style>

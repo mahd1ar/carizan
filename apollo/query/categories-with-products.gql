@@ -25,6 +25,9 @@ query categoriesWithProducts(
           ... on Post @include(if: $isPost) {
             id
             title(format: RENDERED)
+            translation(language: $language) {
+              id
+            }
             featuredImage {
               node {
                 id
@@ -37,6 +40,9 @@ query categoriesWithProducts(
             id
             title(format: RENDERED)
             content
+            translation(language: $language) {
+              id
+            }
             featuredImage {
               node {
                 id

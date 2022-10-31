@@ -3,7 +3,7 @@ export default async (context, locale) => {
     const obj = {}
 
     Object.keys(fa.default).forEach(key => {
-        obj[key] = key.replace('_' , ' ')
+        obj[key] = key.replace( /_/g , ' ')
     });
     
 

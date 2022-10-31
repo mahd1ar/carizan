@@ -10,6 +10,7 @@ import CATWITHPRODS from '@/apollo/query/categories-with-products.gql'
 import {
   CategoriesWithProductsQuery,
   CategoriesWithProductsQueryVariables,
+LanguageCodeEnum,
 } from '@/types/types'
 import { computed, useContext, useRoute } from '@nuxtjs/composition-api'
 import { useQuery } from '@vue/apollo-composable/dist'
@@ -27,10 +28,11 @@ const { id } = defineProps({
 
 console.log(id)
 
-const { localePath } = useContext()
+const { i18n } = useContext()
 
 const variable: CategoriesWithProductsQueryVariables = {
   id,
+  language : i18n.locale === 'fa' ? LanguageCodeEnum.En : LanguageCodeEnum.Fa,
   isPost: q.product_type ? q.product_type === 'post' : true,
   isPage: q.product_type === 'page',
   isMedia: q.product_type === 'media',
@@ -65,7 +67,10 @@ console.log(result.value?.category?.mediaItems)
         image: i.node.featuredImage?.node?.sourceUrl || '',
           title: i.node?.title ? i.node.title.split('\\').join('<br />') : '',
           id: i.node.id,
-          link: localePath('/product?id=' + i.node!.id),
+          link: '/product?' + new URLSearchParams({
+                [i18n.locale]: i!.node.id,
+                [variable.language!.toLowerCase()]: i.node.translation!.id,
+              }).toString(), 
         }
       }
 
@@ -74,7 +79,10 @@ console.log(result.value?.category?.mediaItems)
           image: i.node.featuredImage?.node?.sourceUrl || '',
           title: i.node.title || '',
           id: i.node.id,
-          link: "#",
+          link: '/page?' + new URLSearchParams({
+                [i18n.locale]: i!.node.id,
+                [variable.language!.toLowerCase()]: i.node.translation!.id,
+              }).toString(), 
         }
       } else {
         console.log("WTF");

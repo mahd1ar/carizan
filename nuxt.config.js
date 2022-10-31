@@ -13,11 +13,11 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      {
-        rel: 'stylesheet',
-        type: 'text/css',
-        href: 'https://cdnjs.cloudflare.com/ajax/libs/imagehover.css/2.0.0/css/imagehover.min.css',
-      },
+      // {
+      //   rel: 'stylesheet',
+      //   type: 'text/css',
+      //   href: 'https://cdnjs.cloudflare.com/ajax/libs/imagehover.css/2.0.0/css/imagehover.min.css',
+      // },
     ],
   },
 
@@ -66,10 +66,8 @@ export default {
   },
   i18n: {
     locales: [
-      // file: 'en.js'
       { code: 'fa', iso: 'fa-IR', dir: 'rtl' , file : 'fa.js' },
       { code: 'en', iso: 'en-US', dir: 'ltr' , file : 'en.js'},
-      // 'fa', 'en'
     ],
     detectBrowserLanguage: false,
     defaultLocale: 'fa',
@@ -78,12 +76,6 @@ export default {
     vueI18n: {
       fallbackLocale: 'fa',
       messages: {
-        // en: {
-        //   _details: 'details',
-        // },
-        // fa: {
-        //   _details: 'جزییات ',
-        // },
       },
     },
   },

@@ -1,10 +1,14 @@
 <template>
   <LoadingIndicator :isLoading="loadingProduct">
-    <div class="container mx-auto mt-5 flex flex-col gap-10">
-      <div class="flex">
+    <div class="container mx-auto mt-5 flex flex-col gap-6">
+      <div class="flex gap-6 justify-between" dir="rtl">
         <div class="w-3/12">
-          <div class="rounded border-4 border-gray-400 aspect-square w-full">
-            <img class="w-full h-full object-cover" :src="pageContent.featuredImage" alt="" />
+          <div class="rounded border-2 border-gray-300 aspect-square w-full">
+            <img
+              class="w-full h-full object-cover"
+              :src="pageContent.featuredImage"
+              alt=""
+            />
           </div>
         </div>
         <div class="w-9/12 text-left py-4 flex-center">
@@ -25,15 +29,17 @@
         </div>
       </div>
 
-      <div class="flex gap-4">
-        <div class="w-3/12">
+      <div class="flex gap-4 md:flex-row flex-col">
+        <div class="w-full md:w-4/12">
           <client-only>
             <div
               v-if="loadingTable === false && TErr === false"
-              class="rounded border-2 border-gray-300 flex flex-col gap-2 p-2 hover:scale-105 transition-all transform-gpu duration-300"
+              class="rounded border-2 border-gray-300 flex flex-col gap-2 p-2 md:hover:scale-105 transition-all transform-gpu duration-300"
             >
               <div>
-                <label for="diameter">قطر</label>
+                <label for="diameter">
+                  {{ $t('diameter') }}
+                </label>
                 <select
                   v-model="TVDiameter"
                   class="w-full"
@@ -46,7 +52,9 @@
                 </select>
               </div>
               <div>
-                <label for="length">طول</label>
+                <label for="length">
+                  {{ $t("length") }}
+                </label>
                 <select
                   v-model="TVLength"
                   class="w-full"
@@ -60,57 +68,72 @@
               </div>
 
               <div v-if="details">
-                <div class="mt-6">مشخصات</div>
-                <div class="flex border-t border-gray-200 py-2">
-                  <span class="text-gray-500">وزن</span>
-                  <span class="mr-auto text-gray-900">{{
+                <div class="mt-6">
+                  {{ $t('specifications') }}
+                </div>
+                <div class="flex border-t border-gray-200 py-2 justify-between">
+                  <span class="text-gray-500">
+                    {{ $t('weight') }}
+                  </span>
+                  <span class="text-gray-900">{{
                     details.Weight
                   }}</span>
                 </div>
-                <div class="flex border-t border-gray-200 py-2">
-                  <span class="text-gray-500">تعداد در کیلوگرم</span>
-                  <span class="mr-auto text-gray-900">
+                <div class="flex border-t border-gray-200 py-2 justify-between">
+                  <span class="text-gray-500">
+                    {{ $t('quantity_per_kg') }}
+                  </span>
+                  <span class=" text-gray-900">
                     {{ details.QuantityPerKg }}
                   </span>
                 </div>
 
-                <div class="flex border-t border-gray-200 py-2">
-                  <span class="text-gray-500">آچارخور</span>
-                  <span class="mr-auto text-gray-900">
+                <div class="flex border-t border-gray-200 py-2 justify-between">
+                  <span class="text-gray-500">
+                    {{ $t('wrench') }}
+                  </span>
+                  <span class="text-gray-900">
                     {{ details.Wrench }}
                   </span>
                 </div>
 
-                <div class="flex border-t border-gray-200 py-2">
-                  <span class="text-gray-500">ارتفاع گل</span>
-                  <span class="mr-auto text-gray-900">
+                <div class="flex border-t border-gray-200 py-2 justify-between">
+                  <span class="text-gray-500">
+                    {{ $t('flower_height') }}
+                  </span>
+                  <span class=" text-gray-900">
                     {{ details.TotalHeight }}
                   </span>
                 </div>
 
-                <div class="flex border-t border-gray-200 py-2">
-                  <span class="text-gray-500">گام</span>
-                  <span class="mr-auto text-gray-900">
+                <div class="flex border-t border-gray-200 py-2 justify-between">
+                  <span class="text-gray-500">
+                    {{ $t('step') }}
+                  </span>
+                  <span class="text-gray-900">
                     {{ details.step }}
                   </span>
                 </div>
-
               </div>
 
               <div v-else>
-                <div class="mt-6">مشخصات</div>
-                <div class="flex border-t border-gray-200 py-2">
-                  <span class="text-gray-500 text-center">اطلاعاتی در دسترس نیست</span>
-                  
+                <div class="mt-6">
+                  {{ $t('specifications') }}
                 </div>
-                
-
+                <div class="flex border-t border-gray-200 py-2">
+                  <span class="text-gray-500 text-center">
+                    {{ $t('no_information_available') }}
+                  </span>
+                </div>
               </div>
             </div>
           </client-only>
         </div>
-        <div class="w-9/12">
-          <div v-if="pageContent.mapImage" class="rounded border-2 border-gray-300 w-full">
+        <div class=" w-full md:w-8/12 text-center">
+          <div
+            v-if="pageContent.mapImage"
+            class="rounded border-2 border-gray-300 w-full"
+          >
             <ExpanableImg :src="pageContent.mapImage" />
           </div>
         </div>
@@ -186,10 +209,10 @@ const TErr = ref(false)
 let dataTable: { [key: string]: string }[] = []
 const details: Ref<null | { [key: string]: string }> = ref(null)
 const loadingTable = ref(false)
-if (route.value.query.id === undefined) ctx.error({ message: 'not found' })
+const q = route.value.query as { fa : string , en : string }
 
 const variable: ProductQueryVariables = {
-  id: route.value.query.id as string,
+  id: ctx.i18n.locale == 'fa' ? q.fa : q.en ,
   language:
     ctx.i18n.locale.toLowerCase() === 'fa'
       ? LanguageCodeEnum.En
@@ -205,30 +228,28 @@ const {
 
 const pageContent = computed(() => {
   return {
-    titleCollection : result.value?.post?.title?.split('\\') || ['', '', ''],
-    mapImage : result.value?.post?.template?.__typename === 'Template_Product' ? result.value.post.template.cf?.map?.sourceUrl || '' : '' ,
-    featuredImage : result.value?.post?.featuredImage?.node?.sourceUrl || ''
+    titleCollection: result.value?.post?.title?.split('\\') || ['', '', ''],
+    mapImage:
+      result.value?.post?.template?.__typename === 'Template_Product'
+        ? result.value.post.template.cf?.map?.sourceUrl || ''
+        : '',
+    featuredImage: result.value?.post?.featuredImage?.node?.sourceUrl || '',
   }
 })
 
-
-
-
 watch([TVLength, TVDiameter], () => {
   try {
-    
     const x = dataTable.find((i) => Object.entries(i)[0][1] === TVLength.value)!
     const y = Object.entries(x).find((i) => i[0] === TVDiameter.value)![1]
     const z = y.split(':')
 
     details.value = {
-      Weight: z[0] || "",
-      QuantityPerKg: z[1] || "",
-      Wrench: z[3] || "" ,
-      TotalHeight: z[4] || "" ,
-      step : z[2] || ""
+      Weight: z[0] || '',
+      QuantityPerKg: z[1] || '',
+      Wrench: z[3] || '',
+      TotalHeight: z[4] || '',
+      step: z[2] || '',
     }
-
   } catch (error) {
     console.log(error)
     details.value = null
@@ -241,10 +262,12 @@ onErrorTable((err) => {
 })
 
 onResultTable(async (r) => {
-  
   if (r.data.post === null) ctx.error({ message: 'SOEMTHING WENT WRONG' })
-  
-  if (r.data.post?.template?.__typename === 'Template_Product' && r.data.post?.template.cf?.table?.mediaItemUrl) {
+
+  if (
+    r.data.post?.template?.__typename === 'Template_Product' &&
+    r.data.post?.template.cf?.table?.mediaItemUrl
+  ) {
     try {
       loadingTable.value = true
       // cf?.table?.mediaItemUrl
@@ -256,14 +279,20 @@ onResultTable(async (r) => {
       const data = utils.sheet_to_json<{ [key: string]: string }>(
         wb.Sheets[wb.SheetNames[0]]
       )
-      console.log("here")
+      console.log('here')
       dataTable = data
 
       emptyArray(TLength.value)
       emptyArray(TDiameter.value)
-      // @ts-ignore
-      window.xxx = data
-      for (let i = 0; i < Object.entries(data.sort((a,b) => Object.keys(b).length - Object.keys(a).length)[0]).length; i++)
+
+      for (
+        let i = 0;
+        i <
+        Object.entries(
+          data.sort((a, b) => Object.keys(b).length - Object.keys(a).length)[0]
+        ).length;
+        i++
+      )
         if (i !== 0) TDiameter.value.push(Object.entries(data[0])[i][0])
 
       data.forEach((i) => {
@@ -271,7 +300,7 @@ onResultTable(async (r) => {
       })
 
       console.log(TLength)
-      TLength.value.sort((a ,b ) =>  Number(a) - Number(b))
+      TLength.value.sort((a, b) => Number(a) - Number(b))
       TVDiameter.value = TDiameter.value[0]
       TVLength.value = TLength.value[0]
     } catch (error) {

@@ -61,7 +61,7 @@
     </transition>
 
     <nav
-      class="max-w-[85rem] w-full mx-auto px-4 sm:flex sm:items-center sm:justify-between"
+      class="max-w-[85rem] w-full mx-auto px-4 md:flex md:items-center md:justify-between"
       aria-label="Global"
     >
       <div class="flex items-center justify-between">
@@ -90,11 +90,11 @@
           </div>
           <div class="leading-5">Carizan Pich Gostar</div>
         </a>
-        <div class="sm:hidden">
+        <div class="md:hidden">
           <button
             type="button"
             @click="showMobileMenu = true"
-            class="p-2 inline-flex justify-center items-center gap-2 rounded border font-medium bg-white text-gray-700 shadow-sm align-middle focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600 transition-all hover:bg-slate-800 border-gray-700 hover:text-white focus:ring-offset-gray-800"
+            class="p-2 inline-flex justify-center items-center gap-2  border font-medium  text-primary-dark shadow-sm align-middle focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600 transition-all  border-primary-dark  focus:ring-offset-gray-800"
             aria-label="Toggle navigation"
           >
             <svg
@@ -124,7 +124,7 @@
         </div>
       </div>
       <div
-        class="hs-collapse hidden overflow-hidden transition-all duration-300 basis-full grow sm:block h-full"
+        class="hs-collapse hidden overflow-hidden transition-all duration-300 basis-full grow md:block h-full"
       >
         <div
           class="desktop-nav flex flex-col mt-5 h-full sm:flex-row-reverse sm:items-center sm:justify-start sm:mt-0 sm:pl-5 bg-gray-100"

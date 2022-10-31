@@ -1,10 +1,10 @@
 <template>
   <div
-  ref="root"
-    class="w-full flex gap-2"
+    ref="root"
+    class="w-full flex gap-2 mb-5"
     :class="{ container: !full, 'flex-row-reverse': left }"
   >
-    <div class="w-1/2 flex justify-start">
+    <div class="w-1/2 md:flex justify-start hidden">
       <div
         class="flex flex-col items-start justify-center gap-4"
         :class="left ? 'pr-10' : 'pl-10'"
@@ -45,21 +45,19 @@
             <!-- _SEEMORE  -->
             {{ $t('see_more') }}
           </span>
-
-
         </nuxt-link>
       </div>
     </div>
     <div
-      class="w-1/2 h-[400px] rounded overflow-hidden shadow-xl shadow-gray-400"
+      class="relative w-full md:w-1/2 h-[400px] rounded overflow-hidden shadow-xl shadow-gray-400"
     >
       <img
         v-if="img"
         v-motion
         :initial="{
           scale: 1.5,
-              x: 100,
-            }"
+          x: 100,
+        }"
         :enter="{
           opacity: 1,
           x: 0,
@@ -73,18 +71,31 @@
           },
         }"
         ref="target"
-        class=" origin-right translate-x-24 scale-150 h-full w-full object-cover transition-all ease-out duration-700"
+        class="origin-right translate-x-24 scale-150 h-full w-full object-cover transition-all ease-out duration-700"
         :src="img"
         alt=""
       />
+
+      <div
+        class="absolute bottom-0 md:hidden flex flex-col left-0 w-full gap-4 bg-black bg-opacity-50 text-white px-8"
+      >
+        <h2 class="text-4xl mt-4">
+          {{ title }}
+        </h2>
+
+        <p v-snip="{ lines: 4 }" class="text-gray-300 h-24 overflow-hidden">
+          {{ body }}
+        </p>
+        <nuxt-link :to=" localePath( link)" class="bg-primary text-center text-black mb-6 w-full rounded py-2"> {{ $t('more') }} </nuxt-link >
+      </div>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { ref, watch, onBeforeUnmount ,onMounted } from '@nuxtjs/composition-api'
+import { ref, watch, onBeforeUnmount } from '@nuxtjs/composition-api'
 
-import { useIntersectionObserver, useParallax } from '@vueuse/core'
+import { useIntersectionObserver } from '@vueuse/core'
 import { useMotion } from '@vueuse/motion'
 
 const root = ref<HTMLElement>()
@@ -96,7 +107,7 @@ const {
   body = '',
   img = '',
   link = '',
-  index = 0
+  index = 0,
 } = defineProps<{
   full: Boolean
   left: Boolean
@@ -121,8 +132,7 @@ const onSnipped = () => {
       opacity: 1,
       x: 0,
       transition: {
-        duration : 1000
-        
+        duration: 1000,
       },
     },
   })
