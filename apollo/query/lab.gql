@@ -1,4 +1,4 @@
-query LabAndQA($id: ID = "dGVybToxMTc=") {
+query LabAndQA($id: ID = "dGVybToxMTc=", $language: LanguageCodeEnum = EN) {
   category(id: $id) {
     id
     name
@@ -16,6 +16,9 @@ query LabAndQA($id: ID = "dGVybToxMTc=") {
           ... on Page {
             id
             title
+            translation(language: $language) {
+              id
+            }
             featuredImage {
               node {
                 id

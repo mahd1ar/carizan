@@ -42,9 +42,8 @@
           <span
             class="px-2 hover:px-4 transition-all flex justify-center items-center"
           >
-            <!-- TODO : translate this -->
             <!-- _SEEMORE  -->
-            ادامه
+            {{ $t('see_more') }}
           </span>
 
 

@@ -1,9 +1,0 @@
-query comments {
-  posts(first: 10) {
-    edges {
-      node {
-        title(format: RENDERED)
-      }
-    }
-  }
-}

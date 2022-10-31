@@ -46,35 +46,48 @@
   </main>
 </template>
 
-<script lang="ts" setup>
-import { ref, useContext } from '@nuxtjs/composition-api'
+<script lang="ts">
+import {
+  ref,
+  useContext,
+  useMeta,
+  defineComponent,
+} from '@nuxtjs/composition-api'
 import { onKeyStroke } from '@vueuse/core'
 
-const showDevBox = ref(false)
+export default defineComponent({
+  head: {},
+  setup() {
+    const { i18n } = useContext()
 
-onKeyStroke('m', (e) => {
-  e.preventDefault()
-  showDevBox.value = !showDevBox.value
+    const showDevBox = ref(false)
+    const m = useMeta()
+
+    m.htmlAttrs.value.lang = i18n.locale
+    m.htmlAttrs.value.dir = i18n.locale === 'fa' ? 'rtl' : 'ltr'
+
+    onKeyStroke('m', (e) => {
+      e.preventDefault()
+      showDevBox.value = !showDevBox.value
+    })
+
+    const locale = ref(i18n.locale)
+
+    const changeLocal = () => {
+      if (locale.value === 'fa') {
+        i18n.setLocale('en')
+        locale.value = 'en'
+      } else {
+        i18n.setLocale('fa')
+        locale.value = 'fa'
+      }
+    }
+
+    return {
+      changeLocal,
+      locale,
+      showDevBox
+    }
+  },
 })
-
-
-const { i18n } = useContext()
-
-console.log(i18n.defaultLocale)
-
-const locale = ref(i18n.locale)
-
-const changeLocal = () => {
-  if (locale.value === 'fa') {
-    i18n.setLocale('en')
-    locale.value = 'en'
-  } else {
-    i18n.setLocale('fa')
-    locale.value = 'fa'
-  }
-}
-
-// watchEffect(() => {
-//   if (shift.value && a.value)
-// })
 </script>

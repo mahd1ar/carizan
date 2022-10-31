@@ -27,9 +27,7 @@
               <h2
                 class="tracking-widest text-xs title-font font-medium text-gray-400 mb-1"
               >
-                <!-- TODO : translate -->
-                <!-- CATEGORY -->
-                دسته بندی ها
+                {{ $t('category') }}
               </h2>
               <h1
                 class="title-font text-lg font-medium text-gray-900 mb-3"
@@ -43,8 +41,7 @@
                   :to="i.link"
                   class="text-indigo-500 inline-flex items-center md:mb-2 lg:mb-0"
                 >
-                  <!-- TODO : translate this -->
-                  <!-- _MORE -->
+                 {{ $t('more') }}
                   <svg
                     class="w-4 h-4 ml-2"
                     viewBox="0 0 24 24"

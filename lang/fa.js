@@ -1,0 +1,17 @@
+export default {
+    contact_us: 'تماس با ما',
+    name: 'نام',
+    last_name: 'نام خانوادگی',
+    email: 'ایمیل',
+    subject: 'موضوع',
+    your_message: 'پیام شما',
+    send: 'ارسال پیام',
+    error: 'خطا',
+    wrong_email: 'ایمیل اشتباه وارد شده',
+    success: 'موفقیت',
+    your_message_has_been_successfully_sent: 'پیام شما با موفقیت ارسال شد',
+    category: 'موفقیت',
+    more: 'موفقیت',
+    _details: 'موفقیت',
+    see_more: 'موفقیت',
+}

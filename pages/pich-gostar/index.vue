@@ -20,7 +20,7 @@
             {{cats[0].description}}
           </p>
           <!-- :to="'/categories/' + cats[1].id" -->
-          <nuxt-link to="/products"
+          <nuxt-link to="/pich-gostar/products"
             class="bg-gray-700 px-4 py-2 text-bold text-primary flex items-center gap-2 rounded">
             <svg class="w-5 h-5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet"
               viewBox="0 0 24 24">
@@ -45,7 +45,7 @@
           <p class="text-gray-300" v-text="cats[1].description"></p>
 
           <!-- :to="'/categories/' + cats[0].id" -->
-          <nuxt-link to="/services"
+          <nuxt-link to="/pich-gostar/services"
             class="bg-gray-200 px-4 py-2 text-bold text-tm-black flex items-center gap-2 rounded">
             <svg class="w-5 h-5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet"
               viewBox="0 0 24 24">

@@ -29,11 +29,18 @@
 import PageTemplate from '~/components/inc/PageTemplate.vue'
 import FooterSection from '~/components/FooterSection.vue'
 import { useQuery } from '@vue/apollo-composable/dist';
-import { LabAndQaQuery, LabAndQaQueryVariables } from "types/types"
+import { LabAndQaQuery, LabAndQaQueryVariables, LanguageCodeEnum } from "@/types/types"
 import LABQL from "@/apollo/query/lab.gql"
 import { computed } from 'vue';
+import { useContext } from '@nuxtjs/composition-api';
 
-const variables: LabAndQaQueryVariables = {}
+const { i18n } = useContext()
+
+// TODO : fa and en
+const variables: LabAndQaQueryVariables = {
+  language : i18n.locale === 'fa' ? LanguageCodeEnum.En : LanguageCodeEnum.Fa,
+  id : i18n.locale === 'fa' ? "dGVybToxMTc=" : "dGVybToxMTc="
+}
 
 const { result } = useQuery<LabAndQaQuery>(LABQL, variables)
 
@@ -49,10 +56,15 @@ const pageInfo = computed(() => {
 const items = computed(() => {
   return result.value?.category?.contentNodes?.edges ?
     result.value?.category?.contentNodes?.edges.map(i => {
+      console.log(i.node)
       return i?.node?.__typename === 'Page' ? { 
         id: i.node.id, 
         image: i.node.featuredImage?.node?.sourceUrl || '',
-        link: '/page?id=' + i.node.id, 
+        link: '/page?' +
+              new URLSearchParams({
+                [i18n.locale]: i!.node.id ,
+                [variables.language!.toLowerCase()]: i.node!.translation!.id,
+              }).toString(),
         title: i.node.title || ''
        } : { id: '12', image: '', link: '', title: '' }
     }) : [];

@@ -8845,10 +8845,11 @@ export type HomeQuery = { __typename?: 'RootQuery', categories?: { __typename?: 
 
 export type LabAndQaQueryVariables = Exact<{
   id?: InputMaybe<Scalars['ID']>;
+  language?: InputMaybe<LanguageCodeEnum>;
 }>;
 
 
-export type LabAndQaQuery = { __typename?: 'RootQuery', category?: { __typename?: 'Category', id: string, name?: string | null, description?: string | null, cat_cf?: { __typename?: 'Category_CatCf', image?: { __typename?: 'MediaItem', altText?: string | null, sourceUrl?: string | null } | null } | null, contentNodes?: { __typename?: 'CategoryToContentNodeConnection', edges?: Array<{ __typename?: 'CategoryToContentNodeConnectionEdge', node?: { __typename?: 'MediaItem', id: string } | { __typename?: 'Page', id: string, title?: string | null, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null } | null } | null } | { __typename?: 'Post', id: string } | null } | null> | null } | null } | null };
+export type LabAndQaQuery = { __typename?: 'RootQuery', category?: { __typename?: 'Category', id: string, name?: string | null, description?: string | null, cat_cf?: { __typename?: 'Category_CatCf', image?: { __typename?: 'MediaItem', altText?: string | null, sourceUrl?: string | null } | null } | null, contentNodes?: { __typename?: 'CategoryToContentNodeConnection', edges?: Array<{ __typename?: 'CategoryToContentNodeConnectionEdge', node?: { __typename?: 'MediaItem', id: string } | { __typename?: 'Page', id: string, title?: string | null, translation?: { __typename?: 'Page', id: string } | null, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null } | null } | null } | { __typename?: 'Post', id: string } | null } | null> | null } | null } | null };
 
 export type PageQueryVariables = Exact<{
   id?: InputMaybe<Scalars['ID']>;
