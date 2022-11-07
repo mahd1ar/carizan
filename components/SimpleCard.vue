@@ -6,12 +6,18 @@
   >
     <div class="w-1/2 md:flex justify-start hidden">
       <div
-        class="flex flex-col items-start justify-center gap-4"
+        class="flex flex-col items-start justify-center gap-4 "
         :class="left ? 'pr-10' : 'pl-10'"
       >
+      <div class="relative" >
+
         <h2 class="text-5xl font-bold text-tm-gray-dark">
           {{ title }}
         </h2>
+        <span class="text-8xl text-tm-gray-dark opacity-10 absolute right-0 -top-1/2 font-bold">
+          {{ title }}
+        </span>
+      </div>
         <p
           ref="snipable"
           style="opacity: 0"

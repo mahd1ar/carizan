@@ -14,9 +14,7 @@
       aria-hidden="true"
       style="clip-path: polygon(53% 0, 100% 0, 100% 100%, 44% 100%)"
     ></div> -->
-    <div
-      class="w-6/12 absolute bottom-0 left-0 text-white container transform translate-y-10 z-10"
-    >
+    <div class="md:w-6/12 w-8/12 absolute bottom-0 left-0 text-white container transform translate-y-10 z-10">
       <svg
         style="color: #dbdbdb"
         class="object-contain mw-full"
@@ -37,10 +35,10 @@
       </svg>
     </div>
     <!-- style="background-image: url(/sample/sample3.jpg)" -->
-    <div class="w-6/12 h-96 flex-center">
+    <div class="w-full md:w-6/12 h-96 flex-center justify-start">
       <div class="max-w-lg text-center sm:text-left">
         <h1
-          class="text-2xl font-bold text-gray-500 sm:text-3xl md:text-7xl z-10 relative"
+          class="text-5xl font-bold text-gray-500  md:text-7xl z-10 relative"
         >
           کاریزان پیچ گستر
         </h1>

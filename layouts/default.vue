@@ -55,7 +55,8 @@ export default defineComponent({
   setup() {
     const { i18n } = useContext()
 const ctx = useContext()
-    const showDevBox = ref( !ctx.$device.isMobileOrTablet )
+    // const showDevBox = ref( !ctx.$device.isMobileOrTablet )
+    const showDevBox = ref( false )
     const m = useMeta()
 
     m.htmlAttrs.value.lang = i18n.locale

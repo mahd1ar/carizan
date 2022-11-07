@@ -11,8 +11,7 @@ export default (ctx) => {
     }
   })
   const httpLink = new HttpLink({
-    uri: 'http://api.carizanin.com/graphql', //process.env.nuxtApiUrl,
-    // uri: 'http://nikan-alumni.org/graphql', //process.env.nuxtApiUrl,
+    uri: 'https://api.carizanin.com/graphql', //process.env.nuxtApiUrl,
     credentials: 'omit',
   })
   const link = from([ssrMiddleware, httpLink])

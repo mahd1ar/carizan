@@ -1,5 +1,4 @@
 <template>
-    
     <CategoryWithProductsPage :id="id" />
 </template>
 

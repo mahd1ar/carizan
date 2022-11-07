@@ -94,7 +94,7 @@
           <button
             type="button"
             @click="showMobileMenu = true"
-            class="p-2 inline-flex justify-center items-center gap-2  border font-medium  text-primary-dark shadow-sm align-middle focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600 transition-all  border-primary-dark  focus:ring-offset-gray-800"
+            class="p-2 inline-flex justify-center items-center gap-2 border font-medium text-tm-black shadow-sm align-middle focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600 transition-all border-tm-black focus:ring-offset-gray-800"
             aria-label="Toggle navigation"
           >
             <svg
@@ -259,6 +259,38 @@ const navItems = computed(() => {
   &::after {
     content: '';
     @apply transition-all ease-out border-primary-light w-6 border-b-4 rounded;
+  }
+}
+
+// .mobile-nav .nuxt-link-active {
+//   display: flex;
+//   align-items: center;
+//   gap: 2;
+//   &::before {
+//     content: '';
+//     box-sizing: border-box;
+//     position: relative;
+//     display: block;
+//     transform: scale(var(--ggs, 1));
+//     width: 16px;
+//     height: 16px;
+//     border: 3px solid;
+//   }
+// }
+
+button#btn {
+  animation-name: rotate;
+  animation-duration: 300ms;
+  animation-fill-mode: forwards;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(45deg) translateX(3px);
+  }
+
+  to {
+    transform: rotate(0deg) translateX(3px);
   }
 }
 </style>
