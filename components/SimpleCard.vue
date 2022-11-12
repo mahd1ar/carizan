@@ -1,37 +1,38 @@
 <template>
   <div
     ref="root"
-    class="w-full flex gap-2 mb-5"
+    class="mb-5 flex w-full gap-2"
     :class="{ container: !full, 'flex-row-reverse': left }"
   >
-    <div class="w-1/2 md:flex justify-start hidden">
+    <div class="hidden w-1/2 justify-start md:flex">
       <div
-        class="flex flex-col items-start justify-center gap-4 "
-        :class="left ? 'pr-10' : 'pl-10'"
+        class="flex flex-col items-start justify-center gap-4"
+        :class="leftt ? 'pr-10' : 'pl-10'"
       >
-      <div class="relative" >
-
-        <h2 class="text-5xl font-bold text-tm-gray-dark">
-          {{ title }}
-        </h2>
-        <span class="text-8xl text-tm-gray-dark opacity-10 absolute right-0 -top-1/2 font-bold">
-          {{ title }}
-        </span>
-      </div>
+        <div class="relative">
+          <h2 class="text-5xl font-bold text-tm-gray-dark">
+            {{ title }}
+          </h2>
+          <span
+            class="absolute left-0 -top-1/2 text-8xl font-bold text-tm-gray-dark opacity-10 rtl:left-auto"
+          >
+            {{ title }}
+          </span>
+        </div>
         <p
           ref="snipable"
           style="opacity: 0"
-          class="text-zinc-500 pl-10 h-24 overflow-hidden"
+          class="h-24 overflow-hidden pr-10 text-zinc-500 rtl:pl-10 rtl:pr-0"
           v-snip="{ lines: 4, onSnipped }"
         >
           {{ body }}
         </p>
         <nuxt-link
           :to="link"
-          class="bg-gray-700 px-4 overflow-hidden inline-flex flex-row-reverse py-2 text-bold text-primary items-start gap-1 rounded"
+          class="text-bold z-0 inline-flex flex-row-reverse items-start gap-1 overflow-hidden rounded bg-gray-700 px-4 py-2 text-primary"
         >
           <svg
-            class="w-5 h-5 flex-shrink-0"
+            class="h-5 w-5 flex-shrink-0"
             xmlns="http://www.w3.org/2000/svg"
             preserveAspectRatio="xMidYMid meet"
             viewBox="0 0 24 24"
@@ -46,7 +47,7 @@
             />
           </svg>
           <span
-            class="px-2 hover:px-4 transition-all flex justify-center items-center"
+            class="flex items-center justify-center px-2 transition-all hover:px-4"
           >
             <!-- _SEEMORE  -->
             {{ $t('see_more') }}
@@ -55,7 +56,7 @@
       </div>
     </div>
     <div
-      class="relative w-full md:w-1/2 h-[400px] rounded overflow-hidden shadow-xl shadow-gray-400"
+      class="relative h-[400px] w-full overflow-hidden rounded shadow-xl shadow-gray-400 md:w-1/2"
     >
       <img
         v-if="img"
@@ -77,29 +78,40 @@
           },
         }"
         ref="target"
-        class="origin-right translate-x-24 scale-150 h-full w-full object-cover transition-all ease-out duration-700"
         :src="img"
+        loading="lazy"
+        class="h-full w-full origin-right translate-x-24 scale-150 object-cover transition-all duration-700 ease-out"
         alt=""
       />
 
       <div
-        class="absolute bottom-0 md:hidden flex flex-col left-0 w-full gap-4 bg-black bg-opacity-50 text-white px-8"
+        class="absolute bottom-0 left-0 flex w-full flex-col gap-4 bg-black bg-opacity-50 px-8 text-white md:hidden"
       >
-        <h2 class="text-4xl mt-4">
+        <h2 class="mt-4 text-4xl">
           {{ title }}
         </h2>
 
-        <p v-snip="{ lines: 4 }" class="text-gray-300 h-24 overflow-hidden">
+        <p v-snip="{ lines: 4 }" class="h-24 overflow-hidden text-gray-300">
           {{ body }}
         </p>
-        <nuxt-link :to=" localePath( link)" class="bg-primary text-center text-black mb-6 w-full rounded py-2"> {{ $t('more') }} </nuxt-link >
+        <nuxt-link
+          :to="localePath(link)"
+          class="mb-6 w-full rounded bg-primary py-2 text-center text-black"
+        >
+          {{ $t('more') }}
+        </nuxt-link>
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { ref, watch, onBeforeUnmount } from '@nuxtjs/composition-api'
+import {
+  ref,
+  computed,
+  onBeforeUnmount,
+  useContext,
+} from '@nuxtjs/composition-api'
 
 import { useIntersectionObserver } from '@vueuse/core'
 import { useMotion } from '@vueuse/motion'
@@ -124,6 +136,7 @@ const {
   index: number
 }>()
 
+const { i18n } = useContext()
 const target = ref(null)
 const snipable = ref<HTMLElement>()
 const targetIsVisible = ref(false)
@@ -155,5 +168,7 @@ const { stop } = useIntersectionObserver(
   }
 )
 
-watch(targetIsVisible, () => {})
+const leftt = computed(() => {
+  return Boolean(Number(left) ^ Number(i18n.locale !== 'fa'))
+})
 </script>

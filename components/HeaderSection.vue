@@ -65,9 +65,9 @@
       aria-label="Global"
     >
       <div class="flex items-center justify-between">
-        <a
+        <nuxt-link
           class="inline-flex gap-x-2 text-xl font-semibold text-black items-end"
-          href="#"
+          :to="localePath('/')"
         >
           <div class="w-12 rounded aspect-square flex-center flex-shrink-0">
             <svg
@@ -89,7 +89,7 @@
             </svg>
           </div>
           <div class="leading-5">Carizan Pich Gostar</div>
-        </a>
+        </nuxt-link>
         <div class="md:hidden">
           <button
             type="button"

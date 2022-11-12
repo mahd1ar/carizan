@@ -1,5 +1,5 @@
 overwrite: true
-schema: 'http://api.carizanin.com/graphql'
+schema: 'https://api.carizanin.com/graphql'
 documents: 'apollo/**/*.gql'
 generates:
   types/graphql.d.ts:

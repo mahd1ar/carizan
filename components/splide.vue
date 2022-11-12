@@ -4,24 +4,27 @@
       class="fixed z-50 top-0 left-0 w-full h-full bg-opacity-50 bg-black flex justify-center items-center"
     >
       <div class="container mx-auto relative">
-        <button
+        <div class="relative">
+          <button
           @click="closeDialog"
-          class="absolute text-black top-10 left-0 w-10 h-10 bg-white rounded z-50"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="w-10 h-10"
-            preserveAspectRatio="xMidYMid meet"
-            viewBox="0 0 36 36"
+          class="absolute text-black -top-full left-0 w-10 h-10 bg-white bg-opacity-75 rounded-sm z-50"
           >
-            <path
-              fill="currentColor"
-              d="m19.41 18l8.29-8.29a1 1 0 0 0-1.41-1.41L18 16.59l-8.29-8.3a1 1 0 0 0-1.42 1.42l8.3 8.29l-8.3 8.29A1 1 0 1 0 9.7 27.7l8.3-8.29l8.29 8.29a1 1 0 0 0 1.41-1.41Z"
-              class="clr-i-outline clr-i-outline-path-1"
-            />
-            <path fill="none" d="M0 0h36v36H0z" />
-          </svg>
-        </button>
+          <!-- {{props.selectedItem}} -->
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-10 h-10"
+              preserveAspectRatio="xMidYMid meet"
+              viewBox="0 0 36 36"
+            >
+              <path
+                fill="currentColor"
+                d="m19.41 18l8.29-8.29a1 1 0 0 0-1.41-1.41L18 16.59l-8.29-8.3a1 1 0 0 0-1.42 1.42l8.3 8.29l-8.3 8.29A1 1 0 1 0 9.7 27.7l8.3-8.29l8.29 8.29a1 1 0 0 0 1.41-1.41Z"
+                class="clr-i-outline clr-i-outline-path-1"
+              />
+              <path fill="none" d="M0 0h36v36H0z" />
+            </svg>
+          </button>
+        </div>
 
         <section class="splide" aria-label="Splide">
           <div class="splide__track">
@@ -29,7 +32,7 @@
               <li
                 v-for="(i, index) in props.images"
                 :key="index"
-                class="splide__slide"
+                class="splide__slide flex-center"
               >
                 <img :src="i.src" :alt="i.alt || ''" />
               </li>
@@ -49,6 +52,7 @@ import {
   onUnmounted,
   PropType,
 } from '@nuxtjs/composition-api'
+import { onKeyStroke } from '@vueuse/core'
 
 let splide: Splide | null = null
 const props = defineProps({
@@ -62,14 +66,23 @@ const props = defineProps({
   },
   selectedItem: { type: Number },
 })
+// property : { type : String as PropType<string | undefined> }
 
 const emit = defineEmits(['update:selectedItem'])
 
 onMounted(() => {
-  splide = new Splide('.splide') //.mount()
+  splide = new Splide('.splide', {
+    height: '400px',
+  })
+  
   splide.on('mounted', () => {
     splide?.go(props.selectedItem || 0)
   })
+
+  splide.on('moved' , ()=> {
+    splide && emit('update:selectedItem', splide.index)
+  })
+  
   splide.mount()
 })
 
@@ -87,6 +100,22 @@ watch(
 const closeDialog = () => {
   emit('update:selectedItem', -1)
 }
+
+onKeyStroke(['escape', 'Escape', 'ESC', 'Esc'], (e) => {
+  closeDialog()
+})
+
+onKeyStroke(['ArrowLeft'], (e) => {
+  e.preventDefault()
+  if (props.selectedItem && props.selectedItem !== 0)
+    emit('update:selectedItem', props.selectedItem - 1)
+})
+
+onKeyStroke(['ArrowRight'], (e) => {
+  e.preventDefault()
+  if (props.images && props.selectedItem! + 1 < props.images.length)
+    emit('update:selectedItem', props.selectedItem! + 1)
+})
 </script>
 
 <style>

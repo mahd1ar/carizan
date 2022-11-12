@@ -10,7 +10,7 @@
       :key="index"
       :title="item.title"
       :body="item.excerpt"
-      :left="!!(index % 2)"
+      :left="!!( (index % 2 ) ^ ($i18n.locale === 'fa' ? 1 : 0) )"
       :style="{ '--count': index }"
       :link="item.link"
       :img="item.image"
@@ -23,6 +23,7 @@
 
 <script lang="ts" setup>
 import { PropType } from '@nuxtjs/composition-api'
+import i18n from '~/plugins/i18n';
 
 defineProps({
   items: Array as PropType<

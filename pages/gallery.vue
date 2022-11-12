@@ -1,40 +1,195 @@
 <template>
   <div>
-    <h1 class="text-3xl text-center my-4">image gallery</h1>
-    <div class="container">
-      <div class="grid grid-cols-3 gap-2   overflow-hidden">
-        <div
-          v-for="(i, index) in gs"
-          :key="index"
-          @click="selectedItem = index"
-          class="w-full h-full"
-        >
-          <img :src="i" alt="" class="w-full h-full rounded object-cover shadow-lg" />
+    <section class="body-font text-gray-600">
+      <div class="container mx-auto flex flex-wrap px-5 py-24">
+        <div class="flex w-full flex-wrap">
+          <h1 class="title-font mb-4 text-2xl font-medium text-gray-900 sm:text-3xl lg:mb-0 lg:w-1/3">
+            {{ $t('image_gallery') }}
+          </h1>
+          <p class="mx-auto text-base leading-relaxed lg:w-2/3 lg:pl-6">
+            Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical
+            gentrify, subway tile poke farm-to-table. Franzen you probably
+            haven't heard of them man bun deep jianbing selfies heirloom.
+          </p>
         </div>
+
+
+        <section class="overflow-hidden text-gray-700 ">
+          <div class="container px-5 py-2 mx-auto lg:pt-12 lg:px-32">
+
+            <client-only>
+              <div class="flex gap-2 pb-8">
+                <div v-for="cat in categories" :key="cat.id" @click="selectSubCategory(cat.id)"
+                  :class="cat.id === subcategoryID ? 'bg-primary font-bold border-primary-light text-black' : 'hover:bg-slate-200 cursor-pointer bg-white text-tm-black border-tm-black' "
+                  class="flex items-center justify-center rounded border py-1 px-3 text-sm  h-10">
+                  {{ cat.label }}
+                </div>
+              </div>
+            </client-only>
+            <loading-indicator :is-loading="loading">
+              <!-- old -->
+              <!-- <div class="flex flex-wrap" v-for="(i, index) in images" :key="index">
+            <div
+              class="flex w-1/2 flex-wrap"
+              v-for="(j, index2) in i"
+              :key="index2"
+            >
+              <div
+                v-for="(k, index3) in j"
+                :key="index3"
+                :class="
+                  [5, 0].includes(index2 * 3 + index3) ? 'w-full' : 'w-1/2'
+                "
+                class="relative p-1 md:p-2"
+              >
+                <img
+                  alt="gallery"
+                  class="block h-full w-full object-cover object-center"
+                  :src="k.src"
+                />
+              </div>
+            </div>
+          </div> -->
+
+              <div class="flex flex-wrap -m-1 md:-m-2">
+               
+                <div v-for="(img,index) in images" :key="index" class="flex flex-wrap w-1/3">
+                  <div class="w-full p-1 md:p-2">
+                    <img
+                    @click="openImage(index)"
+                    alt="gallery" class="block object-cover object-center w-full h-full rounded-lg"
+                      :src="img.src">
+                  </div>
+                </div>
+              
+              </div>
+            </loading-indicator>
+
+
+          </div>
+        </section>
+
+
+
+
+
+
+
       </div>
-    </div>
-    <Splide
-      v-if="selectedItem > -1"
-      :selected-item.sync="selectedItem"
-      :images="images"
-    />
+    </section>
+
+    <Splide v-if="selectedItem > -1" :selected-item.sync="selectedItem" :images="images" />
   </div>
 </template>
 
 <script lang="ts" setup>
-import { useRoute, computed, ref } from '@nuxtjs/composition-api'
+import {
+  computed,
+  ref,
+  useContext,
+} from '@nuxtjs/composition-api'
+import { chunk } from '~/data/utils'
 
+import GALLERYQL from '@/apollo/query/gallery.gql'
+import { useQuery } from '@vue/apollo-composable/dist'
+import { GalleryQuery, GalleryQueryVariables } from '~/types/types'
+const { i18n } = useContext()
+const categories = ref<{ label: string, id: string }[]>([])
+
+const variable: GalleryQueryVariables = {
+  id: i18n.locale === 'fa' ? 'dGVybToxNTE=' : 'dGVybToxNTM=',
+}
+
+const { result, loading, refetch, onResult } = useQuery<GalleryQuery>(GALLERYQL, variable)
 const selectedItem = ref(-1)
+const subcategoryID = ref(variable.id)
 
-const router = useRoute()
-const gId = router.value.params.id
 
-const gs = [
-  'http://api.carizanin.com/wp-content/uploads/2022/10/annealing-metal-01.jpeg',
-  'http://api.carizanin.com/wp-content/uploads/2022/10/DSC_1751-12.jpg',
-]
+onResult(result => {
+  if (categories.value.length > 0) return
 
-const images = computed(() => {
-  return gs.map((i) => ({ src: i, alt: '' }))
+  const cats = result.data?.category?.children?.edges
+    ? result.data.category.children.edges.map((i) => ({
+      label: i!.node!.name || '',
+      id: i!.node!.id,
+    }))
+    : [];
+
+  cats.unshift({
+    label: String(i18n.t('all_categories')),
+    id: variable.id,
+  })
+
+  cats.forEach(i => {
+    categories.value.push(i)
+  })
+
 })
+
+const selectSubCategory = (id: string) => {
+  refetch({ id })
+  subcategoryID.value = id
+}
+
+// const images = computed(() => {
+//   return chunk(
+//     result.value?.category?.mediaItems?.edges?.map(i => ({ src: i?.node?.sourceUrl || '', alt: 'gallery' })) || []
+//     , 6).map(i => chunk(i, 3))
+// })
+const images = computed(() => {
+  return result.value?.category?.mediaItems?.edges?.map(i => ({ src: i?.node?.sourceUrl || '', alt: 'gallery' })) || []
+})
+
+const openImage = (index : number) => {
+  selectedItem.value = index
+}
+
+// :initial="{
+//               scale: 1.5,
+//               y: 100,
+//               opacity: 0,
+//             }"
+//             :enter="{
+//               opacity: 1,
+//               y: 0,
+//               scale: 1,
+//               transition: {
+//                 type: 'spring',
+//                 stiffness: 250,
+//                 damping: 25,
+//                 mass: 0.5,
+//                 delay: index * 70,
+//               },
+//             }"
 </script>
+
+<style scoped>
+.list-enter-active,
+.list-leave-active {
+  transition: all 1s ease;
+  transition-delay: calc(var(--count) * 100ms);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.list-enter {
+  /* transform: scale(1.1) translateY(100px); */
+  clip-path: polygon(0 0, 100% 0, 100% 9%, 0 9%);
+  opacity: 0;
+}
+
+.list-leave-to
+
+/* .list-leave-active below version 2.1.8 */
+  {
+  opacity: 0;
+}
+
+.list-move
+
+/* .list-leave-active below version 2.1.8 */
+  {
+  opacity: 0;
+  width: 0%;
+  /* transform: translateY(30px); */
+}
+</style>

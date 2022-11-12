@@ -49,7 +49,6 @@ const { result, loading } = useQuery<ChildCategoriesBySlugQuery>(
 )
 
 const items = computed(() => {
-
   if (result.value?.category?.contentNodes) {
     return (
       result.value.category.contentNodes.nodes?.map((i) => {
@@ -73,10 +72,13 @@ const items = computed(() => {
       title: i?.node?.name,
       excerpt: i?.node?.description,
       link:
-        route.value.fullPath +
-        '/' +
-        i!.node!.name +
-        `?fa=${i!.node!.id}&en=${i!.node!.translation!.id}`,
+        `${route.value.fullPath}/${i!.node!.name}?` +
+        new URLSearchParams({
+          [i18n.locale]: i!.node!.id,
+          [variable.language!.toLowerCase()]: i!.node!.translation!.id,
+          product_type: '',
+        }).toString(),
+
       image: i?.node?.cat_cf?.image?.sourceUrl || '',
     }))
 })

@@ -1,7 +1,7 @@
 <template>
   <div>
     <CategoryWithProductsPage :id="id" />   
-    <ShoppingCards2 class="top-5" :cards="co" />
+    <!-- <ShoppingCards2 class="top-5" :cards="co" /> -->
   </div>
 </template>
 

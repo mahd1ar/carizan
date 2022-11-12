@@ -4,12 +4,12 @@
   <div class="w-full">
     <HeroSection />
 
-    <div v-if="cats[0]" class="flex relative bg-primary h-[50vh]">
-      <div class="w-6/12 relative product">
-        <img class="w-full object-cover h-full" :src="cats[0].img" alt="" />
+    <div v-if="cats[0]" class="relative flex h-[50vh] bg-primary">
+      <div class="product relative w-6/12">
+        <img class="h-full w-full object-cover" :src="cats[0].img" alt="" />
       </div>
       <div
-        class="sm:w-6/12 sm:relative flex items-center sm:bg-primary overflow-hidden absolute w-full h-full bg-none"
+        class="absolute flex h-full w-full items-center overflow-hidden bg-none sm:relative sm:w-6/12 sm:bg-primary"
       >
         <!-- <img
             class="w-full object-cover absolute grayscale scale-150 opacity-10 pointer-events-none"
@@ -17,21 +17,23 @@
             alt=""
           /> -->
         <div
-          class="container flex flex-col justify-start sm:items-start gap-4 items-end"
+          class="container flex flex-col items-end justify-start gap-4 sm:items-start"
         >
-          <h2 class="text-5xl font-semibold text-gray-700">
+          <h2 class="text-5xl font-semibold capitalize text-gray-700">
             {{ cats[0].name }}
           </h2>
           <p>
             {{ cats[0].description }}
           </p>
-          <!-- :to="'/categories/' + cats[1].id" -->
           <nuxt-link
-            to="/pich-gostar/products"
-            class="bg-gray-700 px-4 py-2 text-bold text-primary flex items-center gap-2 rounded"
+            :to="localePath('/pich-gostar/products')"
+            class="text-bold flex items-center gap-2 rounded bg-gray-700 px-4 py-2 text-primary rtl:flex-row-reverse"
           >
+            <span class="px-2 transition-all hover:px-4">
+              {{ $t('see') }}
+            </span>
             <svg
-              class="w-5 h-5 flex-shrink-0"
+              class="h-5 w-5 flex-shrink-0 rotate-180 rtl:rotate-0"
               xmlns="http://www.w3.org/2000/svg"
               preserveAspectRatio="xMidYMid meet"
               viewBox="0 0 24 24"
@@ -45,7 +47,6 @@
                 d="M13.293 6.293L7.586 12l5.707 5.707l1.414-1.414L10.414 12l4.293-4.293z"
               />
             </svg>
-            <span class="px-2 hover:px-4 transition-all"> مشاهده </span>
           </nuxt-link>
         </div>
       </div>
@@ -53,32 +54,34 @@
 
     <div
       v-if="cats[1]"
-      class="flex relative flex-row-reverse bg-tm-gray-dark h-[50vh]"
+      class="relative flex h-[50vh] flex-row-reverse bg-tm-gray-dark"
     >
-      <div class="w-7/12 relative">
+      <div class="relative w-7/12">
         <img
           v-if="cats[1].img"
-          class="w-full object-cover h-full service"
+          class="service h-full w-full object-cover"
           :src="cats[1].img"
           alt=""
         />
       </div>
       <div
-        class="w-5/12 relative flex items-center bg-tm-gray-dark overflow-hidden"
+        class="relative flex w-5/12 items-center overflow-hidden bg-tm-gray-dark"
       >
-        <div class="container flex flex-col justify-start items-start gap-4">
-          <h2 class="text-5xl font-semibold text-gray-200">
+        <div class="container flex flex-col items-start justify-start gap-4">
+          <h2 class="text-5xl font-semibold capitalize text-gray-200">
             {{ cats[1].name }}
           </h2>
           <p class="text-gray-300" v-text="cats[1].description"></p>
 
-          <!-- :to="'/categories/' + cats[0].id" -->
           <nuxt-link
-            to="/pich-gostar/services"
-            class="bg-gray-200 px-4 py-2 text-bold text-tm-black flex items-center gap-2 rounded"
+            :to="localePath('/pich-gostar/services')"
+            class="text-bold flex items-center gap-2 rounded bg-gray-200 px-4 py-2 text-tm-black rtl:flex-row-reverse"
           >
+            <span class="px-2 transition-all hover:px-4">
+              {{ $t('see') }}
+            </span>
             <svg
-              class="w-5 h-5 flex-shrink-0"
+              class="h-5 w-5 flex-shrink-0 rotate-180 rtl:rotate-0"
               xmlns="http://www.w3.org/2000/svg"
               preserveAspectRatio="xMidYMid meet"
               viewBox="0 0 24 24"
@@ -92,23 +95,24 @@
                 d="M13.293 6.293L7.586 12l5.707 5.707l1.414-1.414L10.414 12l4.293-4.293z"
               />
             </svg>
-            <span class="px-2 hover:px-4 transition-all"> مشاهده </span>
           </nuxt-link>
         </div>
       </div>
     </div>
 
     <section class="container">
-      <div class="w-full flex flex-col sm:flex-row py-20 relative">
-        <div class="sm:w-4/12 w-full rounded shadow-md overflow-hidden">
+      <div class="relative flex w-full flex-col py-20 sm:flex-row">
+        <div class="w-full overflow-hidden rounded shadow-md sm:w-4/12">
           <img
             :src="explain.imageSrc || '/sample/sample3.jpg'"
-            class="object-cover h-full w-full"
+            class="h-full w-full object-cover"
             :alt="explain.imageAlt"
           />
         </div>
-        <div class="sm:w-8/12 w-full bg-black text-white px-8 absolute sm:relative sm:bg-gray-100 sm:text-black bottom-0 py-4 sm:py-0">
-          <div class="gap-4 flex flex-col">
+        <div
+          class="absolute bottom-0 w-full bg-black px-8 py-4 text-white sm:relative sm:w-8/12 sm:bg-gray-100 sm:py-0 sm:text-black"
+        >
+          <div class="flex flex-col gap-4">
             <h2 class="text-3xl font-semibold text-primary sm:text-gray-700">
               {{ explain.title }}
             </h2>
@@ -118,24 +122,24 @@
       </div>
     </section>
 
-    <section class="text-gray-800 body-font py-24">
+    <section class="body-font py-24 text-gray-800">
       <div
-        class="container relative px-5 mx-auto flex flex-wrap rounded-lg shadow overflow-hidden"
+        class="container relative mx-auto flex flex-wrap overflow-hidden rounded-lg px-5 shadow"
       >
         <img
-          class="absolute h-full object-cover w-full"
+          class="absolute h-full w-full object-cover"
           src="/sample/sample4.jpg"
           alt=""
         />
         <div
-          class="w-full h-full bg-gradient-to-l from-slate-200 to-transparent absolute top-0 left-0"
+          class="absolute top-0 left-0 h-full w-full bg-gradient-to-l from-slate-200 to-transparent"
           aria-hidden="true"
         ></div>
         <div
-          class="relative flex flex-wrap -mx-4 mt-auto mb-auto lg:w-1/2 sm:w-2/3 content-start sm:pr-10"
+          class="relative -mx-4 mt-auto mb-auto flex flex-wrap content-start sm:w-2/3 sm:pr-10 lg:w-1/2"
         >
-          <div class="w-full sm:p-4 px-4 mb-6">
-            <h1 class="title-font font-medium text-xl mb-2 text-gray-900">
+          <div class="mb-6 w-full px-4 sm:p-4">
+            <h1 class="title-font mb-2 text-xl font-medium text-gray-900">
               Moon hashtag pop-up try-hard offal truffaut
             </h1>
             <div class="leading-relaxed">
@@ -143,28 +147,28 @@
               keytar neutra sustainable fingerstache kickstarter.
             </div>
           </div>
-          <div class="p-4 sm:w-1/2 lg:w-1/4 w-1/2">
-            <h2 class="title-font font-medium text-3xl text-gray-900">2.7K</h2>
+          <div class="w-1/2 p-4 sm:w-1/2 lg:w-1/4">
+            <h2 class="title-font text-3xl font-medium text-gray-900">2.7K</h2>
             <p class="leading-relaxed">Users</p>
           </div>
-          <div class="p-4 sm:w-1/2 lg:w-1/4 w-1/2">
-            <h2 class="title-font font-medium text-3xl text-gray-900">1.8K</h2>
+          <div class="w-1/2 p-4 sm:w-1/2 lg:w-1/4">
+            <h2 class="title-font text-3xl font-medium text-gray-900">1.8K</h2>
             <p class="leading-relaxed">Subscribes</p>
           </div>
-          <div class="p-4 sm:w-1/2 lg:w-1/4 w-1/2">
-            <h2 class="title-font font-medium text-3xl text-gray-900">35</h2>
+          <div class="w-1/2 p-4 sm:w-1/2 lg:w-1/4">
+            <h2 class="title-font text-3xl font-medium text-gray-900">35</h2>
             <p class="leading-relaxed">Downloads</p>
           </div>
-          <div class="p-4 sm:w-1/2 lg:w-1/4 w-1/2">
-            <h2 class="title-font font-medium text-3xl text-gray-900">4</h2>
+          <div class="w-1/2 p-4 sm:w-1/2 lg:w-1/4">
+            <h2 class="title-font text-3xl font-medium text-gray-900">4</h2>
             <p class="leading-relaxed">Products</p>
           </div>
         </div>
         <div
-          class="lg:w-1/2 sm:w-1/3 w-full rounded-lg overflow-hidden mt-6 sm:mt-0"
+          class="mt-6 w-full overflow-hidden rounded-lg sm:mt-0 sm:w-1/3 lg:w-1/2"
         >
           <img
-            class="object-cover object-center w-full h-full"
+            class="h-full w-full object-cover object-center"
             src="https://dummyimage.com/600x300"
             alt="stats"
           />
@@ -238,7 +242,7 @@ export default defineComponent({
   clip-path: polygon(0px 0px, 100% 0px, 60% 100%, 0% 100%);
 }
 
-html[dir=ltr] .service {
+html[dir='ltr'] .service {
   clip-path: polygon(80px 0px, 100% 0px, 100% 100%, 0% 100%);
 }
 
@@ -252,7 +256,7 @@ html[dir=ltr] .service {
   clip-path: polygon(60% 0%, 100% 0, 100% 100%, 0% 100%);
 }
 
-html[dir=ltr] .product {
+html[dir='ltr'] .product {
   clip-path: polygon(0% 0%, 100% 0, 80% 100%, 0% 100%);
 }
 

@@ -27,11 +27,14 @@ import {
   LanguageCodeEnum,
 } from '../../../types/types'
 
-import { computed } from '@nuxtjs/composition-api'
+import { computed, useContext, useRoute } from '@nuxtjs/composition-api'
+
+const {i18n} = useContext();
+const route = useRoute()
 
 const variables: CategoriesWithCategoriesQueryVariables = {
-  id: 'dGVybToxNDM=',
-  language: LanguageCodeEnum.Fa,
+  id: i18n.locale === 'fa' ? 'dGVybToxNDM=' : "dGVybToxNDU=",
+  language: i18n.locale === 'fa' ? LanguageCodeEnum.En :  LanguageCodeEnum.Fa,
 }
 
 const { result } = useQuery<CategoriesWithCategoriesQuery>(CATQ, variables)
@@ -53,10 +56,10 @@ const items = computed(() => {
       title: i?.node?.name || '',
 
       link: i?.node?.name
-        ? 'standards/' + i?.node?.name + '?' +
+        ? route.value.path + '/' + i?.node?.name + '?' +
           new URLSearchParams({
-            fa: i!.node!.id,
-            en: i.node!.translation!.id,
+            [i18n.locale]: i!.node!.id,
+            [variables.language!.toLowerCase()]: i.node!.translation!.id,
             product_type: 'media',
           }).toString()
         : '#',

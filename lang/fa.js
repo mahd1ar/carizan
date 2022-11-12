@@ -23,4 +23,7 @@ export default {
     no_information_available: 'اطلاعاتی در دسترس نیست',
     diameter: 'قطر',
     length: 'طول',
+    see : 'مشاهده',
+    all_categories : 'همه ی دسته ها',
+    image_gallery : 'گالری تصاویر' 
 }

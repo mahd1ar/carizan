@@ -26,8 +26,6 @@ const { id } = defineProps({
 })
 
 
-console.log(id)
-
 const { i18n } = useContext()
 
 const variable: CategoriesWithProductsQueryVariables = {

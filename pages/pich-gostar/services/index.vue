@@ -20,7 +20,6 @@ if (route.value.query.product_type === undefined)
   })
 
 const id = computed(() => {
-  // TODO : change id for en lang
-  return i18n.locale === 'fa' ? 'dGVybTozMw==' : 'dGVybTozMw=='
+  return i18n.locale === 'fa' ? 'dGVybTozMw==' : 'dGVybToxMjk='
 })
 </script>

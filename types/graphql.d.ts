@@ -35,6 +35,15 @@ declare module '*/child-categories-by-slug.gql' {
 }
     
 
+declare module '*/gallery.gql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const gallery: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
 declare module '*/home-page.gql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;

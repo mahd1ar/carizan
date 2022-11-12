@@ -9,7 +9,7 @@ import CategoryPage from '~/components/page/CategoryPage.vue';
 const {i18n} = useContext()
 
 const id = computed(()=>{
-    // TODO : change id for en lang
-    return i18n.locale === 'fa' ? "dGVybToxNQ==" : 'dGVybToxNQ=='
+    return i18n.locale === 'fa' ? "dGVybToxNQ==" : 'dGVybToxMw=='
 })
+
 </script>

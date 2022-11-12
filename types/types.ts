@@ -64,8 +64,6 @@ export type Category = DatabaseIdentifier & HierarchicalTermNode & MenuItemLinka
   ancestors?: Maybe<CategoryToAncestorsCategoryConnection>;
   /** Added to the GraphQL Schema because the ACF Field Group &quot;دسته بندیها&quot; was set to Show in GraphQL. */
   cat_cf?: Maybe<Category_CatCf>;
-  /** Added to the GraphQL Schema because the ACF Field Group &quot;test&quot; was set to Show in GraphQL. */
-  category?: Maybe<TermNode_Category>;
   /**
    * The id field matches the WP_Post-&gt;ID field.
    * @deprecated Deprecated in favor of databaseId
@@ -652,8 +650,6 @@ export type Comment = DatabaseIdentifier & Node & {
   author?: Maybe<CommentToCommenterConnectionEdge>;
   /** IP address for the author. This field is equivalent to WP_Comment-&gt;comment_author_IP and the value matching the &quot;comment_author_IP&quot; column in SQL. */
   authorIp?: Maybe<Scalars['String']>;
-  /** Added to the GraphQL Schema because the ACF Field Group &quot;test&quot; was set to Show in GraphQL. */
-  category?: Maybe<Comment_Category>;
   /**
    * ID for the comment, unique among comments.
    * @deprecated Deprecated in favor of databaseId
@@ -909,14 +905,6 @@ export type CommentToParentCommentConnectionWhereArgs = {
   userId?: InputMaybe<Scalars['ID']>;
 };
 
-/** Field Group */
-export type Comment_Category = AcfFieldGroup & {
-  __typename?: 'Comment_Category';
-  cat?: Maybe<Array<Maybe<Category>>>;
-  /** The name of the ACF Field Group */
-  fieldGroupName?: Maybe<Scalars['String']>;
-};
-
 /** The author of a comment */
 export type Commenter = {
   /** Avatar object for user. The avatar object can be retrieved in different sizes by specifying the size argument. */
@@ -973,8 +961,6 @@ export enum CommentsConnectionOrderbyEnum {
 
 /** Nodes used to manage content */
 export type ContentNode = {
-  /** Added to the GraphQL Schema because the ACF Field Group &quot;test&quot; was set to Show in GraphQL. */
-  category?: Maybe<ContentNode_Category>;
   /** Connection between the ContentNode type and the ContentType type */
   contentType?: Maybe<ContentNodeToContentTypeConnectionEdge>;
   /** The name of the Content Type the node belongs to */
@@ -1120,31 +1106,13 @@ export type ContentNodeToEnqueuedStylesheetConnectionEdge = {
   node?: Maybe<EnqueuedStylesheet>;
 };
 
-/** Field Group */
-export type ContentNode_Category = AcfFieldGroup & {
-  __typename?: 'ContentNode_Category';
-  cat?: Maybe<Array<Maybe<Category>>>;
-  /** The name of the ACF Field Group */
-  fieldGroupName?: Maybe<Scalars['String']>;
-};
-
 /** A union of Content Node Types that support revisions */
 export type ContentRevisionUnion = Page | Post;
 
 /** The template assigned to a node of content */
 export type ContentTemplate = {
-  /** Added to the GraphQL Schema because the ACF Field Group &quot;test&quot; was set to Show in GraphQL. */
-  category?: Maybe<ContentTemplate_Category>;
   /** The name of the template */
   templateName?: Maybe<Scalars['String']>;
-};
-
-/** Field Group */
-export type ContentTemplate_Category = AcfFieldGroup & {
-  __typename?: 'ContentTemplate_Category';
-  cat?: Maybe<Array<Maybe<Category>>>;
-  /** The name of the ACF Field Group */
-  fieldGroupName?: Maybe<Scalars['String']>;
 };
 
 /** An Post Type object */
@@ -1695,8 +1663,6 @@ export type DateQueryInput = {
 /** The template assigned to the node */
 export type DefaultTemplate = ContentTemplate & {
   __typename?: 'DefaultTemplate';
-  /** Added to the GraphQL Schema because the ACF Field Group &quot;test&quot; was set to Show in GraphQL. */
-  category?: Maybe<ContentTemplate_Category>;
   /** The name of the template */
   templateName?: Maybe<Scalars['String']>;
 };
@@ -2190,8 +2156,6 @@ export type MediaItem = ContentNode & DatabaseIdentifier & HierarchicalContentNo
   caption?: Maybe<Scalars['String']>;
   /** Connection between the MediaItem type and the category type */
   categories?: Maybe<MediaItemToCategoryConnection>;
-  /** Added to the GraphQL Schema because the ACF Field Group &quot;test&quot; was set to Show in GraphQL. */
-  category?: Maybe<ContentNode_Category>;
   /** Connection between the HierarchicalContentNode type and the ContentNode type */
   children?: Maybe<HierarchicalContentNodeToContentNodeChildrenConnection>;
   /** The number of comments. Even though WPGraphQL denotes this field as an integer, in WordPress this field should be saved as a numeric string for compatibility. */
@@ -2718,8 +2682,6 @@ export type MediaSize = {
 /** Menus are the containers for navigation items. Menus can be assigned to menu locations, which are typically registered by the active theme. */
 export type Menu = DatabaseIdentifier & Node & {
   __typename?: 'Menu';
-  /** Added to the GraphQL Schema because the ACF Field Group &quot;test&quot; was set to Show in GraphQL. */
-  category?: Maybe<Menu_Category>;
   /** The number of items in the menu */
   count?: Maybe<Scalars['Int']>;
   /** The unique identifier stored in the database */
@@ -2756,8 +2718,6 @@ export type MenuMenuItemsArgs = {
 /** Navigation menu items are the individual items assigned to a menu. These are rendered as the links in a navigation menu. */
 export type MenuItem = DatabaseIdentifier & Node & {
   __typename?: 'MenuItem';
-  /** Added to the GraphQL Schema because the ACF Field Group &quot;test&quot; was set to Show in GraphQL. */
-  category?: Maybe<MenuItem_Category>;
   /** Connection between the MenuItem type and the MenuItem type */
   childItems?: Maybe<MenuItemToMenuItemConnection>;
   /** Connection from MenuItem to it&#039;s connected node */
@@ -2885,14 +2845,6 @@ export type MenuItemToMenuItemLinkableConnectionEdge = {
   node?: Maybe<MenuItemLinkable>;
 };
 
-/** Field Group */
-export type MenuItem_Category = AcfFieldGroup & {
-  __typename?: 'MenuItem_Category';
-  cat?: Maybe<Array<Maybe<Category>>>;
-  /** The name of the ACF Field Group */
-  fieldGroupName?: Maybe<Scalars['String']>;
-};
-
 /** Registered menu locations */
 export enum MenuLocationEnum {
   /** Put the menu in the mainnav location */
@@ -2945,14 +2897,6 @@ export type MenuToMenuItemConnectionWhereArgs = {
   parentDatabaseId?: InputMaybe<Scalars['Int']>;
   /** The ID of the parent menu object */
   parentId?: InputMaybe<Scalars['ID']>;
-};
-
-/** Field Group */
-export type Menu_Category = AcfFieldGroup & {
-  __typename?: 'Menu_Category';
-  cat?: Maybe<Array<Maybe<Category>>>;
-  /** The name of the ACF Field Group */
-  fieldGroupName?: Maybe<Scalars['String']>;
 };
 
 /** The MimeType of the object */
@@ -3301,8 +3245,6 @@ export type Page = ContentNode & DatabaseIdentifier & HierarchicalContentNode & 
   authorId?: Maybe<Scalars['ID']>;
   /** Connection between the Page type and the category type */
   categories?: Maybe<PageToCategoryConnection>;
-  /** Added to the GraphQL Schema because the ACF Field Group &quot;test&quot; was set to Show in GraphQL. */
-  category?: Maybe<ContentNode_Category>;
   /** Connection between the HierarchicalContentNode type and the ContentNode type */
   children?: Maybe<HierarchicalContentNodeToContentNodeChildrenConnection>;
   /** The number of comments. Even though WPGraphQL denotes this field as an integer, in WordPress this field should be saved as a numeric string for compatibility. */
@@ -3995,8 +3937,6 @@ export type Post = ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & 
   authorId?: Maybe<Scalars['ID']>;
   /** Connection between the Post type and the category type */
   categories?: Maybe<PostToCategoryConnection>;
-  /** Added to the GraphQL Schema because the ACF Field Group &quot;test&quot; was set to Show in GraphQL. */
-  category?: Maybe<ContentNode_Category>;
   /** The number of comments. Even though WPGraphQL denotes this field as an integer, in WordPress this field should be saved as a numeric string for compatibility. */
   commentCount?: Maybe<Scalars['Int']>;
   /** Whether the comments are open or closed for this particular post. */
@@ -4229,8 +4169,6 @@ export type PostFormat = DatabaseIdentifier & Node & TermNode & UniformResourceI
   __typename?: 'PostFormat';
   /** Added to the GraphQL Schema because the ACF Field Group &quot;دسته بندیها&quot; was set to Show in GraphQL. */
   cat_cf?: Maybe<PostFormat_CatCf>;
-  /** Added to the GraphQL Schema because the ACF Field Group &quot;test&quot; was set to Show in GraphQL. */
-  category?: Maybe<TermNode_Category>;
   /** Connection between the PostFormat type and the ContentNode type */
   contentNodes?: Maybe<PostFormatToContentNodeConnection>;
   /** The number of objects connected to the object */
@@ -7016,8 +6954,6 @@ export type Tag = DatabaseIdentifier & MenuItemLinkable & Node & TermNode & Unif
   __typename?: 'Tag';
   /** Added to the GraphQL Schema because the ACF Field Group &quot;دسته بندیها&quot; was set to Show in GraphQL. */
   cat_cf?: Maybe<Tag_CatCf>;
-  /** Added to the GraphQL Schema because the ACF Field Group &quot;test&quot; was set to Show in GraphQL. */
-  category?: Maybe<TermNode_Category>;
   /** Connection between the Tag type and the ContentNode type */
   contentNodes?: Maybe<TagToContentNodeConnection>;
   /** The number of objects connected to the object */
@@ -7482,8 +7418,6 @@ export type TaxonomyToContentTypeConnectionEdge = {
 /** The template assigned to the node */
 export type Template_Blank = ContentTemplate & {
   __typename?: 'Template_Blank';
-  /** Added to the GraphQL Schema because the ACF Field Group &quot;test&quot; was set to Show in GraphQL. */
-  category?: Maybe<ContentTemplate_Category>;
   /** The name of the template */
   templateName?: Maybe<Scalars['String']>;
 };
@@ -7491,8 +7425,6 @@ export type Template_Blank = ContentTemplate & {
 /** The template assigned to the node */
 export type Template_PageLargeHeader = ContentTemplate & {
   __typename?: 'Template_PageLargeHeader';
-  /** Added to the GraphQL Schema because the ACF Field Group &quot;test&quot; was set to Show in GraphQL. */
-  category?: Maybe<ContentTemplate_Category>;
   /** The name of the template */
   templateName?: Maybe<Scalars['String']>;
 };
@@ -7500,8 +7432,6 @@ export type Template_PageLargeHeader = ContentTemplate & {
 /** The template assigned to the node */
 export type Template_PageNoSeparators = ContentTemplate & {
   __typename?: 'Template_PageNoSeparators';
-  /** Added to the GraphQL Schema because the ACF Field Group &quot;test&quot; was set to Show in GraphQL. */
-  category?: Maybe<ContentTemplate_Category>;
   /** The name of the template */
   templateName?: Maybe<Scalars['String']>;
 };
@@ -7509,8 +7439,6 @@ export type Template_PageNoSeparators = ContentTemplate & {
 /** The template assigned to the node */
 export type Template_Product = ContentTemplate & {
   __typename?: 'Template_Product';
-  /** Added to the GraphQL Schema because the ACF Field Group &quot;test&quot; was set to Show in GraphQL. */
-  category?: Maybe<ContentTemplate_Category>;
   /** Added to the GraphQL Schema because the ACF Field Group &quot;زمینه های سفارشی&quot; was set to Show in GraphQL. */
   cf?: Maybe<Template_Product_Cf>;
   /** The name of the template */
@@ -7530,16 +7458,12 @@ export type Template_Product_Cf = AcfFieldGroup & {
 /** The template assigned to the node */
 export type Template_SinglePostNoSeparators = ContentTemplate & {
   __typename?: 'Template_SinglePostNoSeparators';
-  /** Added to the GraphQL Schema because the ACF Field Group &quot;test&quot; was set to Show in GraphQL. */
-  category?: Maybe<ContentTemplate_Category>;
   /** The name of the template */
   templateName?: Maybe<Scalars['String']>;
 };
 
 /** Terms are nodes within a Taxonomy, used to group and relate other nodes. */
 export type TermNode = {
-  /** Added to the GraphQL Schema because the ACF Field Group &quot;test&quot; was set to Show in GraphQL. */
-  category?: Maybe<TermNode_Category>;
   /** The number of objects connected to the object */
   count?: Maybe<Scalars['Int']>;
   /** Identifies the primary key from the database. */
@@ -7644,14 +7568,6 @@ export type TermNodeToEnqueuedStylesheetConnectionEdge = {
   cursor?: Maybe<Scalars['String']>;
   /** The item at the end of the edge */
   node?: Maybe<EnqueuedStylesheet>;
-};
-
-/** Field Group */
-export type TermNode_Category = AcfFieldGroup & {
-  __typename?: 'TermNode_Category';
-  cat?: Maybe<Array<Maybe<Category>>>;
-  /** The name of the ACF Field Group */
-  fieldGroupName?: Maybe<Scalars['String']>;
 };
 
 /** Options for ordering the connection by */
@@ -8082,8 +7998,6 @@ export type User = Commenter & DatabaseIdentifier & Node & UniformResourceIdenti
   capKey?: Maybe<Scalars['String']>;
   /** A list of capabilities (permissions) granted to the user */
   capabilities?: Maybe<Array<Maybe<Scalars['String']>>>;
-  /** Added to the GraphQL Schema because the ACF Field Group &quot;test&quot; was set to Show in GraphQL. */
-  category?: Maybe<User_Category>;
   /** Connection between the User type and the Comment type */
   comments?: Maybe<UserToCommentConnection>;
   /** Identifies the primary key from the database. */
@@ -8723,14 +8637,6 @@ export type UserToUserRoleConnectionEdge = {
   node?: Maybe<UserRole>;
 };
 
-/** Field Group */
-export type User_Category = AcfFieldGroup & {
-  __typename?: 'User_Category';
-  cat?: Maybe<Array<Maybe<Category>>>;
-  /** The name of the ACF Field Group */
-  fieldGroupName?: Maybe<Scalars['String']>;
-};
-
 /** Field to order the connection by */
 export enum UsersConnectionOrderbyEnum {
   /** Order by display name */
@@ -8835,6 +8741,13 @@ export type ChildCategoriesBySlugQueryVariables = Exact<{
 
 
 export type ChildCategoriesBySlugQuery = { __typename?: 'RootQuery', category?: { __typename?: 'Category', id: string, contentNodes?: { __typename?: 'CategoryToContentNodeConnection', nodes?: Array<{ __typename?: 'MediaItem', id: string } | { __typename?: 'Page', id: string, title?: string | null, content?: string | null, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null, altText?: string | null } | null } | null, translation?: { __typename?: 'Page', id: string } | null } | { __typename?: 'Post', id: string } | null> | null } | null, children?: { __typename?: 'CategoryToCategoryConnection', edges?: Array<{ __typename?: 'CategoryToCategoryConnectionEdge', node?: { __typename?: 'Category', id: string, name?: string | null, description?: string | null, cat_cf?: { __typename?: 'Category_CatCf', image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null } | null } | null, translation?: { __typename?: 'Category', id: string } | null } | null } | null> | null } | null, translation?: { __typename?: 'Category', id: string } | null } | null };
+
+export type GalleryQueryVariables = Exact<{
+  id: Scalars['ID'];
+}>;
+
+
+export type GalleryQuery = { __typename?: 'RootQuery', category?: { __typename?: 'Category', id: string, name?: string | null, description?: string | null, children?: { __typename?: 'CategoryToCategoryConnection', edges?: Array<{ __typename?: 'CategoryToCategoryConnectionEdge', node?: { __typename?: 'Category', id: string, name?: string | null } | null } | null> | null } | null, mediaItems?: { __typename?: 'CategoryToMediaItemConnection', edges?: Array<{ __typename?: 'CategoryToMediaItemConnectionEdge', node?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null } | null } | null> | null } | null } | null };
 
 export type HomeQueryVariables = Exact<{
   languages?: InputMaybe<Array<LanguageCodeEnum> | LanguageCodeEnum>;
