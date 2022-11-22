@@ -2,26 +2,24 @@
   <div>
     <section class="body-font text-gray-600">
       <div class="container mx-auto flex flex-wrap px-5 py-24">
-        <div class="flex w-full flex-wrap">
-          <h1 class="title-font mb-4 text-2xl font-medium text-gray-900 sm:text-3xl lg:mb-0 lg:w-1/3">
+        <div class="flex w-full flex-wrap px-2">
+          <h1 class="title-font mb-4 text-2xl font-medium capitalize text-gray-900 sm:text-4xl lg:mb-0 lg:w-1/3">
             {{ $t('image_gallery') }}
           </h1>
-          <p class="mx-auto text-base leading-relaxed lg:w-2/3 lg:pl-6">
-            Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical
-            gentrify, subway tile poke farm-to-table. Franzen you probably
-            haven't heard of them man bun deep jianbing selfies heirloom.
+          <p v-if="result?.category?.description" class="mx-auto text-base leading-relaxed lg:w-2/3 lg:pl-6">
+            {{result.category.description}}
           </p>
         </div>
 
-
-        <section class="overflow-hidden text-gray-700 ">
-          <div class="container px-5 py-2 mx-auto lg:pt-12 lg:px-32">
-
+        <section class="overflow-hidden text-gray-700">
+          <div class="container mx-auto px-2 py-2 lg:pt-12">
             <client-only>
               <div class="flex gap-2 pb-8">
-                <div v-for="cat in categories" :key="cat.id" @click="selectSubCategory(cat.id)"
-                  :class="cat.id === subcategoryID ? 'bg-primary font-bold border-primary-light text-black' : 'hover:bg-slate-200 cursor-pointer bg-white text-tm-black border-tm-black' "
-                  class="flex items-center justify-center rounded border py-1 px-3 text-sm  h-10">
+                <div v-for="cat in categories" :key="cat.id" @click="selectSubCategory(cat.id)" :class="
+                  cat.id === subcategoryID
+                    ? 'border-primary-light bg-primary font-bold text-black'
+                    : 'cursor-pointer border-tm-black bg-white text-tm-black hover:bg-slate-200'
+                " class="flex h-10 items-center justify-center rounded border py-1 px-3 text-sm">
                   {{ cat.label }}
                 </div>
               </div>
@@ -51,30 +49,17 @@
             </div>
           </div> -->
 
-              <div class="flex flex-wrap -m-1 md:-m-2">
-               
-                <div v-for="(img,index) in images" :key="index" class="flex flex-wrap w-1/3">
+              <div class="-m-1 flex flex-wrap md:-m-2">
+                <div v-for="(img, index) in images" :key="index" class="flex w-1/3 flex-wrap">
                   <div class="w-full p-1 md:p-2">
-                    <img
-                    @click="openImage(index)"
-                    alt="gallery" class="block object-cover object-center w-full h-full rounded-lg"
-                      :src="img.src">
+                    <img @click="openImage(index)" alt="gallery"
+                      class="block h-full w-full rounded-lg object-cover object-center" :src="img.src" />
                   </div>
                 </div>
-              
               </div>
             </loading-indicator>
-
-
           </div>
         </section>
-
-
-
-
-
-
-
       </div>
     </section>
 
@@ -83,29 +68,27 @@
 </template>
 
 <script lang="ts" setup>
-import {
-  computed,
-  ref,
-  useContext,
-} from '@nuxtjs/composition-api'
+import { computed, ref, useContext } from '@nuxtjs/composition-api'
 import { chunk } from '~/data/utils'
 
 import GALLERYQL from '@/apollo/query/gallery.gql'
 import { useQuery } from '@vue/apollo-composable/dist'
 import { GalleryQuery, GalleryQueryVariables } from '~/types/types'
 const { i18n } = useContext()
-const categories = ref<{ label: string, id: string }[]>([])
+const categories = ref<{ label: string; id: string }[]>([])
 
 const variable: GalleryQueryVariables = {
   id: i18n.locale === 'fa' ? 'dGVybToxNTE=' : 'dGVybToxNTM=',
 }
 
-const { result, loading, refetch, onResult } = useQuery<GalleryQuery>(GALLERYQL, variable)
+const { result, loading, refetch, onResult } = useQuery<GalleryQuery>(
+  GALLERYQL,
+  variable
+)
 const selectedItem = ref(-1)
 const subcategoryID = ref(variable.id)
 
-
-onResult(result => {
+onResult((result) => {
   if (categories.value.length > 0) return
 
   const cats = result.data?.category?.children?.edges
@@ -113,17 +96,16 @@ onResult(result => {
       label: i!.node!.name || '',
       id: i!.node!.id,
     }))
-    : [];
+    : []
 
   cats.unshift({
     label: String(i18n.t('all_categories')),
     id: variable.id,
   })
 
-  cats.forEach(i => {
+  cats.forEach((i) => {
     categories.value.push(i)
   })
-
 })
 
 const selectSubCategory = (id: string) => {
@@ -137,10 +119,15 @@ const selectSubCategory = (id: string) => {
 //     , 6).map(i => chunk(i, 3))
 // })
 const images = computed(() => {
-  return result.value?.category?.mediaItems?.edges?.map(i => ({ src: i?.node?.sourceUrl || '', alt: 'gallery' })) || []
+  return (
+    result.value?.category?.mediaItems?.edges?.map((i) => ({
+      src: i?.node?.sourceUrl || '',
+      alt: 'gallery',
+    })) || []
+  )
 })
 
-const openImage = (index : number) => {
+const openImage = (index: number) => {
   selectedItem.value = index
 }
 

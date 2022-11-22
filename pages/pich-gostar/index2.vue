@@ -2,30 +2,55 @@
   <!-- layout -->
 
   <div class="w-full">
-    <HeroSection />
+    <HeroSection2 />
+
+    <div v-if="cats[0]" class="relative flex h-[50vh] bg-tm-gray-ligth" >
+      <div class="relative w-full">
+        <img class="h-full w-full object-cover" :src="cats[0].img" alt="" />
+
+        <div id="scene" class="container absolute left-0 top-0 mx-auto  h-full ">
+          
+          <div class="flex flex-col items-end justify-center h-full" >
+            <h2 data-depth="0.2"
+              class="inline-flex h-24 items-center justify-center overflow-hidden bg-black px-2 text-7xl uppercase text-gray-100">
+              {{ cats[0].name }}
+            </h2>
+            <nuxt-link data-depth="1" class="flex bg-primary text-3xl uppercase text-black"
+              :to="localePath('/pich-gostar/products')">
+              <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" preserveAspectRatio="xMidYMid meet"
+                viewBox="0 0 24 24">
+                <path fill="currentColor" d="M17.6 18L8 8.4V17H6V5h12v2H9.4l9.6 9.6Z" />
+              </svg>
+              see more
+            </nuxt-link>
+          </div>
+
+        </div>
+      </div>
+    </div>
 
     <!-- bg-primary 🔽 -->
-    <div v-if="cats[0]" class="relative flex h-[50vh] bg-primary">
-      <div class="product relative w-7/12" style="height: 101% ; ">
+    <div v-if="cats[0]" class="relative flex h-[50vh] bg-tm-gray-ligth">
+      <div class="product relative w-6/12">
         <img class="h-full w-full object-cover" :src="cats[0].img" alt="" />
       </div>
-      
+      <!-- sm:bg-primary 🔽 -->
       <div
-        class="absolute flex h-full w-full items-center overflow-hidden bg-none sm:relative sm:w-5/12 sm:bg-primary ">
+        class="absolute flex h-full w-full items-center overflow-hidden bg-none sm:relative sm:w-6/12 sm:bg-tm-gray-ligth">
         <!-- <img
             class="w-full object-cover absolute grayscale scale-150 opacity-10 pointer-events-none"
             src="/sample/sample1.jpg"
             alt=""
           /> -->
-        <div class="container flex flex-col items-end justify-start gap-3 sm:items-end md:translate-x-10">
-          <h2 class="text-5xl font-semibold capitalize text-gray-700 md:text-7xl">
+        <div class="container flex flex-col items-end justify-start gap-3 sm:items-start">
+          <h2 class="text-5xl font-semibold capitalize text-gray-700 md:text-6xl">
             {{ cats[0].name }}
           </h2>
           <p>
             {{ cats[0].description }}
           </p>
           <nuxt-link :to="localePath('/pich-gostar/products')"
-            class="text-bold text-xl flex items-center gap-2 rounded px-4 py-2 text-primary bg-tm-gray-dark rtl:flex-row-reverse">
+            class="text-bold flex items-center gap-2 rounded bg-gray-200 px-4 py-2 text-tm-gray-dark rtl:flex-row-reverse">
             <span class="px-2 transition-all hover:px-4">
               {{ $t('see') }}
             </span>
@@ -41,12 +66,12 @@
     </div>
 
     <div v-if="cats[1]" class="relative flex h-[50vh] flex-row-reverse bg-tm-gray-dark">
-      <div class="relative w-8/12">
+      <div class="relative w-7/12">
         <img v-if="cats[1].img" class="service h-full w-full object-cover" :src="cats[1].img" alt="" />
       </div>
-      <div class="relative flex w-4/12 items-center overflow-hidden bg-tm-gray-dark">
+      <div class="relative flex w-5/12 items-center overflow-hidden bg-tm-gray-dark">
         <div class="container flex flex-col items-start justify-start gap-4">
-          <h2 class="text-5xl md:text-7xl font-semibold capitalize text-gray-200">
+          <h2 class="text-5xl font-semibold capitalize text-gray-200">
             {{ cats[1].name }}
           </h2>
           <p class="text-gray-300" v-text="cats[1].description"></p>
@@ -85,6 +110,44 @@
       </div>
     </section>
 
+    <section class="body-font py-24 text-gray-800">
+      <div class="container relative mx-auto flex flex-wrap overflow-hidden rounded-lg px-5 shadow">
+        <img class="absolute h-full w-full object-cover" src="/sample/sample4.jpg" alt="" />
+        <div class="absolute top-0 left-0 h-full w-full bg-gradient-to-l from-slate-200 to-transparent"
+          aria-hidden="true"></div>
+        <div class="relative -mx-4 mt-auto mb-auto flex flex-wrap content-start sm:w-2/3 sm:pr-10 lg:w-1/2">
+          <div class="mb-6 w-full px-4 sm:p-4">
+            <h1 class="title-font mb-2 text-xl font-medium text-gray-900">
+              Moon hashtag pop-up try-hard offal truffaut
+            </h1>
+            <div class="leading-relaxed">
+              Pour-over craft beer pug drinking vinegar live-edge gastropub,
+              keytar neutra sustainable fingerstache kickstarter.
+            </div>
+          </div>
+          <div class="w-1/2 p-4 sm:w-1/2 lg:w-1/4">
+            <h2 class="title-font text-3xl font-medium text-gray-900">2.7K</h2>
+            <p class="leading-relaxed">Users</p>
+          </div>
+          <div class="w-1/2 p-4 sm:w-1/2 lg:w-1/4">
+            <h2 class="title-font text-3xl font-medium text-gray-900">1.8K</h2>
+            <p class="leading-relaxed">Subscribes</p>
+          </div>
+          <div class="w-1/2 p-4 sm:w-1/2 lg:w-1/4">
+            <h2 class="title-font text-3xl font-medium text-gray-900">35</h2>
+            <p class="leading-relaxed">Downloads</p>
+          </div>
+          <div class="w-1/2 p-4 sm:w-1/2 lg:w-1/4">
+            <h2 class="title-font text-3xl font-medium text-gray-900">4</h2>
+            <p class="leading-relaxed">Products</p>
+          </div>
+        </div>
+        <div class="mt-6 w-full overflow-hidden rounded-lg sm:mt-0 sm:w-1/3 lg:w-1/2">
+          <img class="h-full w-full object-cover object-center" src="https://dummyimage.com/600x300" alt="stats" />
+        </div>
+      </div>
+    </section>
+
     <FooterSection />
   </div>
 </template>
@@ -98,7 +161,7 @@ import {
   useStore,
   onMounted,
 } from '@nuxtjs/composition-api'
-import HeroSectionVue from '~/components/homepage/HeroSection.vue'
+import HeroSectionVue from '~/components/homepage/HeroSection2.vue'
 import { useQuery } from '@vue/apollo-composable/dist'
 import HOMEGQL from '@/apollo/query/home-page.gql'
 import { HomeQuery, HomeQueryVariables, LanguageCodeEnum } from '@/types/types'
@@ -106,7 +169,7 @@ import { stripHtml } from '~/data/utils'
 
 export default defineComponent({
   components: {
-    HeroSection: HeroSectionVue,
+    HeroSection2: HeroSectionVue,
   },
 
   name: 'IndexPage',

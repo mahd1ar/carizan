@@ -74,6 +74,7 @@ export default {
     // lazy: true,
     langDir: 'lang/',
     vueI18n: {
+    
       fallbackLocale: 'fa',
       messages: {
       },

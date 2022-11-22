@@ -13,7 +13,7 @@ export default {
     category: 'دسته بندی',
     more: 'ادامه',
     _details: 'جزییات',
-    see_more: 'ادامه مطالب',
+    see_more: ' مشاهده',
     quantity_per_kg: 'تعداد در کیلوگرم',
     weight: 'وزن',
     wrench: 'آچارخور',
@@ -25,5 +25,7 @@ export default {
     length: 'طول',
     see : 'مشاهده',
     all_categories : 'همه ی دسته ها',
-    image_gallery : 'گالری تصاویر' 
+    image_gallery : 'گالری تصاویر' ,
+    home : 'خانه',
+    menu : 'فهرست'
 }

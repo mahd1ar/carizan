@@ -24,11 +24,12 @@ module.exports = {
         primary: { DEFAULT: '#FFC800', dark: '#67540a' , light : "#f7de85" },
         tm: {
           black: '#232E3B',
-          gray: { ligth: '#AFAFAE', dark: '#3F3F3F' },
+          gray: { extlight: '#c3c3c3' , ligth: '#AFAFAE', dark: '#3F3F3F' },
         },
       },
       fontFamily: {
         yekan: 'Yekan Bakh',
+        lato:['Lato' ,  'sans-serif']
       },
     },
   },

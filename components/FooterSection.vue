@@ -24,11 +24,19 @@
           </p>
 
           <ul class="mt-8 space-y-2 text-sm">
-            <li>شنبه تا 4 شنبه : از 8 صبح تا 5 بعدازظهر</li>
-            <li>پنچ شنبه : از 8 صبح تا 12 ظهر</li>
+            <li>شنبه تا 4 شنبه : از 8 صبح تا 4 بعدازظهر</li>
+          <li>
+            
+            شریعتی_ بالاتر از پل رومی _ بالاتر از مترو قیطریه _ جنب بانک
+                شهر پلاک ۱۸۴۱_واحد ۱
+              
+          </li>
+          <li>
+            info@carizanin.com
+          </li>
           </ul>
 
-          <div class="flex mt-16 space-x-3">
+          <!-- <div class="flex mt-16 space-x-3">
             <a
               class="p-2 border rounded-full border-white/25 hover:opacity-75"
               href=""
@@ -136,7 +144,7 @@
                 />
               </svg>
             </a>
-          </div>
+          </div> -->
         </div>
 
         <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -177,14 +185,14 @@
           <p class="mt-4 sm:mt-0">&copy; 2022 Carizan inc.</p>
         </div>
 
-        <p class="mt-8 text-xs text-gray-500">
+        <!-- <p class="mt-8 text-xs text-gray-500">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus
           mollitia quia quod repellendus. Porro harum, odio dolore perspiciatis
           praesentium provident esse consequatur quibusdam aperiam, cupiditate
           omnis modi in quasi? In, maxime odio vel repellat sed earum? Debitis
           quaerat facilis animi. Odio natus nostrum laboriosam impedit magnam
           praesentium asperiores consectetur ipsum.
-        </p>
+        </p> -->
       </div>
     </div>
   </footer>

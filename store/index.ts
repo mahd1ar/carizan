@@ -11,28 +11,39 @@ type NavItem = {
 
 export const state = () => ({
   navItem: [] as NavItem[],
+  showNav : true,
 })
 
 export type RootState = ReturnType<typeof state>
 
 export const getters: GetterTree<RootState, RootState> = {
   navItems: (state) => state.navItem,
+  showNav: state => state.showNav 
 }
 
 export const mutations: MutationTree<RootState> = {
   ADD_NAV: (state, newNav: NavItem[]) => {
     newNav.forEach((i) => state.navItem.push(i))
   },
+  TOGGLE_NAV: (state, newNav: boolean) => {
+    state.showNav = newNav
+  },
 }
 
 export const actions: ActionTree<RootState, RootState> = {
-  async nuxtServerInit({ commit }, ctx: Context) {
+  async nuxtServerInit({ commit,dispatch }, ctx: Context) {
     // i18n bug
     // const cookie = (ctx.req.headers.cookie) || '1=1';
     // const parsedCookie = Object.fromEntries(cookie.split(/;\s+/).map(i => i.split("="))) as { [key: string]: string | undefined }
     // if (parsedCookie.i18n_redirected === undefined) {
     //     console.log(999)
     // }
+
+    console.log(ctx.ssrContext?.req.connection.remoteAddress)
+
+    if(ctx.route.path === '/en/pich-gostar' || ctx.route.path === '/pich-gostar'){
+      await dispatch('toggleNav' , false)
+    }
 
     const variable: MainNavQueryVariables = {}
     // $apolloProvider.defaultClient.query
@@ -59,4 +70,7 @@ export const actions: ActionTree<RootState, RootState> = {
   async addNav({ commit }, newlang: NavItem[]) {
     commit('ADD_NAV', newlang)
   },
+  async toggleNav({commit} ,newval : boolean) {
+    commit('TOGGLE_NAV', newval)
+ }
 }

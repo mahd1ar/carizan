@@ -1,5 +1,5 @@
 <template>
-  <main class="my-8">
+  <div class="mt-8">
     <div class="container relative mx-auto flex flex-col gap-3 mb-5">
       <!-- Breadcrumb -->
       <!-- <div class="flex justify-center sm:justify-start">
@@ -202,7 +202,7 @@
       </div>
     </div>
     <FooterSection />
-  </main>
+  </div>
 </template>
 
 <script lang="ts" setup>

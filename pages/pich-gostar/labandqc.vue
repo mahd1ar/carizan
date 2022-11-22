@@ -2,7 +2,7 @@
   <div>
     <PageTemplate :body="pageInfo.body" :title="pageInfo.title" :image="pageInfo.image" :altimage="pageInfo.alttext" />
 
-    <div class="container">
+    <div class="container mx-auto">
       <div class="flex gap-4 justify-center items-start"  >
         <nuxt-link :to="localePath(i.link)" v-for="i in items" :key="i.id" 
         

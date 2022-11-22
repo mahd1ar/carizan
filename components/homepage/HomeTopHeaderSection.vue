@@ -1,12 +1,8 @@
 <template>
-  <transition name="slideup">
+ 
     <header
-      v-show="store.getters.showNav"
       dir="ltr"
-      :style="{
-        'max-height' : (store.getters.showNav) ? '80px' : '0px'
-      }"
-      class="sticky left-0 top-0 z-50 flex w-full flex-wrap bg-gray-100 ease-out transition-all py-4 shadow-md sm:flex-nowrap sm:justify-start"
+      class=" left-0 top-0 z-50 flex w-full flex-wrap  py-4  sm:flex-nowrap sm:justify-start bg-primary"
     >
       <!-- mobile nav -->
       <transition name="fade">
@@ -41,7 +37,6 @@
                 </g>
               </svg>
             </div>
-            <div class="leading-5">Carizan Pich Gostar</div>
           </nuxt-link>
           <div class="md:hidden">
             <button
@@ -80,7 +75,7 @@
           class="hs-collapse hidden h-full grow basis-full overflow-hidden transition-all duration-300 md:block"
         >
           <div
-            class="desktop-nav mt-5 flex h-full flex-col bg-gray-100 sm:mt-0 sm:flex-row-reverse sm:items-center sm:justify-start sm:pl-5"
+            class="desktop-nav mt-5 flex h-full flex-col  sm:mt-0 sm:flex-row-reverse sm:items-center sm:justify-start sm:pl-5 bg-primary"
           >
             <div class="mx-4 cursor-pointer text-gray-900">
               <svg
@@ -99,12 +94,7 @@
                 />
               </svg>
             </div>
-            <nuxt-link
-              :to="localePath('/pich-gostar')"
-              class="flex-center h-full rounded-sm bg-primary px-3 font-bold text-primary-dark hover:text-gray-500"
-            >
-              {{ $t('home') }}
-            </nuxt-link>
+            
 
             <nuxt-link
               v-for="(i, index) in navItems"
@@ -114,29 +104,19 @@
               v-motion
               :initial="{
                 opacity: 0,
-                y: 100,
+                x: -35,
               }"
               :enter="{
                 opacity: 1,
-                y: 0,
-                transition: {
-                  type: 'spring',
-                  stiffness: 250,
-                  damping: 25,
-                  mass: 0.5,
-                  delay: index * 100,
-                },
-              }"
-              :leave="{
-                y: -30,
-                opacity: 0,
+                x: 0,
                 transition: {
                     type: 'keyframes',
-                    duration: 900,
-                    delay: (index * 85) + 800,
-                    ease: 'circOut',
+                    duration: 800,
+                    delay: (index * 75) + 1100,
+                    ease: 'easeOut',
                   },
               }"
+              
               class="flex-center h-full px-3 font-bold text-gray-900 hover:text-gray-500"
             >
               {{ i.label }}
@@ -145,7 +125,6 @@
         </div>
       </nav>
     </header>
-  </transition>
 </template>
 
 <script lang="ts" setup>
@@ -171,15 +150,6 @@ const navItems = computed(() => {
 </script>
 
 <style lang="scss" scoped>
-.slideup-enter-active,
-.slideup-leave-active {
-  transition: all 0.5s ease;
-}
-
-.slideup-enter,
-.slideup-leave-to {
-  transform: translateY(-100%);
-}
 
 .fade-enter-active,
 .fade-leave-active {
@@ -215,4 +185,5 @@ const navItems = computed(() => {
     width: 75%;
   }
 }
+
 </style>

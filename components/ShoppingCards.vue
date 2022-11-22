@@ -23,7 +23,7 @@
               :src="i.image"
               alt="blog"
             />
-            <div class="p-6">
+            <div class="p-6 border-t-4 border-primary">
               <h2
                 class="tracking-widest text-xs title-font font-medium text-gray-400 mb-1"
               >

@@ -1,6 +1,7 @@
 <template>
   <div>
-    <div class="h-[400px] bg-black w-full overflow-hidden relative">
+    <div class="h-[250px] bg-black w-full overflow-hidden relative ">
+      <div class="absolute top-0 left-0 w-full h-full border-b-[6px] z-20 border-primary" ></div>
       <img v-if="image" class="w-full h-full object-cover" :src="image" :alt="altimage || ''" />
       <!-- overlay -->
       <div
@@ -8,7 +9,7 @@
       >
         <div class="container flex items-center h-full">
           <h1
-            class="text-white text-6xl ml-0 rtl:ml-auto"
+            class="text-white text-5xl font-medium  md:text-6xl ml-0 rtl:ml-auto"
             v-motion
             :initial="{
               opacity: 0,
