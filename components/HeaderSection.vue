@@ -6,11 +6,11 @@
       :style="{
         'max-height' : (store.getters.showNav) ? '80px' : '0px'
       }"
-      class="sticky left-0 top-0 z-50 flex w-full flex-wrap bg-gray-100 ease-out transition-all py-4 shadow-md sm:flex-nowrap sm:justify-start"
+      class="sticky left-0 top-0 z-50 flex w-full flex-wrap bg-gray-100 ease-out transition-all duration-300 py-4 shadow-md sm:flex-nowrap sm:justify-start overflow-hidden"
     >
       <!-- mobile nav -->
       <transition name="fade">
-        <MobileNav :nav-items="navItems" v-if="showMobileMenu"></MobileNav>
+        <MobileNav :nav-items="navItems" v-if="showMobileMenu" @close="showMobileMenu = false" ></MobileNav>
       </transition>
 
       <nav
@@ -157,6 +157,7 @@ import {
   watch,
 } from '@nuxtjs/composition-api'
 import { RootState } from '@/store/index'
+import MobileNav from './topnav/MobileNav.vue';
 
 const store = useStore<RootState>()
 const { i18n } = useContext()

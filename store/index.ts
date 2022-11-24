@@ -41,7 +41,7 @@ export const actions: ActionTree<RootState, RootState> = {
 
     console.log(ctx.ssrContext?.req.connection.remoteAddress)
 
-    if(ctx.route.path === '/en/pich-gostar' || ctx.route.path === '/pich-gostar'){
+    if(ctx.route.path === '/en/pich-gostar/index2' || ctx.route.path === '/pich-gostar/index2'){
       await dispatch('toggleNav' , false)
     }
 

@@ -172,7 +172,7 @@
         </div>
       </div>
 
-      <div class="pt-12 mt-12 border-t border-gray-800">
+      <div dir="ltr" class="pt-12 mt-12 border-t border-gray-800">
         <div
           class="text-sm text-gray-300 sm:items-center sm:justify-between sm:flex"
         >

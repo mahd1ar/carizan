@@ -3,16 +3,26 @@
 
   <div class="w-full">
     <HeroSection2 />
-
-    <div v-if="cats[0]" class="relative flex h-[50vh] bg-tm-gray-ligth" >
+<div class="h-10 w-full" ref="prodelem" >
+  {{cx }} + {{cy}}
+</div>
+    <div v-if="cats[0]" class="relative flex h-[50vh] bg-tm-gray-ligth">
       <div class="relative w-full">
-        <img class="h-full w-full object-cover" :src="cats[0].img" alt="" />
+        <img class="h-full w-full object-cover grayscale-[50%]" :src="cats[0].img" alt="" />
 
-        <div id="scene" class="container absolute left-0 top-0 mx-auto  h-full ">
-          
-          <div class="flex flex-col items-end justify-center h-full" >
-            <h2 data-depth="0.2"
+        <div class="container absolute left-0 top-0 mx-auto h-full">
+          <div  class="relative flex h-full flex-col items-end justify-center">
+            <h2
               class="inline-flex h-24 items-center justify-center overflow-hidden bg-black px-2 text-7xl uppercase text-gray-100">
+              {{ cats[0].name }}
+            </h2>
+            <h2 :style="{
+              'clip-path':
+                'circle(54px at calc( var(--cx) * 1px ) calc( var(--cy) * 1px ) )',
+              '--cx': cx,
+              '--cy': cy,
+            }"
+              class="absolute inline-flex h-24 items-center justify-center overflow-hidden bg-white px-2 text-7xl uppercase text-black">
               {{ cats[0].name }}
             </h2>
             <nuxt-link data-depth="1" class="flex bg-primary text-3xl uppercase text-black"
@@ -24,129 +34,116 @@
               see more
             </nuxt-link>
           </div>
-
         </div>
       </div>
     </div>
 
-    <!-- bg-primary 🔽 -->
-    <div v-if="cats[0]" class="relative flex h-[50vh] bg-tm-gray-ligth">
-      <div class="product relative w-6/12">
-        <img class="h-full w-full object-cover" :src="cats[0].img" alt="" />
-      </div>
-      <!-- sm:bg-primary 🔽 -->
-      <div
-        class="absolute flex h-full w-full items-center overflow-hidden bg-none sm:relative sm:w-6/12 sm:bg-tm-gray-ligth">
-        <!-- <img
-            class="w-full object-cover absolute grayscale scale-150 opacity-10 pointer-events-none"
-            src="/sample/sample1.jpg"
-            alt=""
-          /> -->
-        <div class="container flex flex-col items-end justify-start gap-3 sm:items-start">
-          <h2 class="text-5xl font-semibold capitalize text-gray-700 md:text-6xl">
-            {{ cats[0].name }}
-          </h2>
-          <p>
-            {{ cats[0].description }}
-          </p>
-          <nuxt-link :to="localePath('/pich-gostar/products')"
-            class="text-bold flex items-center gap-2 rounded bg-gray-200 px-4 py-2 text-tm-gray-dark rtl:flex-row-reverse">
-            <span class="px-2 transition-all hover:px-4">
-              {{ $t('see') }}
-            </span>
-            <svg class="h-5 w-5 flex-shrink-0 rotate-180 rtl:rotate-0" xmlns="http://www.w3.org/2000/svg"
-              preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
-              <path fill="currentColor"
-                d="M5 21h14c1.103 0 2-.897 2-2V5c0-1.103-.897-2-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2zM5 5h14l.001 14H5V5z" />
-              <path fill="currentColor" d="M13.293 6.293L7.586 12l5.707 5.707l1.414-1.414L10.414 12l4.293-4.293z" />
-            </svg>
-          </nuxt-link>
-        </div>
-      </div>
-    </div>
+    <div v-if="cats[1]" class="relative flex h-[50vh] bg-tm-gray-ligth">
+      <div class="relative w-full overflow-hidden">
+        <img :style="{
+          '--y': y / 20,
+          transform: 'translate3d(0px, calc(var(--y) * -1px), 0px)',
+        }" class="h-auto w-full object-cover grayscale-[50%] transition-all ease-out" :src="cats[1].img" alt="" />
 
-    <div v-if="cats[1]" class="relative flex h-[50vh] flex-row-reverse bg-tm-gray-dark">
-      <div class="relative w-7/12">
-        <img v-if="cats[1].img" class="service h-full w-full object-cover" :src="cats[1].img" alt="" />
-      </div>
-      <div class="relative flex w-5/12 items-center overflow-hidden bg-tm-gray-dark">
-        <div class="container flex flex-col items-start justify-start gap-4">
-          <h2 class="text-5xl font-semibold capitalize text-gray-200">
-            {{ cats[1].name }}
-          </h2>
-          <p class="text-gray-300" v-text="cats[1].description"></p>
-
-          <nuxt-link :to="localePath('/pich-gostar/services')"
-            class="text-bold flex items-center gap-2 rounded bg-gray-200 px-4 py-2 text-tm-black rtl:flex-row-reverse">
-            <span class="px-2 transition-all hover:px-4">
-              {{ $t('see') }}
-            </span>
-            <svg class="h-5 w-5 flex-shrink-0 rotate-180 rtl:rotate-0" xmlns="http://www.w3.org/2000/svg"
-              preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
-              <path fill="currentColor"
-                d="M5 21h14c1.103 0 2-.897 2-2V5c0-1.103-.897-2-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2zM5 5h14l.001 14H5V5z" />
-              <path fill="currentColor" d="M13.293 6.293L7.586 12l5.707 5.707l1.414-1.414L10.414 12l4.293-4.293z" />
-            </svg>
-          </nuxt-link>
-        </div>
-      </div>
-    </div>
-
-    <section class="container">
-      <div class="relative flex w-full flex-col py-20 sm:flex-row">
-        <div class="w-full overflow-hidden rounded shadow-md sm:w-4/12">
-          <img :src="explain.imageSrc || '/sample/sample3.jpg'" class="h-full w-full object-cover"
-            :alt="explain.imageAlt" />
-        </div>
-        <div
-          class="absolute bottom-0 w-full bg-black px-8 py-4 text-white sm:relative sm:w-8/12 sm:bg-gray-100 sm:py-0 sm:text-black">
-          <div class="flex flex-col gap-4">
-            <h2 class="text-3xl font-semibold text-primary sm:text-gray-700">
-              {{ explain.title }}
-            </h2>
-            <p v-text="explain.body"></p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="body-font py-24 text-gray-800">
-      <div class="container relative mx-auto flex flex-wrap overflow-hidden rounded-lg px-5 shadow">
-        <img class="absolute h-full w-full object-cover" src="/sample/sample4.jpg" alt="" />
-        <div class="absolute top-0 left-0 h-full w-full bg-gradient-to-l from-slate-200 to-transparent"
-          aria-hidden="true"></div>
-        <div class="relative -mx-4 mt-auto mb-auto flex flex-wrap content-start sm:w-2/3 sm:pr-10 lg:w-1/2">
-          <div class="mb-6 w-full px-4 sm:p-4">
-            <h1 class="title-font mb-2 text-xl font-medium text-gray-900">
-              Moon hashtag pop-up try-hard offal truffaut
-            </h1>
-            <div class="leading-relaxed">
-              Pour-over craft beer pug drinking vinegar live-edge gastropub,
-              keytar neutra sustainable fingerstache kickstarter.
+        <div class="container absolute left-0 top-0 mx-auto h-full">
+          <div class="flex h-full flex-col items-start justify-center">
+            <div class="inline-flex flex-col items-end justify-center">
+              <h2
+                class="inline-flex h-24 items-center justify-center overflow-hidden bg-black px-2 text-7xl uppercase text-gray-100">
+                {{ cats[1].name }}
+              </h2>
+              <nuxt-link class="flex bg-primary text-3xl uppercase text-black"
+                :to="localePath('/pich-gostar/products')">
+                {{ $t('see_more') }}
+                <svg class="rotate-90" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
+                  preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
+                  <path fill="currentColor" d="M17.6 18L8 8.4V17H6V5h12v2H9.4l9.6 9.6Z" />
+                </svg>
+              </nuxt-link>
             </div>
           </div>
-          <div class="w-1/2 p-4 sm:w-1/2 lg:w-1/4">
-            <h2 class="title-font text-3xl font-medium text-gray-900">2.7K</h2>
-            <p class="leading-relaxed">Users</p>
-          </div>
-          <div class="w-1/2 p-4 sm:w-1/2 lg:w-1/4">
-            <h2 class="title-font text-3xl font-medium text-gray-900">1.8K</h2>
-            <p class="leading-relaxed">Subscribes</p>
-          </div>
-          <div class="w-1/2 p-4 sm:w-1/2 lg:w-1/4">
-            <h2 class="title-font text-3xl font-medium text-gray-900">35</h2>
-            <p class="leading-relaxed">Downloads</p>
-          </div>
-          <div class="w-1/2 p-4 sm:w-1/2 lg:w-1/4">
-            <h2 class="title-font text-3xl font-medium text-gray-900">4</h2>
-            <p class="leading-relaxed">Products</p>
-          </div>
-        </div>
-        <div class="mt-6 w-full overflow-hidden rounded-lg sm:mt-0 sm:w-1/3 lg:w-1/2">
-          <img class="h-full w-full object-cover object-center" src="https://dummyimage.com/600x300" alt="stats" />
         </div>
       </div>
-    </section>
+    </div>
+
+    <div class="relative flex h-[50vh] bg-tm-gray-ligth">
+      <div class="relative w-full overflow-hidden">
+        <img :style="{
+          '--y': y / 20,
+          transform: 'translate3d(0px, calc(var(--y) * -1px), 0px)',
+        }" class="h-auto w-full object-cover grayscale-[50%] transition-all ease-out"
+          src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=4140"
+          alt="" />
+
+        <div id="scene" class="container absolute left-0 top-0 mx-auto h-full">
+          <div class="flex h-full flex-col items-end justify-center">
+            <h2 data-depth="0.2"
+              class="inline-flex h-24 items-center justify-center overflow-hidden bg-black px-2 text-7xl uppercase text-gray-100">
+              Lab&qc
+            </h2>
+            <nuxt-link data-depth="1" class="flex bg-primary text-3xl uppercase text-black"
+              :to="localePath('/pich-gostar/products')">
+              <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" preserveAspectRatio="xMidYMid meet"
+                viewBox="0 0 24 24">
+                <path fill="currentColor" d="M17.6 18L8 8.4V17H6V5h12v2H9.4l9.6 9.6Z" />
+              </svg>
+              see more
+            </nuxt-link>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="relative flex h-[70vh] bg-tm-gray-ligth">
+      <div class="relative w-full overflow-hidden">
+        <img :style="{
+          '--y': y / 20,
+          transform: 'translate3d(0px, calc(var(--y) * -1px), 0px)',
+        }" class="h-auto w-full object-cover grayscale-[50%] transition-all ease-out"
+          src="https://images.unsplash.com/photo-1581092335397-9583eb92d232?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+          alt="" />
+
+        <div class="container absolute left-0 top-0 mx-auto h-full">
+          <div class="flex h-full flex-col items-start justify-center">
+            <div class="inline-flex flex-col items-start justify-center">
+              <h2
+                class="inline-flex h-24 items-center justify-center overflow-hidden bg-black px-2 text-7xl uppercase text-primary">
+                Description of the activity
+              </h2>
+              <div class="w-8/12 bg-black bg-opacity-80 p-2 text-xl capitalize text-white backdrop-blur-sm">
+                Karizan Pich Gostar Company produces all kinds of bolts and nuts
+                with different standards, grades and coatings, and these
+                products are produced and supplied for use in all kinds of
+                industries. Bolts and nuts are the most widely used industrial
+                parts that choose the type and grade. Suitable for screws is a
+                completely engineered fan.
+              </div>
+              <!-- <nuxt-link
+                class="flex bg-primary text-3xl uppercase text-black"
+                :to="localePath('/pich-gostar/products')"
+              >
+                {{ $t('see_more') }}
+                <svg
+                  class="rotate-90"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="1em"
+                  height="1em"
+                  preserveAspectRatio="xMidYMid meet"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    fill="currentColor"
+                    d="M17.6 18L8 8.4V17H6V5h12v2H9.4l9.6 9.6Z"
+                  />
+                </svg>
+              </nuxt-link> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="h-10 bg-black">.</div>
 
     <FooterSection />
   </div>
@@ -160,12 +157,14 @@ import {
   onBeforeUnmount,
   useStore,
   onMounted,
+  ref,
 } from '@nuxtjs/composition-api'
 import HeroSectionVue from '~/components/homepage/HeroSection2.vue'
 import { useQuery } from '@vue/apollo-composable/dist'
 import HOMEGQL from '@/apollo/query/home-page.gql'
 import { HomeQuery, HomeQueryVariables, LanguageCodeEnum } from '@/types/types'
 import { stripHtml } from '~/data/utils'
+import { useMouseInElement, useScroll, useWindowScroll } from '@vueuse/core'
 
 export default defineComponent({
   components: {
@@ -173,13 +172,11 @@ export default defineComponent({
   },
 
   name: 'IndexPage',
-  beforeRouteLeave(to, from, next) {
-    // console.log('beforeRouteLeave', this.$store.dispatch('toggleNav', true))
-    next()
-  },
   setup() {
     const { i18n, error } = useContext()
     const store = useStore()
+    const prodelem = ref(null)
+    console.log(prodelem)
     const variable: HomeQueryVariables = {
       languages:
         i18n.locale.toLowerCase() === 'fa'
@@ -188,6 +185,8 @@ export default defineComponent({
     }
 
     const { result, onError } = useQuery<HomeQuery>(HOMEGQL, variable)
+
+    const { x, y } = useWindowScroll()
 
     onError(() => {
       error({ message: '_GET_INFO_ERROR', statusCode: 500 })
@@ -212,22 +211,21 @@ export default defineComponent({
         body: stripHtml(result.value?.page?.content || ''),
       }
     })
-
-    // onMounted(() => {
-    //   import('parallax-js').then(({ default: Parallax }) => {
-        
-    //     const scene = document.getElementById('scene')!
-    //     const parallaxInstance = new Parallax(scene, {
-    //       relativeInput: true,
-    //     })
-    //   })
-    // })
-
+    onMounted(() => {
+      document.querySelector('header')!.style.position = 'fixed'
+    })
     onBeforeUnmount(() => {
       store.dispatch('toggleNav', true)
+      document.querySelector('header')!.style.removeProperty('position')
     })
 
+    const { x: cx, elementY: cy } = useMouseInElement(prodelem)
+
+
     return {
+      cx,
+      cy,
+      y,
       cats,
       explain,
     }

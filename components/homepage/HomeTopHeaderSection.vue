@@ -6,7 +6,7 @@
     >
       <!-- mobile nav -->
       <transition name="fade">
-        <MobileNav :nav-items="navItems" v-if="showMobileMenu"></MobileNav>
+        <MobileNav :nav-items="navItems" v-if="showMobileMenu" @close="showMobileMenu = false" ></MobileNav>
       </transition>
 
       <nav
@@ -42,11 +42,11 @@
             <button
               type="button"
               @click="showMobileMenu = true"
-              class="inline-flex items-center justify-center gap-2 border border-tm-black p-2 align-middle font-medium text-tm-black shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 focus:ring-offset-gray-800"
+              class="inline-flex items-center justify-center gap-2  align-middle font-medium text-tm-black  transition-all focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 focus:ring-offset-gray-800"
               aria-label="Toggle navigation"
             >
               <svg
-                class="hs-collapse-open:hidden h-4 w-4"
+                class="hs-collapse-open:hidden h-8 w-8"
                 width="16"
                 height="16"
                 fill="currentColor"
@@ -136,6 +136,7 @@ import {
   watch,
 } from '@nuxtjs/composition-api'
 import { RootState } from '@/store/index'
+import MobileNav from '../topnav/MobileNav.vue';
 
 const store = useStore<RootState>()
 const { i18n } = useContext()

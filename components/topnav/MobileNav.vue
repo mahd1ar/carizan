@@ -3,50 +3,15 @@
     class="mobile-nav fixed top-0 z-20 flex h-full w-full flex-col items-start justify-center bg-gradient-to-tr from-black to-gray-900/90"
   >
     <div
-      class="absolute left-0 top-5 flex w-full justify-between px-4 text-white"
+      class="absolute left-0 top-5 flex w-full  px-4 text-white"
     >
-      <div class="mr-auto ml-6 w-max overflow-y-clip">
-        <div
-          class="h-16 w-[125%] flex-col justify-end overflow-hidden border-b-4 border-gray-100/50"
-          v-motion
-          :initial="{
-            opacity: 0,
-          }"
-          :enter="{
-            opacity: 1,
-            transition: {
-              type: 'keyframes',
-            },
-          }"
-        >
-          <h3
-            class="text-5xl uppercase"
-            v-motion
-            :initial="{
-              y: 64,
-              opacity: 0,
-            }"
-            :enter="{
-              opacity: 1,
-              y: 0,
-              transition: {
-                type: 'keyframes',
-                duration: 800,
-                delay: 800,
-                ease: 'circOut',
-              },
-            }"
-          >
-            {{ $t('menu') }}
-          </h3>
-        </div>
-      </div>
+  
 
       <button
         id="btn"
         ref="crossIcon"
-        class="h-10 w-10"
-        @click="showMobileMenu = false"
+        class="h-10 w-10 ml-auto"
+        @click="close"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -67,7 +32,7 @@
       <li
         v-for="(i, index) in navItems"
         :key="i.id"
-        @click="showMobileMenu = false"
+        @click="close"
         class="py-4 px-2"
         v-motion
         :initial="{
@@ -103,6 +68,12 @@ const { navItems = [] } = defineProps({
     type: Array as PropType<RootState['navItem']>,
   },
 })
+
+const emit = defineEmits(['close'])
+
+function close(){
+  emit('close')
+}
 </script>
 
 <style lang="scss">
