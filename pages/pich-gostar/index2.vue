@@ -72,7 +72,7 @@
           '--y': y / 20,
           transform: 'translate3d(0px, calc(var(--y) * -1px), 0px)',
         }" class="h-auto w-full object-cover grayscale-[50%] transition-all ease-out"
-          src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=4140"
+          src="http://api.carizanin.com/wp-content/uploads/2022/12/photo-1581092580497-e0d23cbdf1dc-scaled.jpg"
           alt="" />
 
         <div id="scene" class="container absolute left-0 top-0 mx-auto h-full">
@@ -100,7 +100,7 @@
           '--y': y / 20,
           transform: 'translate3d(0px, calc(var(--y) * -1px), 0px)',
         }" class="h-auto w-full object-cover grayscale-[50%] transition-all ease-out"
-          src="https://images.unsplash.com/photo-1581092335397-9583eb92d232?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+          src="http://api.carizanin.com/wp-content/uploads/2022/12/photo-1581092335397-9583eb92d232.jpg"
           alt="" />
 
         <div class="container absolute left-0 top-0 mx-auto h-full">

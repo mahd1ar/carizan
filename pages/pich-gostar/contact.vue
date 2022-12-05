@@ -29,19 +29,14 @@
                 <div class="flex flex-col gap-6 sm:flex-row sm:gap-1">
                   <div class="w-full shrink-0 sm:w-1/2">
                     <div class="relative">
-                      <span
-                        class="absolute top-0 right-5 z-20 -`translate`-y-1/2 transform bg-white p-1 text-xs"
-                      >
-                      {{$t('name')}}
-                        
-                      </span>
+                      
                       <div
                         class="relative overflow-hidden rounded border border-gray-400 bg-white"
                       >
                         <input
                           class="py-2 px-6 w-full focus:placeholder:text-white outline-none"
                           type="text"
-                          placeholder=""
+                          :placeholder=" $t('name') "
                           v-model="yourName"
                           required
                         />
@@ -50,18 +45,14 @@
                   </div>
                   <div class="w-full shrink-0 sm:w-1/2">
                     <div class="relative">
-                      <span
-                        class="absolute top-0 right-5 z-20 -`translate`-y-1/2 transform bg-white p-1 text-xs"
-                      >
-                        {{$t('email')}}
-                      </span>
+                      
                       <div
                         class="relative overflow-hidden rounded border border-gray-400 bg-white"
                       >
                         <input
                           class="py-2 px-6 w-full focus:placeholder:text-white outline-none"
                           type="text"
-                          placeholder=""
+                          :placeholder="$t('email')"
                           v-model="yourEmail"
                           required
                         />
@@ -71,18 +62,14 @@
                 </div>
                 <div class="w-full">
                   <div class="relative">
-                    <span
-                      class="absolute top-0 right-5 z-20 -`translate`-y-1/2 transform bg-white p-1 text-xs"
-                    >
-                      {{ $t('subject') }}
-                    </span>
+                   
                     <div
                       class="relative overflow-hidden rounded border border-gray-400 bg-white"
                     >
                       <input
                         class="py-2 px-6 w-full focus:placeholder:text-white outline-none"
                         type="text"
-                        placeholder=""
+                        :placeholder="$t('subject')"
                         v-model="yourSubject"
                         required
                       />
@@ -91,18 +78,14 @@
                 </div>
                 <div class="w-full">
                   <div class="relative">
-                    <span
-                      class="absolute top-0 right-5 z-20 -`translate`-y-1/2 transform bg-white p-1 text-xs"
-                    >
-                  {{ $t('your_message') }}
-                    </span>
+                    
                     <div
                       class="relative overflow-hidden rounded border border-gray-400 bg-white"
                     >
                       <textarea
                         class="w-full py-3 px-6 focus:placeholder:text-white outline-none"
                         type="text"
-                        placeholder=""
+                        :placeholder="$t('your_message')"
                         cols="30"
                         rows="7"
                         v-model="yourMessage"
@@ -126,8 +109,8 @@
             <div
               class="relative flex h-72 flex-col items-center justify-center"
             >
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d202.25586606050027!2d51.43391800734024!3d35.7976291!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f8e05de51d30e27%3A0xc66fc983b889cd4f!2sQCXM%2B2JC%20District%201%2C%20Tehran%2C%20Tehran%20Province%2C%20Iran!5e0!3m2!1sen!2s!4v1666612200158!5m2!1sen!2s"
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d202.25582558360085!2d51.434076!3d35.797645!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xfcfcf1e9161b2eee!2s8H7HQCXM%2B2JC!5e0!3m2!1sen!2sus!4v1670232556020!5m2!1sen!2sus"
                 style="border: 0"
                 class="h-full w-full rounded-3xl opacity-80 brightness-100 filter"
                 allowfullscreen=""
@@ -142,14 +125,15 @@
                 class="bottom-10 flex w-full flex-col items-center justify-center gap-1 sm:absolute sm:w-10/12 sm:flex-row sm:gap-4"
               >
                 <a
-                  href="#"
+                  href="https://ul.waze.com/ul?ll=35.79739206%2C51.43416882&navigate=yes&zoom=17&utm_campaign=default&utm_source=waze_website&utm_medium=lm_share_location"
                   class="flex-center w-full cursor-pointer gap-2 rounded-3xl bg-white py-2 px-6 text-secondary-dark shadow-md hover:bg-slate-100 sm:w-1/2"
                 >
                   <img src="svg/google-map.svg" alt="" />
                   مسیریابی با ویز
                 </a>
                 <a
-                  href="#"
+                  href="https://goo.gl/maps/RHNy9WAuPGZoRwXz5"
+                  target="_blank"
                   class="flex-center w-full cursor-pointer gap-2 rounded-3xl bg-white py-2 px-6 text-secondary-dark shadow-md hover:bg-slate-100 sm:w-1/2"
                 >
                   <img src="svg/waze.svg" alt="" />
@@ -159,28 +143,24 @@
             </div>
 
             <div class="mt-6 flex flex-col gap-2">
-              <div class="flex gap-2 text-gray-600">
-                <span class="flex-center w-10">
-                  <img class="object-contain" src="svg/location.svg" alt="" />
+              <div class="flex gap-2 text-gray-600 items-start text-lg">
+                <span class="flex-center w-7">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-full  text-primary" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path fill="currentColor" d="M12 12q.825 0 1.413-.588Q14 10.825 14 10t-.587-1.413Q12.825 8 12 8q-.825 0-1.412.587Q10 9.175 10 10q0 .825.588 1.412Q11.175 12 12 12Zm0 7.35q3.05-2.8 4.525-5.088Q18 11.975 18 10.2q0-2.725-1.738-4.463Q14.525 4 12 4Q9.475 4 7.737 5.737Q6 7.475 6 10.2q0 1.775 1.475 4.062Q8.95 16.55 12 19.35Zm0 2.275q-.2 0-.4-.075t-.35-.2Q7.6 18.125 5.8 15.363Q4 12.6 4 10.2q0-3.75 2.413-5.975Q8.825 2 12 2t5.587 2.225Q20 6.45 20 10.2q0 2.4-1.8 5.163q-1.8 2.762-5.45 5.987q-.15.125-.35.2q-.2.075-.4.075ZM12 10.2Z"/></svg>
                 </span>
                 <div>
                   شریعتی_ بالاتر از پل رومی _ بالاتر از مترو قیطریه _ جنب بانک
                   شهر پلاک ۱۸۴۱_واحد ۱
                 </div>
               </div>
-              <div class="flex gap-2 text-gray-600">
-                <span class="flex-center w-10">
-                  <img
-                    class="object-contain"
-                    src="svg/phone-black.svg"
-                    alt=""
-                  />
+              <div class="flex gap-2 text-gray-600 items-start text-lg">
+                <span class="flex-center w-7">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-full  text-primary" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path fill="currentColor" d="M12 11q-.425 0-.712-.288Q11 10.425 11 10t.288-.713Q11.575 9 12 9t.713.287Q13 9.575 13 10t-.287.712Q12.425 11 12 11Zm4 0q-.425 0-.712-.288Q15 10.425 15 10t.288-.713Q15.575 9 16 9t.712.287Q17 9.575 17 10t-.288.712Q16.425 11 16 11Zm4 0q-.425 0-.712-.288Q19 10.425 19 10t.288-.713Q19.575 9 20 9t.712.287Q21 9.575 21 10t-.288.712Q20.425 11 20 11Zm-.05 10q-3.225 0-6.287-1.438q-3.063-1.437-5.425-3.8q-2.363-2.362-3.8-5.425Q3 7.275 3 4.05q0-.45.3-.75t.75-.3H8.1q.35 0 .625.225t.325.575l.65 3.5q.05.35-.012.637q-.063.288-.288.513L6.975 10.9q1.05 1.8 2.638 3.375Q11.2 15.85 13.1 17l2.35-2.35q.225-.225.588-.338q.362-.112.712-.062l3.45.7q.35.075.575.337q.225.263.225.613v4.05q0 .45-.3.75t-.75.3ZM6.025 9l1.65-1.65L7.25 5H5.025q.125 1.025.35 2.025q.225 1 .65 1.975Zm8.95 8.95q.975.425 1.988.675q1.012.25 2.037.325v-2.2l-2.35-.475ZM6.025 9Zm8.95 8.95Z"/></svg>
                 </span>
                 <div>02122218151</div>
               </div>
-              <div class="flex gap-2 text-gray-600">
-                <span class="flex-center w-10">
-                  <img class="object-contain" src="svg/email.svg" alt="" />
+              <div class="flex gap-2 text-gray-600 items-start text-lg">
+                <span class="flex-center w-7">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-full  text-primary" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path fill="currentColor" d="M12 22q-2.05 0-3.875-.788q-1.825-.787-3.187-2.15q-1.363-1.362-2.15-3.187Q2 14.05 2 12q0-2.075.788-3.887q.787-1.813 2.15-3.175Q6.3 3.575 8.125 2.787Q9.95 2 12 2q2.075 0 3.887.787q1.813.788 3.175 2.151q1.363 1.362 2.15 3.175Q22 9.925 22 12v1.45q0 1.475-1.012 2.512Q19.975 17 18.5 17q-.9 0-1.675-.4t-1.275-1.05q-.675.675-1.587 1.063Q13.05 17 12 17q-2.075 0-3.537-1.463Q7 14.075 7 12t1.463-3.538Q9.925 7 12 7t3.538 1.462Q17 9.925 17 12v1.45q0 .725.45 1.137q.45.413 1.05.413q.6 0 1.05-.413q.45-.412.45-1.137V12q0-3.275-2.363-5.638Q15.275 4 12 4Q8.725 4 6.362 6.362Q4 8.725 4 12t2.362 5.637Q8.725 20 12 20h5v2Zm0-7q1.25 0 2.125-.875T15 12q0-1.25-.875-2.125T12 9q-1.25 0-2.125.875T9 12q0 1.25.875 2.125T12 15Z"/></svg>
                 </span>
                 <div>info@carizanin.com</div>
               </div>
