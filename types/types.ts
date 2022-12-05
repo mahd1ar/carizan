@@ -8764,6 +8764,13 @@ export type LabAndQaQueryVariables = Exact<{
 
 export type LabAndQaQuery = { __typename?: 'RootQuery', category?: { __typename?: 'Category', id: string, name?: string | null, description?: string | null, cat_cf?: { __typename?: 'Category_CatCf', image?: { __typename?: 'MediaItem', altText?: string | null, sourceUrl?: string | null } | null } | null, contentNodes?: { __typename?: 'CategoryToContentNodeConnection', edges?: Array<{ __typename?: 'CategoryToContentNodeConnectionEdge', node?: { __typename?: 'MediaItem', id: string } | { __typename?: 'Page', id: string, title?: string | null, translation?: { __typename?: 'Page', id: string } | null, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null } | null } | null } | { __typename?: 'Post', id: string } | null } | null> | null } | null } | null };
 
+export type MenuProductsQueryVariables = Exact<{
+  id?: InputMaybe<Scalars['ID']>;
+}>;
+
+
+export type MenuProductsQuery = { __typename?: 'RootQuery', category?: { __typename?: 'Category', id: string, name?: string | null, contentNodes?: { __typename?: 'CategoryToContentNodeConnection', edges?: Array<{ __typename?: 'CategoryToContentNodeConnectionEdge', node?: { __typename?: 'MediaItem', id: string } | { __typename?: 'Page', id: string, title?: string | null } | { __typename?: 'Post', id: string } | null } | null> | null } | null, children?: { __typename?: 'CategoryToCategoryConnection', edges?: Array<{ __typename?: 'CategoryToCategoryConnectionEdge', node?: { __typename?: 'Category', id: string, name?: string | null, translation?: { __typename?: 'Category', id: string } | null } | null } | null> | null } | null } | null };
+
 export type PageQueryVariables = Exact<{
   id?: InputMaybe<Scalars['ID']>;
   idType?: InputMaybe<PageIdType>;

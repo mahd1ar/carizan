@@ -1,39 +1,31 @@
 <template>
-  <footer class="text-white bg-black lg:grid lg:grid-cols-5">
+  <footer class="bg-black text-white lg:grid lg:grid-cols-5">
     <aside class="hidden lg:relative lg:col-span-2 lg:block">
-      <img
-        class="absolute inset-0 object-cover w-full h-full"
-        src="/footer.avif"
-        alt="Comic Graphic"
-      />
+      <img class="absolute inset-0 h-full w-full object-cover" src="/footer.avif" alt="Comic Graphic" />
     </aside>
 
-    <div class="px-4 py-16 sm:px-6 lg:px-8 lg:col-span-3">
+    <div class="px-4 py-16 sm:px-6 lg:col-span-3 lg:px-8">
       <div class="grid grid-cols-1 gap-8 sm:grid-cols-2">
         <div>
           <p class="font-medium">
-            <span class="text-xs tracking-widest uppercase text-primary">
+            <span class="text-xs uppercase tracking-widest text-primary">
               <!-- TODO translate -->
               <!-- Call -->
               تماس با ما
             </span>
 
-            <a href="tel:+982122218151" class="block text-2xl sm:text-3xl hover:opacity-75" >
+            <a href="tel:+982122218151" class="block text-2xl hover:opacity-75 sm:text-3xl">
               02122218151
             </a>
           </p>
 
           <ul class="mt-8 space-y-2 text-sm">
             <li>شنبه تا 4 شنبه : از 8 صبح تا 4 بعدازظهر</li>
-          <li>
-            
-            شریعتی_ بالاتر از پل رومی _ بالاتر از مترو قیطریه _ جنب بانک
-                شهر پلاک ۱۸۴۱_واحد ۱
-              
-          </li>
-          <li>
-            info@carizanin.com
-          </li>
+            <li>
+              شریعتی_ بالاتر از پل رومی _ بالاتر از مترو قیطریه _ جنب بانک شهر
+              پلاک ۱۸۴۱_واحد ۱
+            </li>
+            <li>info@carizanin.com</li>
           </ul>
 
           <!-- <div class="flex mt-16 space-x-3">
@@ -151,31 +143,26 @@
           <div>
             <p class="font-medium text-primary">خدمات</p>
 
-            <nav class="flex flex-col mt-4 space-y-2 text-sm text-gray-300">
-              <a class="hover:opacity-75" href=""> Contact </a>
-              <a class="hover:opacity-75" href=""> FAQs </a>
-              <a class="hover:opacity-75" href=""> Live Chat </a>
-              <a class="hover:opacity-75" href=""> Forums </a>
+            <nav class="mt-4 flex flex-col space-y-2 text-sm text-gray-300">
+
+              <a v-for="p in menuServices" :key="p.id" class="hover:opacity-75" href="#">
+                {{ p.name }}</a>
             </nav>
           </div>
 
           <div>
             <p class="font-medium text-primary">محصولات</p>
 
-            <nav class="flex flex-col mt-4 space-y-2 text-sm text-gray-300">
-              <a class="hover:opacity-75" href=""> 1to1 Coaching </a>
-              <a class="hover:opacity-75" href=""> Lesson Plans </a>
-              <a class="hover:opacity-75" href=""> Meal Plans </a>
-              <a class="hover:opacity-75" href=""> Gym Sessions </a>
+            <nav class="mt-4 flex flex-col space-y-2 text-sm text-gray-300">
+              <a v-for="p in menuProducts" :key="p.id" class="hover:opacity-75" href="#">
+                {{ p.name }}</a>
             </nav>
           </div>
         </div>
       </div>
 
-      <div dir="ltr" class="pt-12 mt-12 border-t border-gray-800">
-        <div
-          class="text-sm text-gray-300 sm:items-center sm:justify-between sm:flex"
-        >
+      <div dir="ltr" class="mt-12 border-t border-gray-800 pt-12">
+        <div class="text-sm text-gray-300 sm:flex sm:items-center sm:justify-between">
           <div class="flex space-x-3">
             <a class="hover:opacity-75" href=""> Privacy Policy </a>
             <a class="hover:opacity-75" href=""> Terms & Conditions </a>
@@ -197,3 +184,89 @@
     </div>
   </footer>
 </template>
+
+<script lang="ts" setup>
+import {
+  useLazyQuery,
+  useQuery,
+  useApolloClient, provideApolloClient
+} from '@vue/apollo-composable/dist'
+import Q1 from '@/apollo/query/menu-products.gql'
+import { MenuProductsQuery, MenuProductsQueryVariables } from '~/types/types'
+import { computed, onMounted, ref } from 'vue'
+import gql from 'graphql-tag';
+import { client } from 'process';
+
+const menuProducts = ref<{ name: string; link: string; id: string }[]>([])
+const menuServices = ref<{ name: string; link: string; id: string }[]>([])
+
+onMounted(async () => {
+  const v1: MenuProductsQueryVariables = {
+    id: 'products-fa'
+  }
+
+  const { data: data1 } = await useApolloClient().client.query<MenuProductsQuery>({
+    query: gql`
+     {
+        category(id: "products-fa", idType: SLUG) {
+          id
+          name
+          children(first: 10) {
+            edges {
+              node {
+                id
+                name
+                translation(language: EN) {
+                  id
+                }
+              }
+            }
+          }
+        }
+      }
+
+    `,
+  })
+
+  if (data1?.category?.children?.edges)
+    data1.category.children.edges.forEach((i) => {
+      menuProducts.value.push({
+        name: i?.node?.name || '',
+        link: '#',
+        id: i!.node!.id,
+      })
+    })
+
+  //   console.log(useApolloClient)
+
+
+
+})
+
+
+onMounted(async ()=>{
+
+  const v2: MenuProductsQueryVariables = {
+    id: 'services-fa'
+  }
+
+
+  const {data} = await useApolloClient()
+    .client.query<MenuProductsQuery>({
+      query: Q1,
+      variables : v2
+    })
+    
+      if (data.category?.contentNodes?.edges)
+        data.category.contentNodes.edges.forEach((i) => {
+          if (i?.node?.__typename === 'Page')
+            menuServices.value.push({
+
+              name: i?.node?.title || '',
+              link: '#',
+              id: i!.node!.id,
+            })
+        })
+
+})
+</script>

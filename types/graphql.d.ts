@@ -62,6 +62,15 @@ declare module '*/lab.gql' {
 }
     
 
+declare module '*/menu-products.gql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const menuProducts: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
 declare module '*/page.gql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
