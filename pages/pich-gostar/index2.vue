@@ -3,28 +3,22 @@
 
   <div class="w-full">
     <HeroSection2 />
-<div class="h-10 w-full" ref="prodelem" >
-  {{cx }} + {{cy}}
-</div>
     <div v-if="cats[0]" class="relative flex h-[50vh] bg-tm-gray-ligth">
       <div class="relative w-full">
-        <img class="h-full w-full object-cover grayscale-[50%]" :src="cats[0].img" alt="" />
+        <img 
+        :style="{
+          '--y': y / 20,
+          transform: 'translate3d(0px, calc(var(--y) * -1px), 0px)',
+        }"
+        class="h-auto w-full object-cover grayscale-[50%] hover:grayscale-0 transition-all ease-out" :src="cats[0].img" alt="" />
 
-        <div class="container absolute left-0 top-0 mx-auto h-full">
+        <div class="container absolute left-0 top-0 mx-auto h-full ">
           <div  class="relative flex h-full flex-col items-end justify-center">
             <h2
               class="inline-flex h-24 items-center justify-center overflow-hidden bg-black px-2 text-7xl uppercase text-gray-100">
               {{ cats[0].name }}
             </h2>
-            <h2 :style="{
-              'clip-path':
-                'circle(54px at calc( var(--cx) * 1px ) calc( var(--cy) * 1px ) )',
-              '--cx': cx,
-              '--cy': cy,
-            }"
-              class="absolute inline-flex h-24 items-center justify-center overflow-hidden bg-white px-2 text-7xl uppercase text-black">
-              {{ cats[0].name }}
-            </h2>
+          
             <nuxt-link data-depth="1" class="flex bg-primary text-3xl uppercase text-black"
               :to="localePath('/pich-gostar/products')">
               <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" preserveAspectRatio="xMidYMid meet"
@@ -43,7 +37,7 @@
         <img :style="{
           '--y': y / 20,
           transform: 'translate3d(0px, calc(var(--y) * -1px), 0px)',
-        }" class="h-auto w-full object-cover grayscale-[50%] transition-all ease-out" :src="cats[1].img" alt="" />
+        }" class="h-auto w-full object-cover grayscale-[50%] hover:grayscale-0 transition-all ease-out" :src="cats[1].img" alt="" />
 
         <div class="container absolute left-0 top-0 mx-auto h-full">
           <div class="flex h-full flex-col items-start justify-center">
@@ -164,7 +158,7 @@ import { useQuery } from '@vue/apollo-composable/dist'
 import HOMEGQL from '@/apollo/query/home-page.gql'
 import { HomeQuery, HomeQueryVariables, LanguageCodeEnum } from '@/types/types'
 import { stripHtml } from '~/data/utils'
-import { useMouseInElement, useScroll, useWindowScroll } from '@vueuse/core'
+import { useWindowScroll } from '@vueuse/core'
 
 export default defineComponent({
   components: {
@@ -175,8 +169,7 @@ export default defineComponent({
   setup() {
     const { i18n, error } = useContext()
     const store = useStore()
-    const prodelem = ref(null)
-    console.log(prodelem)
+
     const variable: HomeQueryVariables = {
       languages:
         i18n.locale.toLowerCase() === 'fa'
@@ -219,12 +212,10 @@ export default defineComponent({
       document.querySelector('header')!.style.removeProperty('position')
     })
 
-    const { x: cx, elementY: cy } = useMouseInElement(prodelem)
 
 
     return {
-      cx,
-      cy,
+
       y,
       cats,
       explain,
