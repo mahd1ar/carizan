@@ -1,5 +1,6 @@
 <template>
   <div
+  dir="rtl"
     class="relative h-72 overflow-hidden bg-cover bg-center bg-no-repeat sm:h-80"
     style="background-color: #ededed"
   >
@@ -21,7 +22,11 @@
       <h1
         class="relative text-center text-6xl font-bold text-gray-500 sm:text-6xl md:text-7xl"
       >
-        کاریزان پیچ گستر
+      {{
+        $i18n.locale.toLowerCase() === 'fa' ?
+        'کاریزان پیچ گستر' :
+        'Carizan pich gostar'.toUpperCase()
+      }}
       </h1>
     </div>
 
