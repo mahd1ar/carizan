@@ -23,6 +23,7 @@ type Events = {
 const eventBus: Plugin = (context, inject) => {
     const emitter = mitt<Events>()
     //   const eb = new EventBus(context)
+    console.log( context.app.apolloProvider)
     inject('mitt', emitter)
 }
 

@@ -31,6 +31,10 @@ module.exports = {
         yekan: 'Yekan Bakh',
         lato:['Lato' ,  'sans-serif']
       },
+        backgroundImage: {
+          'gradient-radial': 'radial-gradient(var(--gradient-color-stops))',
+        }
+      
     },
   },
   plugins: [],

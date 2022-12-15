@@ -1,6 +1,6 @@
 <template>
-  <aside
-    class="overflow-hidden bg-center bg-no-repeat bg-cover relative"
+  <div
+    class="relative h-72 overflow-hidden bg-cover bg-center bg-no-repeat sm:h-80"
     style="background-color: #ededed"
   >
     <!-- from-black to-gray-700 -->
@@ -14,10 +14,24 @@
       aria-hidden="true"
       style="clip-path: polygon(53% 0, 100% 0, 100% 100%, 44% 100%)"
     ></div> -->
-    <div class="md:w-6/12 w-8/12 absolute bottom-0 left-0 text-white container transform translate-y-10 z-10">
+
+    <div
+      class="container absolute z-20 mx-auto flex h-full items-center bg-gradient-to-l from-white/60 to-transparent"
+    >
+      <h1
+        class="relative text-center text-6xl font-bold text-gray-500 sm:text-6xl md:text-7xl"
+      >
+        کاریزان پیچ گستر
+      </h1>
+    </div>
+
+    <div
+      id="logo"
+      class="container absolute bottom-0 left-0 z-10 w-9/12 translate-y-10 transform text-white md:w-6/12"
+    >
       <svg
         style="color: #dbdbdb"
-        class="object-contain mw-full"
+        class="mw-full object-contain"
         viewBox="0 0 692.74 667.87"
       >
         <g>
@@ -35,14 +49,8 @@
       </svg>
     </div>
     <!-- style="background-image: url(/sample/sample3.jpg)" -->
-    <div class="w-full md:w-6/12 h-96 flex-center justify-start">
+    <div class="flex-center w-full justify-start md:w-6/12">
       <div class="max-w-lg text-center sm:text-left">
-        <h1
-          class="text-5xl font-bold text-gray-500  md:text-7xl z-10 relative"
-        >
-          کاریزان پیچ گستر
-        </h1>
-
         <img src="/hero/pich-s.svg" class="pattern pich-1" alt="" />
         <img src="/hero/pich-g.svg" class="pattern pich-2" alt="" />
         <div class="pattern line-1"></div>
@@ -81,7 +89,7 @@
         </div> -->
       </div>
     </div>
-  </aside>
+  </div>
 </template>
 
 <script lang="ts">
@@ -99,22 +107,22 @@ export default Vue.extend({
 }
 
 .pich-1 {
-  @apply w-20 top-0;
+  @apply top-0 w-20;
 }
 
 .pich-2 {
-  @apply w-10 top-3 transform -translate-x-full -rotate-12 z-[1];
+  @apply top-3 z-[1] w-10 -translate-x-full -rotate-12 transform;
 }
 
 .line-1 {
-  @apply bg-primary w-8 h-56 rotate-[45deg] translate-y-20;
+  @apply h-56 w-8 translate-y-20 rotate-[45deg] bg-primary;
 }
 
 .line-2 {
-  @apply bg-primary w-6 h-56 rotate-[50deg] left-96 -top-12;
+  @apply left-96 -top-12 h-56 w-6 rotate-[50deg] bg-primary;
 }
 
 .line-3 {
-  @apply bg-primary w-10 h-72 rotate-[45deg] left-0  bottom-0;
+  @apply left-0 bottom-0 h-72 w-10 rotate-[45deg]  bg-primary;
 }
 </style>

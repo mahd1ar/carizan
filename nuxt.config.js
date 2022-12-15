@@ -61,8 +61,10 @@ export default {
   ],
   izitoast: {
     position: 'bottomRight',
-    transitionIn: 'bounceInLeft',
-    transitionOut: 'fadeOutRight',
+    transitionIn: 'fadeInUp',
+    transitionOut: 'fadeOut',
+    transitionInMobile: 'fadeInUp',
+    transitionOutMobile: 'fadeOutDown',
   },
   i18n: {
     locales: [

@@ -47,6 +47,7 @@ import {
   useContext,
   useMeta,
   defineComponent,
+ onMounted
 } from '@nuxtjs/composition-api'
 import { onKeyStroke } from '@vueuse/core'
 
@@ -54,8 +55,8 @@ export default defineComponent({
   head: {},
   setup() {
     const { i18n } = useContext()
-const ctx = useContext()
-    // const showDevBox = ref( !ctx.$device.isMobileOrTablet )
+    
+    const ctx = useContext()
     const showDevBox = ref( false )
     const m = useMeta()
 
@@ -69,6 +70,8 @@ const ctx = useContext()
 
     const locale = ref(i18n.locale)
 
+
+      
     const changeLocal = () => {
       if (locale.value === 'fa') {
         i18n.setLocale('en')

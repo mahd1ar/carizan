@@ -82,26 +82,34 @@
           <div
             class="desktop-nav mt-5 flex h-full flex-col bg-gray-100 sm:mt-0 sm:flex-row-reverse sm:items-center sm:justify-start sm:pl-5"
           >
-            <div class="mx-4 cursor-pointer text-gray-900">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="1em"
-                height="1em"
-                preserveAspectRatio="xMidYMid meet"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-width="2"
-                  d="m21 21l-4.486-4.494M19 10.5a8.5 8.5 0 1 1-17 0a8.5 8.5 0 0 1 17 0Z"
-                />
-              </svg>
+            <div class="mx-4  flex flex-row-reverse gap-4 text-gray-900">
+              <!-- search -->
+              <div>
+
+                <svg
+                  class="w-5 h-5 cursor-pointer "
+                  preserveAspectRatio="xMidYMid meet"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-width="2"
+                    d="m21 21l-4.486-4.494M19 10.5a8.5 8.5 0 1 1-17 0a8.5 8.5 0 0 1 17 0Z"
+                  />
+                </svg>
+              </div>
+              <!-- translate -->
+              <div class="cursor-pointer" @click="switchLang" >
+                <svg class="w-5 h-5" preserveAspectRatio="xMidYMid meet" viewBox="0 0 20 20"><g fill="currentColor"><path d="M7.75 2.75a.75.75 0 0 0-1.5 0v1.258a32.987 32.987 0 0 0-3.599.278a.75.75 0 1 0 .198 1.487A31.545 31.545 0 0 1 8.7 5.545A19.381 19.381 0 0 1 7 9.56a19.418 19.418 0 0 1-1.002-2.05a.75.75 0 0 0-1.384.577a20.935 20.935 0 0 0 1.492 2.91a19.613 19.613 0 0 1-3.828 4.154a.75.75 0 1 0 .945 1.164A21.116 21.116 0 0 0 7 12.331c.095.132.192.262.29.391a.75.75 0 0 0 1.194-.91a18.97 18.97 0 0 1-.59-.815a20.888 20.888 0 0 0 2.333-5.332c.31.031.618.068.924.108a.75.75 0 0 0 .198-1.487a32.832 32.832 0 0 0-3.599-.278V2.75Z"/><path fill-rule="evenodd" d="M13 8a.75.75 0 0 1 .671.415l4.25 8.5a.75.75 0 1 1-1.342.67L15.787 16h-5.573l-.793 1.585a.75.75 0 1 1-1.342-.67l4.25-8.5A.75.75 0 0 1 13 8Zm2.037 6.5L13 10.427L10.964 14.5h4.073Z" clip-rule="evenodd"/></g></svg>
+              </div>
             </div>
+
+            <!-- shadow-lg shadow-primary -->
             <nuxt-link
               :to="localePath('/pich-gostar')"
-              class="flex-center h-full rounded-sm bg-primary px-3 font-bold text-primary-dark hover:text-gray-500"
+              class="flex-center h-full rounded-sm  bg-primary px-3 font-bold text-primary-dark hover:text-gray-500"
             >
               {{ $t('home') }}
             </nuxt-link>
@@ -155,12 +163,16 @@ import {
   computed,
   ref,
   watch,
+useRoute,
+useRouter,
 } from '@nuxtjs/composition-api'
 import { RootState } from '@/store/index'
 import MobileNav from './topnav/MobileNav.vue';
 
 const store = useStore<RootState>()
-const { i18n } = useContext()
+const router = useRouter()
+const { i18n ,switchLocalePath  } = useContext()
+const ctx = useContext()
 
 const showMobileMenu = ref(false)
 
@@ -169,6 +181,23 @@ const navItems = computed(() => {
     (i) => i.lang === i18n.locale.toLowerCase()
   )
 })
+
+const switchLang = () => {
+  const otherLang = i18n.locale.toLowerCase() === 'fa' ? 'en' : 'fa'
+    const message = {
+      fa  :  'خوش آمدید',
+      en  : 'welcome'
+  }
+
+  router .push( switchLocalePath(otherLang))
+        // @ts-ignore
+        ctx.$izitoast.success({ 
+          title :  message[otherLang],
+          timeout: 5000,
+          color : '#ffc800'
+          })
+}
+
 </script>
 
 <style lang="scss" scoped>
