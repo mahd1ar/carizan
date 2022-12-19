@@ -6,7 +6,7 @@
           <h2 class="text-5xl font-bold text-tm-gray-dark">
             {{ title }}
           </h2>
-          <span class="absolute left-0 -top-1/2 text-8xl font-bold text-tm-gray-dark opacity-10 rtl:left-auto">
+          <span class="absolute left-0 -top-5 text-8xl font-bold text-tm-gray-dark opacity-[0.05] rtl:left-auto">
             {{ title }}
           </span>
         </div>
@@ -29,22 +29,23 @@
         </nuxt-link>
       </div>
     </div>
-    <div class="relative h-[400px] w-full overflow-hidden rounded shadow-xl shadow-gray-400 md:w-1/2">
+    <nuxt-link :to="localePath(link)"
+      class="relative h-[400px] w-full overflow-hidden rounded shadow-xl shadow-gray-400 md:w-1/2">
       <img v-if="img" v-motion :initial="{
         scale: 1.5,
         x: 100,
       }" :enter="{
-          opacity: 1,
-          x: 0,
-          scale: 1,
-          transition: {
-            type: 'spring',
-            stiffness: 250,
-            damping: 25,
-            mass: 0.5,
-            delay: index * 100,
-          },
-        }" ref="target" :src="img" loading="lazy"
+  opacity: 1,
+  x: 0,
+  scale: 1,
+  transition: {
+    type: 'spring',
+    stiffness: 250,
+    damping: 25,
+    mass: 0.5,
+    delay: index * 100,
+  },
+}" ref="target" :src="img" loading="lazy"
         class="h-full w-full origin-right translate-x-24 scale-150 object-cover transition-all duration-700 ease-out"
         alt="" />
 
@@ -56,11 +57,11 @@
         <p v-snip="{ lines: 4 }" class="h-24 overflow-hidden text-gray-300">
           {{ body }}
         </p>
-        <nuxt-link :to="localePath(link)" class="mb-6 w-full rounded bg-primary py-2 text-center text-black">
+        <button class="mb-6 w-full rounded bg-primary py-2 text-center text-black">
           {{ $t('more') }}
-        </nuxt-link>
+        </button>
       </div>
-    </div>
+    </nuxt-link>
   </div>
 </template>
 
