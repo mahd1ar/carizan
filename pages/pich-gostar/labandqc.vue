@@ -13,11 +13,13 @@
           :to="localePath('/pich-gostar/quality-policy')"
           class="flex-center flex-col gap-2 w-36"
         >
-          <img
-            class="w-40 object-cover"
-            src="@/static/svg/quality/z-20.svg"
-            alt=""
-          />
+          <div class="h-28">
+            <img
+              class="w-28 object-cover"
+              src="@/static/svg/quality/z-20.svg"
+              alt=""
+            />
+          </div>
           <strong class="text-center">
             خط مشی کیفیت
           </strong>
@@ -28,7 +30,9 @@
           :key="i.id"
           class="flex-center flex-col gap-2 w-36"
         >
-          <img class="w-20" :src="i.image" alt="" />
+          <div class="h-28">
+            <img class="w-20" :src="i.image" alt="" />
+          </div>
           <strong class="text-center">
             {{ i.title }}
           </strong>
