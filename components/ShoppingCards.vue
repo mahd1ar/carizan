@@ -1,6 +1,5 @@
 <template>
   <section class="text-gray-600 body-font">
-
     <div class="container px-5 py-12 mx-auto">
       <div class="flex flex-wrap -m-4">
         <!-- v-motion
@@ -11,18 +10,18 @@
         <nuxt-link
           v-for="(i, index) in cards"
           :key="i.id"
-          class="p-4 md:w-1/3"
+          class="w-full p-4 md:w-1/3"
           :delay="(index % 3) * 200"
           :to="i.link"
         >
           <div
-            class="h-full border-2 border-gray-200 bg-white border-opacity-60 rounded-lg overflow-hidden"
+            class="h-full  border-2 border-gray-200 bg-white border-opacity-60 rounded-lg overflow-hidden"
           >
             <img
               v-if="i.image"
-              class="lg:h-48 md:h-36 w-full object-cover object-center"
+              class="h-60 lg:h-48 md:h-36 w-full object-cover object-center"
               :src="i.image"
-              alt="blog"
+              :alt="i.title"
             />
             <div class="p-6 border-t-4 border-primary ">
               <h2
@@ -35,7 +34,7 @@
                 v-html="i.title"
               ></h1>
               <p v-snip="3" class="leading-relaxed mb-3" v-text="i.body"></p>
-              <!-- localePath('/product?id=' + i.id) --> 
+              <!-- localePath('/product?id=' + i.id) -->
             </div>
           </div>
         </nuxt-link>
@@ -57,7 +56,7 @@ const { cards = [] } = defineProps({
         body: string
         link: string
       }[]
-    >,
-  },
+    >
+  }
 })
 </script>
