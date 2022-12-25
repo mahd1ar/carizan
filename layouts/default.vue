@@ -4,7 +4,8 @@
   >
     <div
       v-if="showDevBox"
-      :style="`
+      :style="
+        `
       position: fixed;
       top: 200px;
       left: 20px;
@@ -13,16 +14,17 @@
       direction: ltr;
       z-index : 200;
       opacity: 0.8;
-    `"
+    `
+      "
     >
-      <div>quick navigatin for dev : for toggle press `m` </div>
+      <div>quick navigatin for dev : for toggle press `m`</div>
       <div style="background-color: red" class="text-white text-xs">
         this will not show in production
       </div>
       <div>
         <button @click="changeLocal">change local [{{ locale }}]</button>
       </div>
-<br>
+      <br />
       <div
         class=" top-10 left-10 z-50 opacity-50 sm:bg-green-400 md:bg-red-500 lg:bg-blue-500 xl:bg-yellow-500"
       >
@@ -37,6 +39,9 @@
       <HeaderSection />
 
       <Nuxt ref="nuxt" />
+
+      <!-- command pallete -->
+      <command-pallete />
     </div>
   </main>
 </template>
@@ -46,32 +51,31 @@ import {
   ref,
   useContext,
   useMeta,
-  defineComponent,
- onMounted
+  defineComponent
 } from '@nuxtjs/composition-api'
 import { onKeyStroke } from '@vueuse/core'
+import CommandPallete from '@/components/CommandPallete.vue'
 
 export default defineComponent({
   head: {},
-  setup() {
+  components: { CommandPallete },
+  setup () {
     const { i18n } = useContext()
-    
+
     const ctx = useContext()
-    const showDevBox = ref( false )
+    const showDevBox = ref(false)
     const m = useMeta()
 
     m.htmlAttrs.value.lang = i18n.locale
     m.htmlAttrs.value.dir = i18n.locale === 'fa' ? 'rtl' : 'ltr'
 
-    onKeyStroke('m', (e) => {
+    onKeyStroke('m', e => {
       e.preventDefault()
       showDevBox.value = !showDevBox.value
     })
 
     const locale = ref(i18n.locale)
 
-
-      
     const changeLocal = () => {
       if (locale.value === 'fa') {
         i18n.setLocale('en')
@@ -85,8 +89,8 @@ export default defineComponent({
     return {
       changeLocal,
       locale,
-      showDevBox,
+      showDevBox
     }
-  },
+  }
 })
 </script>

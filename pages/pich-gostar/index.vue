@@ -161,20 +161,27 @@ export default defineComponent({
 
   name: 'IndexPage',
   setup () {
+    const aboutVars = {
+      fa: 'cG9zdDoxMzQ=',
+      en: 'cG9zdDoxMzE='
+    }
     const { i18n, error } = useContext()
     const store = useStore()
     const variable: HomeQueryVariables = {
       languages:
         i18n.locale.toLowerCase() === 'fa'
           ? LanguageCodeEnum.Fa
-          : LanguageCodeEnum.En
+          : LanguageCodeEnum.En,
+      // @ts-ignore
+      aboutid: aboutVars[i18n.locale.toLowerCase()]
     }
-
     const { result, onError } = useQuery<HomeQuery>(HOMEGQL, variable)
 
     onError(() => {
       error({ message: '_GET_INFO_ERROR', statusCode: 500 })
     })
+
+    console.log(result)
 
     const cats = computed(() => {
       return result?.value?.categories?.edges

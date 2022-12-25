@@ -8751,6 +8751,7 @@ export type GalleryQuery = { __typename?: 'RootQuery', category?: { __typename?:
 
 export type HomeQueryVariables = Exact<{
   languages?: InputMaybe<Array<LanguageCodeEnum> | LanguageCodeEnum>;
+  aboutid?: InputMaybe<Scalars['ID']>;
 }>;
 
 

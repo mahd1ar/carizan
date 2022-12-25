@@ -1,4 +1,7 @@
-query Home($languages: [LanguageCodeEnum!] = FA) {
+query Home(
+  $languages: [LanguageCodeEnum!] = FA
+  $aboutid: ID = "cG9zdDoxMzQ="
+) {
   categories(
     where: {
       slug: ["products", "products-fa", "services", "services-fa"]
@@ -20,7 +23,7 @@ query Home($languages: [LanguageCodeEnum!] = FA) {
       }
     }
   }
-  page(id: "cG9zdDoxMzQ=") {
+  page(id: $aboutid) {
     id
     title
     content(format: RENDERED)

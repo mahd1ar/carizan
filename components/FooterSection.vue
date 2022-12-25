@@ -1,27 +1,45 @@
 <template>
   <footer class="bg-black text-white lg:grid lg:grid-cols-5">
     <aside class="hidden lg:relative lg:col-span-2 lg:block">
-      <img class="absolute inset-0 h-full w-full object-cover" src="/footer.avif" alt="Comic Graphic" />
+      <img
+        class="absolute inset-0 h-full w-full object-cover"
+        src="/footer.avif"
+        alt="Comic Graphic"
+      />
     </aside>
 
     <div class="px-4 py-16 sm:px-6 lg:col-span-3 lg:px-8">
       <div class="grid grid-cols-1 gap-8 sm:grid-cols-2">
         <div>
           <p class="font-medium">
+            <span
+              v-if="$i18n.locale === 'en'"
+              class="text-xs uppercase tracking-widest text-primary"
+            >
+              contact us
+            </span>
             <span class="text-xs uppercase tracking-widest text-primary">
-              <!-- TODO translate -->
-              <!-- Call -->
               تماس با ما
             </span>
 
-            <a href="tel:+982122218151" class="block text-2xl hover:opacity-75 sm:text-3xl">
+            <a
+              href="tel:+982122218151"
+              class="block text-2xl hover:opacity-75 sm:text-3xl"
+            >
               02122218151
             </a>
           </p>
 
           <ul class="mt-8 space-y-2 text-sm">
-            <li>شنبه تا 4 شنبه : از 8 صبح تا 4 بعدازظهر</li>
-            <li>
+            <li v-if="$i18n.locale == 'en'">
+              Saturday to Saturday 4: from 8 am to 4 pm
+            </li>
+            <li v-else>شنبه تا 4 شنبه : از 8 صبح تا 4 بعدازظهر</li>
+            <li v-if="$i18n.locale == 'en'">
+              Shariati, above the Roman bridge, above the Qaitarieh metro
+              station, next to Shahr Bank, No. 1841, unit 1
+            </li>
+            <li v-else>
               شریعتی_ بالاتر از پل رومی _ بالاتر از مترو قیطریه _ جنب بانک شهر
               پلاک ۱۸۴۱_واحد ۱
             </li>
@@ -141,35 +159,70 @@
 
         <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div>
-            <p class="font-medium text-primary">خدمات</p>
+            <p class="font-medium text-primary">
+              {{ $i18n.locale === 'en' ? 'services' : 'خدمات' }}
+            </p>
 
             <nav class="mt-4 flex flex-col space-y-2 text-sm text-gray-300">
-
-              <a v-for="p in menuServices" :key="p.id" class="hover:opacity-75" href="#">
-                {{ p.name }}</a>
+              <a
+                v-for="p in menuServices"
+                :key="p.id"
+                class="hover:opacity-75"
+                href="#"
+              >
+                {{ p.name }}</a
+              >
             </nav>
           </div>
 
           <div>
-            <p class="font-medium text-primary">محصولات</p>
+            <p class="font-medium text-primary">
+              {{ $i18n.locale === 'en' ? 'products' : 'محصولات' }}
+            </p>
 
             <nav class="mt-4 flex flex-col space-y-2 text-sm text-gray-300">
-              <a v-for="p in menuProducts" :key="p.id" class="hover:opacity-75" href="#">
-                {{ p.name }}</a>
+              <a
+                v-for="p in menuProducts"
+                :key="p.id"
+                class="hover:opacity-75"
+                href="#"
+              >
+                {{ p.name }}</a
+              >
             </nav>
           </div>
         </div>
       </div>
 
       <div dir="ltr" class="mt-12 border-t border-gray-800 pt-12">
-        <div class="text-sm text-gray-300 sm:flex sm:items-center sm:justify-between">
+        <div
+          class="text-sm text-gray-300 sm:flex sm:items-center sm:justify-between"
+        >
           <div class="flex space-x-3">
-            <a class="hover:opacity-75" href=""> Privacy Policy </a>
-            <a class="hover:opacity-75" href=""> Terms & Conditions </a>
-            <a class="hover:opacity-75" href=""> Returns Policy </a>
+            design and developed by
+            <a
+              class="hover:opacity-75 mx-2 font-bold text-white font-mono flex gap-2"
+              href="https://netdom.ir/"
+              >mahd1ar anari
+
+              <svg
+                class="w-5 h-5"
+                preserveAspectRatio="xMidYMid meet"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  fill="currentColor"
+                  d="M6 2h8v2h-2v2h-2V4H6V2ZM4 6V4h2v2H4Zm0 10H2V6h2v10Zm2 2H4v-2h2v2Zm2 2H6v-2h2v2Zm10 0v2H8v-2h10Zm2-2v2h-2v-2h2Zm-2-4h2v4h2v-8h-2v2h-2v2Zm-6 0v2h6v-2h-6Zm-2-2h2v2h-2v-2Zm0 0V6H8v6h2Z"
+                />
+              </svg>
+            </a>
           </div>
 
-          <p class="mt-4 sm:mt-0">&copy; 2022 Carizan inc.</p>
+          <p class="mt-4 sm:mt-0">
+            &copy;
+            {{ new Date().getFullYear() }}
+            Carizan inc.
+          </p>
         </div>
 
         <!-- <p class="mt-8 text-xs text-gray-500">
@@ -189,26 +242,31 @@
 import {
   useLazyQuery,
   useQuery,
-  useApolloClient, provideApolloClient
+  useApolloClient,
+  provideApolloClient
 } from '@vue/apollo-composable/dist'
 import Q1 from '@/apollo/query/menu-products.gql'
 import { MenuProductsQuery, MenuProductsQueryVariables } from '~/types/types'
-import { computed, onMounted, ref } from 'vue'
-import gql from 'graphql-tag';
-import { client } from 'process';
-
+import { onMounted, ref } from 'vue'
+import gql from 'graphql-tag'
+import { useContext } from '@nuxtjs/composition-api'
+import { validate } from 'graphql'
+import i18n from '~/plugins/i18n'
+const ctx = useContext()
 const menuProducts = ref<{ name: string; link: string; id: string }[]>([])
 const menuServices = ref<{ name: string; link: string; id: string }[]>([])
 
 onMounted(async () => {
   const v1: MenuProductsQueryVariables = {
-    id: 'products-fa'
+    id: ctx.i18n.locale.toLowerCase() === 'fa' ? 'products-fa' : 'products'
   }
 
-  const { data: data1 } = await useApolloClient().client.query<MenuProductsQuery>({
+  const { data: data1 } = await useApolloClient().client.query<
+    MenuProductsQuery
+  >({
     query: gql`
-     {
-        category(id: "products-fa", idType: SLUG) {
+      query q($id: ID!) {
+        category(id: $id, idType: SLUG) {
           id
           name
           children(first: 10) {
@@ -224,49 +282,61 @@ onMounted(async () => {
           }
         }
       }
-
     `,
+    variables: v1
   })
 
   if (data1?.category?.children?.edges)
-    data1.category.children.edges.forEach((i) => {
+    data1.category.children.edges.forEach(i => {
       menuProducts.value.push({
         name: i?.node?.name || '',
         link: '#',
-        id: i!.node!.id,
+        id: i!.node!.id
       })
     })
 
   //   console.log(useApolloClient)
-
-
-
 })
 
-
-onMounted(async ()=>{
-
+onMounted(async () => {
   const v2: MenuProductsQueryVariables = {
-    id: 'services-fa'
+    id: ctx.i18n.locale.toLowerCase() === 'fa' ? 'services-fa' : 'services'
   }
 
+  const { data } = await useApolloClient().client.query<MenuProductsQuery>({
+    query: Q1,
+    // query: gql`
+    //   query q($id: ID!) {
+    //     category(id: $id, idType: SLUG) {
+    //       id
+    //       name
+    //       children(first: 10) {
+    //         edges {
+    //           node {
+    //             id
+    //             name
+    //             translation(language: EN) {
+    //               id
+    //             }
+    //           }
+    //         }
+    //       }
+    //     }
+    //   }
+    // `,
+    variables: v2
+  })
 
-  const {data} = await useApolloClient()
-    .client.query<MenuProductsQuery>({
-      query: Q1,
-      variables : v2
-    })
-    
-      if (data.category?.contentNodes?.edges)
-        data.category.contentNodes.edges.forEach((i) => {
-          if (i?.node?.__typename === 'Page')
-            menuServices.value.push({
+  console.log(data)
 
-              name: i?.node?.title || '',
-              link: '#',
-              id: i!.node!.id,
-            })
+  if (data.category?.contentNodes?.edges)
+    data.category.contentNodes.edges.forEach(i => {
+      if (i?.node?.__typename === 'Page')
+        menuServices.value.push({
+          name: i?.node?.title || '',
+          link: '#',
+          id: i!.node!.id
         })
-
+    })
 })
 </script>

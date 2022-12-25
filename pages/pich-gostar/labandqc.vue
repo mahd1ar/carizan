@@ -65,7 +65,6 @@ import { useContext } from '@nuxtjs/composition-api'
 
 const { i18n } = useContext()
 
-// TODO : fa and en
 const variables: LabAndQaQueryVariables = {
   language: i18n.locale === 'fa' ? LanguageCodeEnum.En : LanguageCodeEnum.Fa,
   id: i18n.locale === 'fa' ? 'dGVybToxMTc=' : 'dGVybToxMTc='

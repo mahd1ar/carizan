@@ -27,5 +27,7 @@ export default {
     all_categories : 'همه ی دسته ها',
     image_gallery : 'گالری تصاویر' ,
     home : 'خانه',
-    menu : 'فهرست'
+    menu : 'فهرست',
+    no_results_found : "هیچ نتیجه‌ای پیدا نشد",
+    search : "جست و جو"
 }

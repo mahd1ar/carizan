@@ -88,7 +88,7 @@
           >
             <div class="mx-4  flex flex-row-reverse gap-4 text-gray-900">
               <!-- search -->
-              <div>
+              <div @click="$store.dispatch('toggleSearch', true)">
                 <svg
                   class="w-5 h-5 cursor-pointer "
                   preserveAspectRatio="xMidYMid meet"

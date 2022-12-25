@@ -11,14 +11,16 @@ type NavItem = {
 
 export const state = () => ({
   navItem: [] as NavItem[],
-  showNav : true,
+  showNav: true,
+  showSearch: false,
 })
 
 export type RootState = ReturnType<typeof state>
 
 export const getters: GetterTree<RootState, RootState> = {
   navItems: (state) => state.navItem,
-  showNav: state => state.showNav 
+  showNav: (state) => state.showNav,
+  showSearch: (state) => state.showSearch,
 }
 
 export const mutations: MutationTree<RootState> = {
@@ -28,10 +30,13 @@ export const mutations: MutationTree<RootState> = {
   TOGGLE_NAV: (state, newNav: boolean) => {
     state.showNav = newNav
   },
+  TOGGLE_SEARCH: (state, newNav: boolean) => {
+    state.showSearch = newNav
+  },
 }
 
 export const actions: ActionTree<RootState, RootState> = {
-  async nuxtServerInit({ commit,dispatch }, ctx: Context) {
+  async nuxtServerInit({ commit, dispatch }, ctx: Context) {
     // i18n bug
     // const cookie = (ctx.req.headers.cookie) || '1=1';
     // const parsedCookie = Object.fromEntries(cookie.split(/;\s+/).map(i => i.split("="))) as { [key: string]: string | undefined }
@@ -41,8 +46,11 @@ export const actions: ActionTree<RootState, RootState> = {
 
     console.log(ctx.ssrContext?.req.connection.remoteAddress)
 
-    if(ctx.route.path === '/en/pich-gostar/index2' || ctx.route.path === '/pich-gostar/index2'){
-      await dispatch('toggleNav' , false)
+    if (
+      ctx.route.path === '/en/pich-gostar/index2' ||
+      ctx.route.path === '/pich-gostar/index2'
+    ) {
+      await dispatch('toggleNav', false)
     }
 
     const variable: MainNavQueryVariables = {}
@@ -70,7 +78,10 @@ export const actions: ActionTree<RootState, RootState> = {
   async addNav({ commit }, newlang: NavItem[]) {
     commit('ADD_NAV', newlang)
   },
-  async toggleNav({commit} ,newval : boolean) {
+  async toggleNav({ commit }, newval: boolean) {
     commit('TOGGLE_NAV', newval)
- }
+  },
+  async toggleSearch({ commit }, newval: boolean) {
+    commit('TOGGLE_SEARCH', newval)
+  },
 }
