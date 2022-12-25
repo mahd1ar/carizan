@@ -9,7 +9,7 @@
         <div class="container my-10">
           <p
             class="leading-8 text-lg text-gray-700"
-            v-html="pageInfo.description.replaceAll(`\n`, '<br />')"
+            v-html="pageInfo.description.replaceAll('\n', '<br />')"
           ></p>
         </div>
       </div>
@@ -48,4 +48,6 @@ const {
     }>
   }
 })
+
+console.log(pageInfo.description)
 </script>
