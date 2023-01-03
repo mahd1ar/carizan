@@ -29,5 +29,6 @@ export default {
     home : 'خانه',
     menu : 'فهرست',
     no_results_found : "هیچ نتیجه‌ای پیدا نشد",
-    search : "جست و جو"
+    search : "جست و جو",
+    Quality_Policy : "خط مشی کیفیت"
 }

@@ -16,7 +16,7 @@
       </p>
     </div>
     <div class="flex justify-between gap-4 bg-gray-300">
-      <img class="w-6/12 p-6" src="@/static/svg/quality/1.svg" alt="" />
+      <img class="w-6/12 p-6" src="/svg/quality/1.svg" alt="" />
       <p class="w-6/12 flex flex-col justify-center">
           <ul class="flex flex-col gap-2" >
               <li>
@@ -32,7 +32,7 @@
       </p>
     </div>
     <div class="flex flex-row-reverse justify-between gap-4 ">
-      <img class="w-6/12 p-6" src="@/static/svg/quality/2.svg" alt="" />
+      <img class="w-6/12 p-6" src="/svg/quality/2.svg" alt="" />
       <p class="w-6/12 flex flex-col justify-center">
           <ul class="flex flex-col gap-2" >
               <li>
@@ -50,7 +50,7 @@
     </div>
 
     <div class="flex justify-between gap-4 bg-gray-300">
-      <img class="w-6/12 p-6" src="@/static/svg/quality/3.svg" alt="" />
+      <img class="w-6/12 p-6" src="/svg/quality/3.svg" alt="" />
       <p class="w-6/12 flex flex-col justify-center">
           <ul class="flex flex-col gap-2" >
               <li>
@@ -68,7 +68,7 @@
     </div>
 
     <div class="flex flex-row-reverse justify-between gap-4 ">
-      <img class="w-6/12 p-6" src="@/static/svg/quality/4.svg" alt="" />
+      <img class="w-6/12 p-6" src="/svg/quality/4.svg" alt="" />
       <p class="w-6/12 flex flex-col justify-center">
           <ul class="flex flex-col gap-2" >
               <li>

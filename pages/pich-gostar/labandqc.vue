@@ -14,14 +14,10 @@
           class="flex-center flex-col gap-2 w-36"
         >
           <div class="h-28">
-            <img
-              class="w-28 object-cover"
-              src="@/static/svg/quality/z-20.svg"
-              alt=""
-            />
+            <img class="w-28 object-cover" src="/svg/quality/z-20.svg" alt="" />
           </div>
           <strong class="text-center">
-            خط مشی کیفیت
+            {{ $t('Quality_Policy') }}
           </strong>
         </nuxt-link>
         <nuxt-link
