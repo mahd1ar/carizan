@@ -11,7 +11,7 @@ export default {
     success: 'موفقیت',
     your_message_has_been_successfully_sent: 'پیام شما با موفقیت ارسال شد',
     category: 'دسته بندی',
-    more: 'ادامه',
+    more: 'بیشتر',
     _details: 'جزییات',
     see_more: ' مشاهده',
     quantity_per_kg: 'تعداد در کیلوگرم',
