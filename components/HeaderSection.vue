@@ -26,7 +26,7 @@
             class="inline-flex items-end gap-x-2 text-xl font-semibold text-black"
             :to="localePath('/')"
           >
-            <div class="flex-center aspect-square w-12 flex-shrink-0 rounded">
+            <!-- <div class="flex-center aspect-square w-12 flex-shrink-0 rounded">    
               <svg
                 class="w-10 object-contain text-black"
                 viewBox="0 0 692.74 667.87"
@@ -44,8 +44,20 @@
                   </g>
                 </g>
               </svg>
+            </div> -->
+            <div
+              v-if="$i18n.locale === 'fa'"
+              class="flex-center  w-40 flex-shrink-0 rounded  object-cover"
+            >
+              <img src="/logo-fa.png" alt="" />
             </div>
-            <div class="leading-5 max-w-[100px]">Carizan Pich Gostar</div>
+            <div
+              v-else
+              class="flex-center  w-40 flex-shrink-0 rounded  object-cover"
+            >
+              <img src="/logo-en.png" alt="" />
+            </div>
+            <!-- <div class="leading-5 max-w-[100px]">Carizan Pich Gostar</div> -->
           </nuxt-link>
           <div class="lg:hidden">
             <button
