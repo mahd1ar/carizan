@@ -294,8 +294,6 @@ onMounted(async () => {
         id: i!.node!.id
       })
     })
-
-  //   console.log(useApolloClient)
 })
 
 onMounted(async () => {
@@ -326,8 +324,6 @@ onMounted(async () => {
     // `,
     variables: v2
   })
-
-  console.log(data)
 
   if (data.category?.contentNodes?.edges)
     data.category.contentNodes.edges.forEach(i => {

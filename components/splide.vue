@@ -1,15 +1,15 @@
 <template>
   <div dir="ltr">
     <div
-      class="fixed z-50 top-0 left-0 w-full h-full bg-opacity-50 bg-black flex justify-center items-center"
+      class="fixed z-50 top-0 left-0 w-full h-full bg-opacity-75 bg-black flex justify-center items-center"
     >
       <div class="container mx-auto relative">
         <div class="relative">
           <button
-          @click="closeDialog"
-          class="absolute text-black -top-full left-0 w-10 h-10 bg-white bg-opacity-75 rounded-sm z-50"
+            @click="closeDialog"
+            class="absolute text-black -top-full left-0 w-10 h-10 bg-white bg-opacity-75 rounded-sm z-50"
           >
-          <!-- {{props.selectedItem}} -->
+            <!-- {{props.selectedItem}} -->
             <svg
               xmlns="http://www.w3.org/2000/svg"
               class="w-10 h-10"
@@ -34,7 +34,7 @@
                 :key="index"
                 class="splide__slide flex-center"
               >
-                <img :src="i.src" :alt="i.alt || ''" />
+                <img :src="i.src" :alt="i.alt || ''" class="object-cover" />
               </li>
             </ul>
           </div>
@@ -50,7 +50,7 @@ import {
   watch,
   onMounted,
   onUnmounted,
-  PropType,
+  PropType
 } from '@nuxtjs/composition-api'
 import { onKeyStroke } from '@vueuse/core'
 
@@ -62,9 +62,9 @@ const props = defineProps({
         src: string
         alt?: string
       }[]
-    >,
+    >
   },
-  selectedItem: { type: Number },
+  selectedItem: { type: Number }
 })
 // property : { type : String as PropType<string | undefined> }
 
@@ -72,17 +72,17 @@ const emit = defineEmits(['update:selectedItem'])
 
 onMounted(() => {
   splide = new Splide('.splide', {
-    height: '400px',
+    height: '100vh'
   })
-  
+
   splide.on('mounted', () => {
     splide?.go(props.selectedItem || 0)
   })
 
-  splide.on('moved' , ()=> {
+  splide.on('moved', () => {
     splide && emit('update:selectedItem', splide.index)
   })
-  
+
   splide.mount()
 })
 
@@ -92,7 +92,7 @@ onUnmounted(() => {
 
 watch(
   () => props.selectedItem,
-  (nval) => {
+  nval => {
     splide?.go(nval || 0)
   }
 )
@@ -101,17 +101,17 @@ const closeDialog = () => {
   emit('update:selectedItem', -1)
 }
 
-onKeyStroke(['escape', 'Escape', 'ESC', 'Esc'], (e) => {
+onKeyStroke(['escape', 'Escape', 'ESC', 'Esc'], e => {
   closeDialog()
 })
 
-onKeyStroke(['ArrowLeft'], (e) => {
+onKeyStroke(['ArrowLeft'], e => {
   e.preventDefault()
   if (props.selectedItem && props.selectedItem !== 0)
     emit('update:selectedItem', props.selectedItem - 1)
 })
 
-onKeyStroke(['ArrowRight'], (e) => {
+onKeyStroke(['ArrowRight'], e => {
   e.preventDefault()
   if (props.images && props.selectedItem! + 1 < props.images.length)
     emit('update:selectedItem', props.selectedItem! + 1)

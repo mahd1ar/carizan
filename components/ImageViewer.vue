@@ -144,22 +144,22 @@ export default Vue.extend({
   props: {
     open: {
       type: Boolean,
-      required: true,
+      required: true
     },
     imgs: {
-      type: Array as PropType<string[]>,
+      type: Array as PropType<string[]>
     },
     imgIndex: {
       type: Number,
       required: false,
-      default: 0,
-    },
+      default: 0
+    }
   },
-  data() {
+  data () {
     return {
       show: false,
       scale: 1,
-      diff: 0,
+      diff: 0
     }
   },
   //   watch {
@@ -172,27 +172,26 @@ export default Vue.extend({
   //   },
 
   watch: {
-    open(nval: boolean) {
+    open (nval: boolean) {
       if (nval) {
         // this.imgIndex
         this.show = true
       }
-    },
+    }
   },
-  mounted() {
+  mounted () {
     // document.onkeydown = checkKey;
 
     document.addEventListener('keydown', this.checkKey)
   },
-  destroyed() {
+  destroyed () {
     document.removeEventListener('keydown', this.checkKey)
   },
   methods: {
-    checkKey(e: KeyboardEvent) {
+    checkKey (e: KeyboardEvent) {
       if (this.show === false) return
 
       e = e || window.event
-      console.log(e)
       if (e.key === 'Escape') {
         // scaped
         this.show = false
@@ -208,39 +207,39 @@ export default Vue.extend({
         this.next()
       }
     },
-    enter() {
+    enter () {
       if (this.imgIndex > -1 && this.$device.isMobile) {
         const divs = this.$refs['image-item'] as HTMLDivElement[]
 
         divs[this.imgIndex].scrollIntoView({
           // behavior: 'smooth',
-          inline: 'center',
+          inline: 'center'
         })
       }
     },
-    next() {
+    next () {
       this.diff++
     },
-    prv() {
+    prv () {
       this.diff--
     },
-    hide() {
+    hide () {
       this.show = false
     },
-    closeViewer() {
+    closeViewer () {
       this.$emit('update:open', false)
       this.diff = 0
     },
-    zoomIn() {
+    zoomIn () {
       if (this.scale < 3) this.scale += 1
     },
-    zoomOut() {
+    zoomOut () {
       if (this.scale > 0.5) {
         if (this.scale > 1) this.scale -= 1
         else this.scale -= 0.2
       }
-    },
-  },
+    }
+  }
 })
 </script>
 

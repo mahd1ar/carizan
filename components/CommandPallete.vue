@@ -122,7 +122,6 @@ const changed = async () => {
   )
 
   if (data) {
-    console.log(data)
     data.forEach(element => {
       const t = element.title.rendered.replaceAll('\\', '-')
 
