@@ -8743,11 +8743,11 @@ export type ChildCategoriesBySlugQueryVariables = Exact<{
 export type ChildCategoriesBySlugQuery = { __typename?: 'RootQuery', category?: { __typename?: 'Category', id: string, contentNodes?: { __typename?: 'CategoryToContentNodeConnection', nodes?: Array<{ __typename?: 'MediaItem', id: string } | { __typename?: 'Page', id: string, title?: string | null, content?: string | null, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null, altText?: string | null } | null } | null, translation?: { __typename?: 'Page', id: string } | null } | { __typename?: 'Post', id: string } | null> | null } | null, children?: { __typename?: 'CategoryToCategoryConnection', edges?: Array<{ __typename?: 'CategoryToCategoryConnectionEdge', node?: { __typename?: 'Category', id: string, name?: string | null, description?: string | null, cat_cf?: { __typename?: 'Category_CatCf', image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null } | null } | null, translation?: { __typename?: 'Category', id: string } | null } | null } | null> | null } | null, translation?: { __typename?: 'Category', id: string } | null } | null };
 
 export type GalleryQueryVariables = Exact<{
-  id: Scalars['ID'];
+  id?: Scalars['ID'];
 }>;
 
 
-export type GalleryQuery = { __typename?: 'RootQuery', category?: { __typename?: 'Category', id: string, name?: string | null, description?: string | null, children?: { __typename?: 'CategoryToCategoryConnection', edges?: Array<{ __typename?: 'CategoryToCategoryConnectionEdge', node?: { __typename?: 'Category', id: string, name?: string | null } | null } | null> | null } | null, mediaItems?: { __typename?: 'CategoryToMediaItemConnection', edges?: Array<{ __typename?: 'CategoryToMediaItemConnectionEdge', node?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null } | null } | null> | null } | null } | null };
+export type GalleryQuery = { __typename?: 'RootQuery', category?: { __typename?: 'Category', id: string, name?: string | null, description?: string | null, children?: { __typename?: 'CategoryToCategoryConnection', edges?: Array<{ __typename?: 'CategoryToCategoryConnectionEdge', node?: { __typename?: 'Category', id: string, name?: string | null } | null } | null> | null } | null, mediaItems?: { __typename?: 'CategoryToMediaItemConnection', edges?: Array<{ __typename?: 'CategoryToMediaItemConnectionEdge', node?: { __typename?: 'MediaItem', id: string, databaseId: number, sourceUrl?: string | null, caption?: string | null } | null } | null> | null } | null } | null };
 
 export type HomeQueryVariables = Exact<{
   languages?: InputMaybe<Array<LanguageCodeEnum> | LanguageCodeEnum>;
