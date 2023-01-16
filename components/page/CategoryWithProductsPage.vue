@@ -25,7 +25,7 @@ const { id } = defineProps({
   id: { type: String, required: true }
 })
 
-const { i18n } = useContext()
+const { i18n, localePath } = useContext()
 
 const variable: CategoriesWithProductsQueryVariables = {
   id,
@@ -69,13 +69,14 @@ const items = computed(() => {
                 ? i.node.title.split('\\').join('<br />')
                 : '',
               id: i.node.id,
-              link:
+              link: localePath(
                 '/product?' +
-                new URLSearchParams({
-                  [i18n.locale]: i!.node.id,
-                  [variable.language!.toLowerCase()]:
-                    i.node.translation?.id || ''
-                }).toString()
+                  new URLSearchParams({
+                    [i18n.locale]: i!.node.id,
+                    [variable.language!.toLowerCase()]:
+                      i.node.translation?.id || ''
+                  }).toString()
+              )
             }
           }
 
