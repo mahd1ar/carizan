@@ -19,7 +19,8 @@
         <section class="overflow-hidden text-gray-700">
           <div class="container mx-auto px-2 py-2 lg:pt-12">
             <client-only>
-              <div class="flex gap-2 pb-8">
+              <!-- flex-col sm:flex-row -->
+              <div class="flex gap-2 pb-8 flex-wrap w-full">
                 <div
                   v-for="cat in categories"
                   :key="cat.id"
@@ -60,25 +61,29 @@
             </div>
           </div> -->
 
-              <div class="-m-1 flex flex-wrap md:-m-2">
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
                 <div
                   v-for="(img, index) in images"
                   :key="index"
-                  class="flex w-1/3 flex-wrap relative"
+                  class="flex w-full  flex-wrap relative rounded-lg overflow-hidden"
                 >
-                  <div class="w-full p-1 md:p-2 relative">
+                  <div class="w-full  relative overflow-hidden">
                     <img
                       @click="openImage(index)"
                       :alt="img.alt"
-                      class="block h-full w-full rounded-lg object-cover object-center"
+                      class="block h-full w-full  object-cover object-center"
                       :src="img.src"
                       :title="img.alt"
                     />
-                    <div
-                      class="inline-block absolute bottom-1 md:bottom-2 bg-black text-xl text-primary-light px-2 p-y1"
-                      v-html="img.caption"
-                    ></div>
+                    <!-- <div
+                      class="inline-block w-full bg-opacity-75 pointer-events-none absolute bottom-0 md:bottom-2 py-1  bg-black  text-primary-light px-2"
+                      ></div> -->
                   </div>
+                  <div
+                    v-if="img.caption.trim()"
+                    class="bg-black bg-opacity-50 bottom-0 absolute w-full  p-2 pb-4 text-primary"
+                    v-html="img.caption"
+                  ></div>
                 </div>
               </div>
             </loading-indicator>

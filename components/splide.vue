@@ -1,15 +1,20 @@
 <template>
   <div dir="ltr">
     <div
-      class="fixed z-50 top-0 left-0 w-full h-full bg-opacity-75 bg-black flex justify-center items-center"
+      id="overlay"
+      class="fixed z-50 top-0 left-0 flex justify-center items-center w-full h-full"
     >
-      <div class="container mx-auto relative">
-        <div class="relative">
+      <div
+        @click="closeDialog"
+        class="absolute top-0 left-0  w-full h-full bg-opacity-75 bg-black"
+      ></div>
+
+      <div class="container mx-auto relative w-full">
+        <div class="fixed top-10 left-10 z-10 hidden sm:inline-block">
           <button
             @click="closeDialog"
             class="absolute text-black -top-full left-0 w-10 h-10 bg-white bg-opacity-75 rounded-sm z-50"
           >
-            <!-- {{props.selectedItem}} -->
             <svg
               xmlns="http://www.w3.org/2000/svg"
               class="w-10 h-10"
@@ -50,7 +55,8 @@ import {
   watch,
   onMounted,
   onUnmounted,
-  PropType
+  PropType,
+  ref
 } from '@nuxtjs/composition-api'
 import { onKeyStroke } from '@vueuse/core'
 
@@ -72,7 +78,7 @@ const emit = defineEmits(['update:selectedItem'])
 
 onMounted(() => {
   splide = new Splide('.splide', {
-    height: '100vh'
+    // height: '100vh'
   })
 
   splide.on('mounted', () => {

@@ -19,7 +19,7 @@
       <div class="flex items-center justify-between">
         <nuxt-link
           class="inline-flex items-end gap-x-2 text-xl font-semibold text-black"
-          :to="localePath('/')"
+          :to="localePath('/pich-gostars')"
         >
           <div class="flex-center aspect-square w-12 flex-shrink-0 rounded">
             <svg

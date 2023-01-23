@@ -12,14 +12,8 @@
       <div class="grid grid-cols-1 gap-8 sm:grid-cols-2">
         <div>
           <p class="font-medium">
-            <span
-              v-if="$i18n.locale === 'en'"
-              class="text-xs uppercase tracking-widest text-primary"
-            >
-              contact us
-            </span>
             <span class="text-xs uppercase tracking-widest text-primary">
-              تماس با ما
+              {{ $t('contact_us') }}
             </span>
 
             <a

@@ -30,5 +30,7 @@ export default {
     menu : 'فهرست',
     no_results_found : "هیچ نتیجه‌ای پیدا نشد",
     search : "جست و جو",
-    Quality_Policy : "خط مشی کیفیت"
+    Quality_Policy : "خط مشی کیفیت",
+    navigation_with_google : "مسیریابی با گوگل",
+    navigation_with_waze : "مسیریابی با ویز"
 }

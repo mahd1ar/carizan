@@ -29,9 +29,7 @@
           <div class="h-28">
             <img class="w-20" :src="i.image" alt="" />
           </div>
-          <strong class="text-center">
-            {{ i.title }}
-          </strong>
+          <strong class="text-center" v-html="i.title"> </strong>
         </nuxt-link>
 
         <!-- <div class="flex-center flex-col gap-2 w-36">
@@ -63,7 +61,7 @@ const { i18n } = useContext()
 
 const variables: LabAndQaQueryVariables = {
   language: i18n.locale === 'fa' ? LanguageCodeEnum.En : LanguageCodeEnum.Fa,
-  id: i18n.locale === 'fa' ? 'dGVybToxMTc=' : 'dGVybToxMTc='
+  id: i18n.locale === 'fa' ? 'dGVybToxMTc=' : 'dGVybToxMTk='
 }
 
 const { result } = useQuery<LabAndQaQuery>(LABQL, variables)
