@@ -8770,7 +8770,7 @@ export type MenuProductsQueryVariables = Exact<{
 }>;
 
 
-export type MenuProductsQuery = { __typename?: 'RootQuery', category?: { __typename?: 'Category', id: string, name?: string | null, contentNodes?: { __typename?: 'CategoryToContentNodeConnection', edges?: Array<{ __typename?: 'CategoryToContentNodeConnectionEdge', node?: { __typename?: 'MediaItem', id: string } | { __typename?: 'Page', id: string, title?: string | null } | { __typename?: 'Post', id: string } | null } | null> | null } | null, children?: { __typename?: 'CategoryToCategoryConnection', edges?: Array<{ __typename?: 'CategoryToCategoryConnectionEdge', node?: { __typename?: 'Category', id: string, name?: string | null, translation?: { __typename?: 'Category', id: string } | null } | null } | null> | null } | null } | null };
+export type MenuProductsQuery = { __typename?: 'RootQuery', category?: { __typename?: 'Category', id: string, name?: string | null, contentNodes?: { __typename?: 'CategoryToContentNodeConnection', edges?: Array<{ __typename?: 'CategoryToContentNodeConnectionEdge', node?: { __typename?: 'MediaItem', id: string } | { __typename?: 'Page', id: string, title?: string | null, translation?: { __typename?: 'Page', id: string } | null } | { __typename?: 'Post', id: string } | null } | null> | null } | null, children?: { __typename?: 'CategoryToCategoryConnection', edges?: Array<{ __typename?: 'CategoryToCategoryConnectionEdge', node?: { __typename?: 'Category', id: string, name?: string | null, translation?: { __typename?: 'Category', id: string } | null } | null } | null> | null } | null } | null };
 
 export type PageQueryVariables = Exact<{
   id?: InputMaybe<Scalars['ID']>;

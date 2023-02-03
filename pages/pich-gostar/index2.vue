@@ -5,25 +5,40 @@
     <HeroSection2 />
     <div v-if="cats[0]" class="relative flex h-[50vh] bg-tm-gray-ligth">
       <div class="relative w-full">
-        <img 
-        :style="{
-          '--y': y / 20,
-          transform: 'translate3d(0px, calc(var(--y) * -1px), 0px)',
-        }"
-        class="h-auto w-full object-cover grayscale-[50%] hover:grayscale-0 transition-all ease-out" :src="cats[0].img" alt="" />
+        <img
+          :style="{
+            '--y': y / 20,
+            transform: 'translate3d(0px, calc(var(--y) * -1px), 0px)'
+          }"
+          class="h-auto w-full object-cover grayscale-[50%] hover:grayscale-0 transition-all ease-out duration-300"
+          :src="cats[0].img"
+          alt=""
+        />
 
         <div class="container absolute left-0 top-0 mx-auto h-full ">
-          <div  class="relative flex h-full flex-col items-end justify-center">
+          <div class="relative flex h-full flex-col items-end justify-center">
             <h2
-              class="inline-flex h-24 items-center justify-center overflow-hidden bg-black px-2 text-7xl uppercase text-gray-100">
+              class="inline-flex h-24 items-center justify-center overflow-hidden bg-black px-2 text-7xl uppercase text-gray-100"
+            >
               {{ cats[0].name }}
             </h2>
-          
-            <nuxt-link data-depth="1" class="flex bg-primary text-3xl uppercase text-black"
-              :to="localePath('/pich-gostar/products')">
-              <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" preserveAspectRatio="xMidYMid meet"
-                viewBox="0 0 24 24">
-                <path fill="currentColor" d="M17.6 18L8 8.4V17H6V5h12v2H9.4l9.6 9.6Z" />
+
+            <nuxt-link
+              data-depth="1"
+              class="flex bg-primary text-3xl uppercase text-black"
+              :to="localePath('/pich-gostar/products')"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="1em"
+                height="1em"
+                preserveAspectRatio="xMidYMid meet"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  fill="currentColor"
+                  d="M17.6 18L8 8.4V17H6V5h12v2H9.4l9.6 9.6Z"
+                />
               </svg>
               see more
             </nuxt-link>
@@ -32,26 +47,57 @@
       </div>
     </div>
 
-    <div v-if="cats[1]" class="relative flex h-[50vh] bg-tm-gray-ligth">
+    <div v-if="cats[1]" class="relative flex h-[50vh] bg-tm-gray-ligth group">
       <div class="relative w-full overflow-hidden">
-        <img :style="{
-          '--y': y / 20,
-          transform: 'translate3d(0px, calc(var(--y) * -1px), 0px)',
-        }" class="h-auto w-full object-cover grayscale-[50%] hover:grayscale-0 transition-all ease-out" :src="cats[1].img" alt="" />
+        <img
+          :style="{
+            '--y': y / 15,
+            transform: 'translate3d(0px, calc(var(--y) * -1px), 0px)'
+          }"
+          class="h-auto w-full object-cover grayscale-[50%] hover:grayscale-0 transition-all ease-out duration-300"
+          :src="cats[1].img"
+          alt=""
+        />
 
-        <div class="container absolute left-0 top-0 mx-auto h-full">
+        <div
+          class="container absolute left-0 top-0 mx-auto h-full border-t-[12px] border-t-black "
+        >
           <div class="flex h-full flex-col items-start justify-center">
-            <div class="inline-flex flex-col items-end justify-center">
+            <div
+              class="inline-flex flex-col items-end justify-center relative group-hover:scale-110 delay-75 duration-1000 "
+            >
               <h2
-                class="inline-flex h-24 items-center justify-center overflow-hidden bg-black px-2 text-7xl uppercase text-gray-100">
-                {{ cats[1].name }}
+                class="inline-flex h-24 items-center justify-center overflow-hidden bg-black px-2 text-7xl uppercase text-gray-100"
+              >
+                {{ cats[1].name }} asd
               </h2>
-              <nuxt-link class="flex bg-primary text-3xl uppercase text-black"
-                :to="localePath('/pich-gostar/products')">
+              <!--  -->
+              <h2
+                class="group-hover:max-w-xl max-w-0  transition-all duration-500 ease-out left-0  absolute top-0 inline-flex h-24 items-center justify-center overflow-hidden bg-white text-7xl uppercase text-black"
+              >
+                <span
+                  class=" whitespace-nowrap h-full relative left-0 px-2 w-full flex justify-start items-center"
+                >
+                  {{ cats[1].name }} asd
+                </span>
+              </h2>
+              <nuxt-link
+                class="flex bg-primary text-3xl uppercase text-black"
+                :to="localePath('/pich-gostar/products')"
+              >
                 {{ $t('see_more') }}
-                <svg class="rotate-90" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
-                  preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
-                  <path fill="currentColor" d="M17.6 18L8 8.4V17H6V5h12v2H9.4l9.6 9.6Z" />
+                <svg
+                  class="rotate-90"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="1em"
+                  height="1em"
+                  preserveAspectRatio="xMidYMid meet"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    fill="currentColor"
+                    d="M17.6 18L8 8.4V17H6V5h12v2H9.4l9.6 9.6Z"
+                  />
                 </svg>
               </nuxt-link>
             </div>
@@ -62,24 +108,43 @@
 
     <div class="relative flex h-[50vh] bg-tm-gray-ligth">
       <div class="relative w-full overflow-hidden">
-        <img :style="{
-          '--y': y / 20,
-          transform: 'translate3d(0px, calc(var(--y) * -1px), 0px)',
-        }" class="h-auto w-full object-cover grayscale-[50%] transition-all ease-out"
+        <img
+          :style="{
+            '--y': y / 20,
+            transform: 'translate3d(0px, calc(var(--y) * -1px), 0px)'
+          }"
+          class="h-auto w-full object-cover grayscale-[50%] transition-all ease-out duration-300"
           src="http://api.carizanin.com/wp-content/uploads/2022/12/photo-1581092580497-e0d23cbdf1dc-scaled.jpg"
-          alt="" />
+          alt=""
+        />
 
-        <div id="scene" class="container absolute left-0 top-0 mx-auto h-full">
+        <div
+          id="scene"
+          class="container absolute left-0 top-0 mx-auto h-full border-t-[12px] border-t-black"
+        >
           <div class="flex h-full flex-col items-end justify-center">
-            <h2 data-depth="0.2"
-              class="inline-flex h-24 items-center justify-center overflow-hidden bg-black px-2 text-7xl uppercase text-gray-100">
+            <h2
+              data-depth="0.2"
+              class="inline-flex h-24 items-center justify-center overflow-hidden bg-black px-2 text-7xl uppercase text-gray-100"
+            >
               Lab&qc
             </h2>
-            <nuxt-link data-depth="1" class="flex bg-primary text-3xl uppercase text-black"
-              :to="localePath('/pich-gostar/products')">
-              <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" preserveAspectRatio="xMidYMid meet"
-                viewBox="0 0 24 24">
-                <path fill="currentColor" d="M17.6 18L8 8.4V17H6V5h12v2H9.4l9.6 9.6Z" />
+            <nuxt-link
+              data-depth="1"
+              class="flex bg-primary text-3xl uppercase text-black"
+              :to="localePath('/pich-gostar/products')"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="1em"
+                height="1em"
+                preserveAspectRatio="xMidYMid meet"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  fill="currentColor"
+                  d="M17.6 18L8 8.4V17H6V5h12v2H9.4l9.6 9.6Z"
+                />
               </svg>
               see more
             </nuxt-link>
@@ -90,21 +155,29 @@
 
     <div class="relative flex h-[70vh] bg-tm-gray-ligth">
       <div class="relative w-full overflow-hidden">
-        <img :style="{
-          '--y': y / 20,
-          transform: 'translate3d(0px, calc(var(--y) * -1px), 0px)',
-        }" class="h-auto w-full object-cover grayscale-[50%] transition-all ease-out"
+        <img
+          :style="{
+            '--y': y / 20,
+            transform: 'translate3d(0px, calc(var(--y) * -1px), 0px)'
+          }"
+          class="h-auto w-full object-cover grayscale-[50%] transition-all ease-out duration-300"
           src="http://api.carizanin.com/wp-content/uploads/2022/12/photo-1581092335397-9583eb92d232.jpg"
-          alt="" />
+          alt=""
+        />
 
-        <div class="container absolute left-0 top-0 mx-auto h-full">
+        <div
+          class="container absolute left-0 top-0 mx-auto h-full border-t-[12px] border-t-black"
+        >
           <div class="flex h-full flex-col items-start justify-center">
             <div class="inline-flex flex-col items-start justify-center">
               <h2
-                class="inline-flex h-24 items-center justify-center overflow-hidden bg-black px-2 text-7xl uppercase text-primary">
+                class="inline-flex h-24 items-center justify-center overflow-hidden bg-black px-2 text-7xl uppercase text-primary"
+              >
                 Description of the activity
               </h2>
-              <div class="w-8/12 bg-black bg-opacity-80 p-2 text-xl capitalize text-white backdrop-blur-sm">
+              <div
+                class="w-8/12 bg-black bg-opacity-80 p-2 text-xl capitalize text-white backdrop-blur-sm"
+              >
                 Karizan Pich Gostar Company produces all kinds of bolts and nuts
                 with different standards, grades and coatings, and these
                 products are produced and supplied for use in all kinds of
@@ -151,22 +224,22 @@ import {
   onBeforeUnmount,
   useStore,
   onMounted,
-  ref,
+  ref
 } from '@nuxtjs/composition-api'
 import HeroSectionVue from '~/components/homepage/HeroSection2.vue'
 import { useQuery } from '@vue/apollo-composable/dist'
 import HOMEGQL from '@/apollo/query/home-page.gql'
 import { HomeQuery, HomeQueryVariables, LanguageCodeEnum } from '@/types/types'
 import { stripHtml } from '~/data/utils'
-import { useWindowScroll } from '@vueuse/core'
+import { useMouse, useWindowScroll } from '@vueuse/core'
 
 export default defineComponent({
   components: {
-    HeroSection2: HeroSectionVue,
+    HeroSection2: HeroSectionVue
   },
 
   name: 'IndexPage',
-  setup() {
+  setup () {
     const { i18n, error } = useContext()
     const store = useStore()
 
@@ -174,25 +247,26 @@ export default defineComponent({
       languages:
         i18n.locale.toLowerCase() === 'fa'
           ? LanguageCodeEnum.Fa
-          : LanguageCodeEnum.En,
+          : LanguageCodeEnum.En
     }
 
     const { result, onError } = useQuery<HomeQuery>(HOMEGQL, variable)
 
-    const { x, y } = useWindowScroll()
+    const { y } = useWindowScroll()
 
+    const { x } = useMouse()
     onError(() => {
       error({ message: '_GET_INFO_ERROR', statusCode: 500 })
     })
 
     const cats = computed(() => {
       return result?.value?.categories?.edges
-        ? result.value.categories.edges.map((i) => ({
-          id: i!.node!.id,
-          name: i?.node?.name || '',
-          img: i?.node?.cat_cf?.image?.sourceUrl || '',
-          description: i?.node?.description || '',
-        }))
+        ? result.value.categories.edges.map(i => ({
+            id: i!.node!.id,
+            name: i?.node?.name || '',
+            img: i?.node?.cat_cf?.image?.sourceUrl || '',
+            description: i?.node?.description || ''
+          }))
         : []
     })
 
@@ -201,7 +275,7 @@ export default defineComponent({
         imageSrc: result.value?.page?.featuredImage?.node?.sourceUrl || '',
         imageAlt: result.value?.page?.featuredImage?.node?.altText || '',
         title: result.value?.page?.title || '',
-        body: stripHtml(result.value?.page?.content || ''),
+        body: stripHtml(result.value?.page?.content || '')
       }
     })
     onMounted(() => {
@@ -212,15 +286,13 @@ export default defineComponent({
       document.querySelector('header')!.style.removeProperty('position')
     })
 
-
-
     return {
-
       y,
+      x,
       cats,
-      explain,
+      explain
     }
-  },
+  }
 })
 </script>
 

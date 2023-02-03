@@ -9,6 +9,9 @@ query menuProducts($id: ID = "products-fa") {
           ... on Page {
             id
             title
+            translation(language: EN) {
+              id
+            }
           }
         }
       }

@@ -162,7 +162,7 @@
                 v-for="p in menuServices"
                 :key="p.id"
                 class="hover:opacity-75"
-                href="#"
+                :href="p.link"
               >
                 {{ p.name }}</a
               >
@@ -175,13 +175,13 @@
             </p>
 
             <nav class="mt-4 flex flex-col space-y-2 text-sm text-gray-300">
-              <a
+              <nuxt-link
                 v-for="p in menuProducts"
                 :key="p.id"
                 class="hover:opacity-75"
-                href="#"
+                :to="p.link"
               >
-                {{ p.name }}</a
+                {{ p.name }}</nuxt-link
               >
             </nav>
           </div>
@@ -233,19 +233,13 @@
 </template>
 
 <script lang="ts" setup>
-import {
-  useLazyQuery,
-  useQuery,
-  useApolloClient,
-  provideApolloClient
-} from '@vue/apollo-composable/dist'
+import { useApolloClient } from '@vue/apollo-composable/dist'
 import Q1 from '@/apollo/query/menu-products.gql'
 import { MenuProductsQuery, MenuProductsQueryVariables } from '~/types/types'
 import { onMounted, ref } from 'vue'
 import gql from 'graphql-tag'
 import { useContext } from '@nuxtjs/composition-api'
-import { validate } from 'graphql'
-import i18n from '~/plugins/i18n'
+
 const ctx = useContext()
 const menuProducts = ref<{ name: string; link: string; id: string }[]>([])
 const menuServices = ref<{ name: string; link: string; id: string }[]>([])
@@ -284,7 +278,11 @@ onMounted(async () => {
     data1.category.children.edges.forEach(i => {
       menuProducts.value.push({
         name: i?.node?.name || '',
-        link: '#',
+        link: ctx.localePath(
+          `/pich-gostar/products/${i?.node?.name || ''}?fa=${i!.node!.id}&en=${
+            i?.node?.translation?.id
+          }`
+        ),
         id: i!.node!.id
       })
     })
@@ -297,25 +295,6 @@ onMounted(async () => {
 
   const { data } = await useApolloClient().client.query<MenuProductsQuery>({
     query: Q1,
-    // query: gql`
-    //   query q($id: ID!) {
-    //     category(id: $id, idType: SLUG) {
-    //       id
-    //       name
-    //       children(first: 10) {
-    //         edges {
-    //           node {
-    //             id
-    //             name
-    //             translation(language: EN) {
-    //               id
-    //             }
-    //           }
-    //         }
-    //       }
-    //     }
-    //   }
-    // `,
     variables: v2
   })
 
@@ -324,7 +303,9 @@ onMounted(async () => {
       if (i?.node?.__typename === 'Page')
         menuServices.value.push({
           name: i?.node?.title || '',
-          link: '#',
+          link: ctx.localePath(
+            `/page?fa=${i!.node!.id}&en=${i?.node?.translation?.id}`
+          ),
           id: i!.node!.id
         })
     })
