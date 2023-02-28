@@ -217,7 +217,7 @@ export default defineComponent({
 }
 
 html[dir='ltr'] .service {
-  clip-path: polygon(80px 0px, 100% 0px, 100% 100%, 0% 100%);
+  clip-path: polygon(40% 0%, 100% 0px, 100% 100%, 16% 100%);
 }
 
 @screen sm {
@@ -231,7 +231,7 @@ html[dir='ltr'] .service {
 }
 
 html[dir='ltr'] .product {
-  clip-path: polygon(0% 0%, 100% 0, 80% 100%, 0% 100%);
+  clip-path: polygon(0% 0%, 100% -60%, 56% 100%, 0% 100%);
 }
 
 @screen sm {

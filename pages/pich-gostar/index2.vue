@@ -15,6 +15,11 @@
           alt=""
         />
 
+        <div
+          class="w-full h-full bg-gradient-to-t from-black via-transparent to-transparent absolute inset-0 "
+          aria-hidden="false"
+        ></div>
+
         <div class="container absolute left-0 top-0 mx-auto h-full ">
           <div class="relative flex h-full flex-col items-end justify-center">
             <h2
@@ -58,10 +63,11 @@
           :src="cats[1].img"
           alt=""
         />
-
         <div
-          class="container absolute left-0 top-0 mx-auto h-full border-t-[12px] border-t-black "
-        >
+          class="w-full h-full bg-gradient-to-t from-black via-transparent to-transparent absolute inset-0 "
+          aria-hidden="false"
+        ></div>
+        <div class="container absolute left-0 top-0 mx-auto h-full  ">
           <div class="flex h-full flex-col items-start justify-center">
             <div
               class="inline-flex flex-col items-end justify-center relative group-hover:scale-110 delay-75 duration-1000 "
@@ -69,7 +75,7 @@
               <h2
                 class="inline-flex h-24 items-center justify-center overflow-hidden bg-black px-2 text-7xl uppercase text-gray-100"
               >
-                {{ cats[1].name }} asd
+                {{ cats[1].name }}
               </h2>
               <!--  -->
               <h2
@@ -78,7 +84,7 @@
                 <span
                   class=" whitespace-nowrap h-full relative left-0 px-2 w-full flex justify-start items-center"
                 >
-                  {{ cats[1].name }} asd
+                  {{ cats[1].name }}
                 </span>
               </h2>
               <nuxt-link
@@ -106,7 +112,9 @@
       </div>
     </div>
 
-    <div class="relative flex h-[50vh] bg-tm-gray-ligth">
+    <div
+      class="relative flex h-[50vh] bg-tm-gray-ligth border-t-[12px] border-t-black"
+    >
       <div class="relative w-full overflow-hidden">
         <img
           :style="{
@@ -119,9 +127,11 @@
         />
 
         <div
-          id="scene"
-          class="container absolute left-0 top-0 mx-auto h-full border-t-[12px] border-t-black"
-        >
+          class="w-full h-full bg-gradient-to-t from-black via-transparent to-transparent absolute inset-0 "
+          aria-hidden="false"
+        ></div>
+
+        <div id="scene" class="container absolute left-0 top-0 mx-auto h-full ">
           <div class="flex h-full flex-col items-end justify-center">
             <h2
               data-depth="0.2"
@@ -153,7 +163,9 @@
       </div>
     </div>
 
-    <div class="relative flex h-[70vh] bg-tm-gray-ligth">
+    <div
+      class="relative flex h-[70vh] bg-tm-gray-ligth border-t-[12px] border-t-black"
+    >
       <div class="relative w-full overflow-hidden">
         <img
           :style="{
@@ -165,9 +177,7 @@
           alt=""
         />
 
-        <div
-          class="container absolute left-0 top-0 mx-auto h-full border-t-[12px] border-t-black"
-        >
+        <div class="container absolute left-0 top-0 mx-auto h-full ">
           <div class="flex h-full flex-col items-start justify-center">
             <div class="inline-flex flex-col items-start justify-center">
               <h2
