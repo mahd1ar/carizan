@@ -53,7 +53,7 @@ import {
   useMeta,
   defineComponent
 } from '@nuxtjs/composition-api'
-import { onKeyStroke } from '@vueuse/core'
+// import { onKeyStroke } from '@vueuse/core'
 import CommandPallete from '@/components/CommandPallete.vue'
 
 export default defineComponent({
@@ -69,10 +69,10 @@ export default defineComponent({
     m.htmlAttrs.value.lang = i18n.locale
     m.htmlAttrs.value.dir = i18n.locale === 'fa' ? 'rtl' : 'ltr'
 
-    onKeyStroke('m', e => {
-      e.preventDefault()
-      showDevBox.value = !showDevBox.value
-    })
+    // onKeyStroke('m', e => {
+    //   e.preventDefault()
+    //   showDevBox.value = !showDevBox.value
+    // })
 
     const locale = ref(i18n.locale)
 

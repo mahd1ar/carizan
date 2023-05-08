@@ -3,7 +3,7 @@
     <aside class="hidden lg:relative lg:col-span-2 lg:block">
       <img
         class="absolute inset-0 h-full w-full object-cover"
-        src="/footer.avif"
+        src="/footer.jpg"
         alt="Comic Graphic"
       />
     </aside>
@@ -20,24 +20,25 @@
               href="tel:+982122218151"
               class="block text-2xl hover:opacity-75 sm:text-3xl"
             >
-              02122218151
+              (+98)21 222 18151
             </a>
           </p>
 
           <ul class="mt-8 space-y-2 text-sm">
             <li v-if="$i18n.locale == 'en'">
-              Saturday to Saturday 4: from 8 am to 4 pm
+              Saturday to Wednesday 4: from 8 am to 4 pm
             </li>
             <li v-else>شنبه تا 4 شنبه : از 8 صبح تا 4 بعدازظهر</li>
             <li v-if="$i18n.locale == 'en'">
-              Shariati, above the Roman bridge, above the Qaitarieh metro
-              station, next to Shahr Bank, No. 1841, unit 1
+              Unit 1, No 1842, Shariati St, Tehran, Republic of Iran
             </li>
             <li v-else>
               شریعتی_ بالاتر از پل رومی _ بالاتر از مترو قیطریه _ جنب بانک شهر
               پلاک ۱۸۴۱_واحد ۱
             </li>
-            <li>info@carizanin.com</li>
+            <li>
+              <a href="mailto:info@carizanin.com">info@carizanin.com</a>
+            </li>
           </ul>
 
           <!-- <div class="flex mt-16 space-x-3">
@@ -190,12 +191,12 @@
 
       <div dir="ltr" class="mt-12 border-t border-gray-800 pt-12">
         <div
-          class="text-sm text-gray-300 sm:flex sm:items-center sm:justify-between"
+          class="text-xs text-gray-300 sm:flex sm:items-center sm:justify-between "
         >
           <div class="flex space-x-3">
             design and developed by
             <a
-              class="hover:opacity-75 mx-2 font-bold text-white font-mono flex gap-2"
+              class="hover:opacity-75 mx-2 font-bold text-white font-mono flex gap-2 "
               href="https://netdom.ir/"
               >mahd1ar anari
 

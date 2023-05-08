@@ -74,42 +74,42 @@ export default Vue.extend({
   props: {
     html: {
       type: String,
-      default: '',
+      default: ''
     },
 
     removeTags: {
       type: Array as PropType<string[]>,
-      default: () => [],
+      default: () => []
     },
     includeGallery: {
       type: Boolean,
-      default: () => true,
-    },
+      default: () => true
+    }
   },
-  data() {
+  data () {
     return {
       isPlayerOpen: false,
       selectedImage: -1,
       imgs: [] as string[],
       isProtected: false,
-      purgedContent: '',
+      purgedContent: ''
     }
   },
   computed: {
     ...mapGetters({
-      isLoggedIn: 'authentication/isLoggedIn',
-    }),
+      isLoggedIn: 'authentication/isLoggedIn'
+    })
   },
   watch: {
-    html(nval: string) {
+    html (nval: string) {
       if (nval) this.purge()
-    },
+    }
   },
-  created() {
+  created () {
     // if (this.removeTags.length === 0) return
     if (this.html !== '') this.purge()
   },
-  mounted() {
+  mounted () {
     this.isProtected = this.html.search('Login to read more') !== -1
 
     const div = document.createElement('div')
@@ -117,7 +117,7 @@ export default Vue.extend({
   },
 
   methods: {
-    openImage(index: number) {
+    openImage (index: number) {
       this.selectedImage = index
       this.isPlayerOpen = true
     },
@@ -126,10 +126,10 @@ export default Vue.extend({
     //   this.selectedImage = -1
     //   this.isPlayerOpen = false
     // },
-    purge() {
+    purge () {
       let purgedContent = this.html
 
-      this.removeTags.forEach((tagName) => {
+      this.removeTags.forEach(tagName => {
         const reg = new RegExp(`<${tagName}.*</${tagName}>`, 'g')
         purgedContent = purgedContent.replace(reg, '')
       })
@@ -139,7 +139,7 @@ export default Vue.extend({
       // strip images
       this.imgs.splice(0, this.imgs.length)
       if (this.includeGallery)
-        purgedContent.match(/<img.*?src="(.*?)".*?>/gm)?.forEach((imagetag) => {
+        purgedContent.match(/<img.*?src="(.*?)".*?>/gm)?.forEach(imagetag => {
           try {
             // console.log(imagetag)
             const [, src] = imagetag.match(/src="(.*?)"/)!
@@ -152,15 +152,15 @@ export default Vue.extend({
         })
 
       this.purgedContent = purgedContent
-    },
-  },
+    }
+  }
 })
 </script>
 
 <style lang="scss">
 /* WP */
 .content {
-  direction: rtl;
+  // direction: rtl;
   * {
     @apply my-3;
   }
