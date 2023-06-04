@@ -97,3 +97,12 @@ declare module '*/top-nav.gql' {
   export default defaultDocument;
 }
     
+
+declare module '*/home.gql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const togheHome: DocumentNode;
+
+  export default defaultDocument;
+}
+    

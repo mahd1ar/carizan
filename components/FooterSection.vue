@@ -17,10 +17,18 @@
             </span>
 
             <a
+              v-if="$i18n.locale == 'en'"
               href="tel:+982122218151"
               class="block text-2xl hover:opacity-75 sm:text-3xl"
             >
               (+98)21 222 18151
+            </a>
+            <a
+              v-else
+              href="tel:+982122218151"
+              class="block text-2xl hover:opacity-75 sm:text-3xl"
+            >
+              02122218151
             </a>
           </p>
 
@@ -196,12 +204,12 @@
           <div class="flex space-x-3">
             design and developed by
             <a
-              class="hover:opacity-75 mx-2 font-bold text-white font-mono flex gap-2 "
+              class="hover:opacity-75 mx-2 font-bold text-white font-mono flex gap-2 relative"
               href="https://netdom.ir/"
               >mahd1ar anari
 
               <svg
-                class="w-5 h-5"
+                class="w-5 h-5 absolute -right-6 -top-1"
                 preserveAspectRatio="xMidYMid meet"
                 viewBox="0 0 24 24"
               >

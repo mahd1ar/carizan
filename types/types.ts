@@ -8793,3 +8793,10 @@ export type MainNavQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type MainNavQuery = { __typename?: 'RootQuery', menus?: { __typename?: 'RootQueryToMenuConnection', edges?: Array<{ __typename?: 'RootQueryToMenuConnectionEdge', node?: { __typename?: 'Menu', id: string, name?: string | null, menuItems?: { __typename?: 'MenuToMenuItemConnection', edges?: Array<{ __typename?: 'MenuToMenuItemConnectionEdge', node?: { __typename?: 'MenuItem', id: string, label?: string | null, uri?: string | null } | null } | null> | null } | null } | null } | null> | null } | null };
+
+export type TogheHomeQueryVariables = Exact<{
+  id?: InputMaybe<Scalars['ID']>;
+}>;
+
+
+export type TogheHomeQuery = { __typename?: 'RootQuery', page?: { __typename?: 'Page', id: string, title?: string | null, content?: string | null, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node?: { __typename?: 'MediaItem', sourceUrl?: string | null, altText?: string | null } | null } | null } | null };
