@@ -9,10 +9,10 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, useContext, useRoute } from '@nuxtjs/composition-api'
+import { computed, useContext } from '@nuxtjs/composition-api'
 import { useQuery } from '@vue/apollo-composable/dist'
-import PageTemplate from '~/components/inc/PageTemplate.vue'
-import { TogheHomeQuery, TogheHomeQueryVariables } from '~/types/types'
+import PageTemplate from '@/components/inc/PageTemplate.vue'
+import { TogheHomeQuery, TogheHomeQueryVariables } from '@/types/types'
 import PAGE from '@/apollo/toghe/home.gql'
 
 const ctx = useContext()
