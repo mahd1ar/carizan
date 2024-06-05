@@ -5,6 +5,7 @@
     <HeroSection />
 
     <!-- bg-primary 🔽 -->
+    
     <div v-if="cats[0]" class="relative flex h-[50vh] bg-primary">
       <nuxt-link
         :to="localePath('/pich-gostar/products')"
@@ -189,8 +190,9 @@ export default defineComponent({
             id: i!.node!.id,
             name: i?.node?.name || '',
             img: i?.node?.cat_cf?.image?.sourceUrl || '',
-            description: i?.node?.description || ''
-          }))
+            description: i?.node?.description || '',
+            category: i?.node?.slug?.replace('-fa','')
+          })).sort((a,b) => +(a.category === 'services') - +(b.category === 'services')  )
         : []
     })
 

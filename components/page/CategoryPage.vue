@@ -60,7 +60,7 @@ const items = computed(() => {
               '/page?' +
               new URLSearchParams({
                 [i18n.locale]: i!.id,
-                [variable.language!.toLowerCase()]: i.translation!.id,
+                [variable.language!.toLowerCase()]: i.translation ? i.translation!.id : "#",
                 product_type: '',
               }).toString(),
             image: i?.featuredImage?.node?.sourceUrl || '',

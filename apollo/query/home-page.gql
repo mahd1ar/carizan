@@ -13,6 +13,7 @@ query Home(
         id
         name
         description
+        slug
         cat_cf {
           image {
             id
@@ -26,6 +27,7 @@ query Home(
   page(id: $aboutid) {
     id
     title
+    slug
     content(format: RENDERED)
     featuredImage {
       node {
